@@ -1,5 +1,4 @@
-#ifndef __HOMESCENE_H__
-#define __HOMESCENE_H__
+#pragma once
 
 /*
 Home Scene
@@ -17,4 +16,3 @@ private:
     void initStartBtn();
 };
 
-#endif

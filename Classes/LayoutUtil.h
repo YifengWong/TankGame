@@ -1,9 +1,5 @@
 #pragma once
 
-// Forward declaration
-class cocos2d::Vec2;
-class cocos2d::Size;
-
 /*
 Utilities for layout operation.
 */

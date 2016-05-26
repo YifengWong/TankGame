@@ -1,7 +1,7 @@
 #pragma once
 
 /*
- Store constants.
+Store constants.
 */
 class Constants {
 public:

@@ -1,4 +1,5 @@
 #include "HomeScene.h"
+#include "GameScene.h"
 #include "ui/CocosGUI.h"
 #include "LayoutUtil.h"
 
@@ -19,6 +20,8 @@ bool HomeScene::init() {
 
     initStartBtn();
 
+    // TODO Home scene design
+
     return true;
 }
 
@@ -28,7 +31,9 @@ void HomeScene::initStartBtn() {
     startBtn->setTitleFontSize(30);
     startBtn->setPosition(LayoutUtil::getCenterPosition());
     startBtn->addClickEventListener([](Ref* pSender) {
-        Director::getInstance()->end();
+        Director::getInstance()->
+            replaceScene(TransitionFade::create(1.0,
+                         GameScene::createScene(), Color3B(255, 255, 255)));
     });
     this->addChild(startBtn, 0);
 }
