@@ -9,5 +9,9 @@ public:
     virtual bool init();
     CREATE_FUNC(GameScene);
 private:
-
+    /*
+    Add edge physics body.
+    Author: ChuyangLiu
+    */
+    void addEdge();
 };

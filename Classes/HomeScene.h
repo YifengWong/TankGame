@@ -10,9 +10,9 @@ public:
     CREATE_FUNC(HomeScene);
 private:
     /*
-    Initialize start button.
+    Add start button to the layer.
     Author: ChuyangLiu
     */
-    void initStartBtn();
+    void addStartBtn();
 };
 

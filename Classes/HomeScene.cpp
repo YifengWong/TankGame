@@ -18,14 +18,14 @@ bool HomeScene::init() {
         return false;
     }
 
-    initStartBtn();
+    addStartBtn();
 
     // TODO Home scene design
 
     return true;
 }
 
-void HomeScene::initStartBtn() {
+void HomeScene::addStartBtn() {
     auto startBtn = Button::create();
     startBtn->setTitleText("Start");
     startBtn->setTitleFontSize(30);
