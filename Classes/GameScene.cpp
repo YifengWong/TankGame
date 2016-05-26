@@ -22,25 +22,90 @@ bool GameScene::init() {
         return false;
     }
 
+    // Add sprites
     addEdge();
+    addPlayer();
+
+    // Add event listeners
+    addKeyboardListener();
+
+    // Set schedule
+    schedule(schedule_selector(GameScene::update));
 
     return true;
 }
 
-void GameScene::addEdge() {
-    // Edge physicsBody
-    auto body = PhysicsBody::createEdgeBox(LayoutUtil::getVisibleSize());
-    body->setDynamic(false);
+void GameScene::update(float f) {
 
-    // Edge sprite
+}
+
+void GameScene::addEdge() {
+    // Create physicsBody
+    auto physicBody = PhysicsBody::createEdgeBox(LayoutUtil::getVisibleSize());
+    physicBody->setDynamic(false);
+    // Set bitmasks
+    physicBody->setGroup(Constants::EDGE_PHYSIC_GROUP);
+    physicBody->setCategoryBitmask(Constants::EDGE_PHYSIC_CATEGORY_BM);
+    physicBody->setContactTestBitmask(Constants::EDGE_PHYSIC_CONTACT_BM);
+    // Create sprite
     auto edge = Sprite::create();
     edge->setPosition(LayoutUtil::getCenterPosition());
-    edge->setPhysicsBody(body);
+    edge->setPhysicsBody(physicBody);
+    // Add to layer
+    addChild(edge);
+}
 
-    // Set bitmasks
-    edge->getPhysicsBody()->setGroup(Constants::EDGE_PHYSIC_GROUP);
-    edge->getPhysicsBody()->setCategoryBitmask(Constants::EDGE_PHYSIC_CATEGORY_BM);
-    edge->getPhysicsBody()->setContactTestBitmask(Constants::EDGE_PHYSIC_CONTACT_BM);
+void GameScene::addPlayer() {
+    player = PlayerSprite::create();
+    player->setPosition(LayoutUtil::getCenterPosition());
+    addChild(player);
+}
 
-    this->addChild(edge);
+void GameScene::addKeyboardListener() {
+    auto keyboardListener = EventListenerKeyboard::create();
+
+    keyboardListener->onKeyPressed = [&](EventKeyboard::KeyCode code, Event* event) {
+        if (player != NULL) {
+            switch (code) {
+                case cocos2d::EventKeyboard::KeyCode::KEY_A:
+                    player->startMove(PlayerSprite::Direction::LEFT);
+                    break;
+                case cocos2d::EventKeyboard::KeyCode::KEY_D:
+                    player->startMove(PlayerSprite::Direction::RIGHT);
+                    break;
+                case cocos2d::EventKeyboard::KeyCode::KEY_W:
+                    player->startMove(PlayerSprite::Direction::UP);
+                    break;
+                case cocos2d::EventKeyboard::KeyCode::KEY_S:
+                    player->startMove(PlayerSprite::Direction::DOWN);
+                    break;
+                default:
+                    break;
+            }
+        }
+    };
+
+    keyboardListener->onKeyReleased = [&](EventKeyboard::KeyCode code, Event* event) {
+        if (player != NULL) {
+            switch (code) {
+                case cocos2d::EventKeyboard::KeyCode::KEY_A:
+                    player->stopMove(PlayerSprite::Direction::LEFT);
+                    break;
+                case cocos2d::EventKeyboard::KeyCode::KEY_D:
+                    player->stopMove(PlayerSprite::Direction::RIGHT);
+                    break;
+                case cocos2d::EventKeyboard::KeyCode::KEY_W:
+                    player->stopMove(PlayerSprite::Direction::UP);
+                    break;
+                case cocos2d::EventKeyboard::KeyCode::KEY_S:
+                    player->stopMove(PlayerSprite::Direction::DOWN);
+                    break;
+                default:
+                    break;
+            }
+        }
+    };
+
+    Director::getInstance()->getEventDispatcher()->
+        addEventListenerWithSceneGraphPriority(keyboardListener, this);
 }

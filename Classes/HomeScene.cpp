@@ -35,5 +35,5 @@ void HomeScene::addStartBtn() {
             replaceScene(TransitionFade::create(1.0,
                          GameScene::createScene(), Color3B(255, 255, 255)));
     });
-    this->addChild(startBtn, 0);
+    addChild(startBtn, 0);
 }
