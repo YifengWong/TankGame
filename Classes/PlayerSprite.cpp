@@ -44,7 +44,10 @@ void PlayerSprite::startMove(const Direction &direc) {
 
 void PlayerSprite::stopMove(const Direction &direc) {
     auto physicBody = getPhysicsBody();
-    if (physicBody == NULL) return;
+    // If does not have a physic body 
+    // or the body is already stopped, exit
+    if (physicBody == NULL || physicBody->getVelocity() == Vec2(0, 0)) return;
+
     switch (direc) {
         case PlayerSprite::LEFT:
             physicBody->setVelocity(physicBody->getVelocity() + Point(Constants::PLAYER_MOVE_DIST, 0));

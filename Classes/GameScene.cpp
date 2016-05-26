@@ -23,11 +23,12 @@ bool GameScene::init() {
     }
 
     // Add sprites
-    addEdge();
+    addBoundary();
     addPlayer();
 
     // Add event listeners
     addKeyboardListener();
+    addContactListener();
 
     // Set schedule
     schedule(schedule_selector(GameScene::update));
@@ -39,25 +40,27 @@ void GameScene::update(float f) {
 
 }
 
-void GameScene::addEdge() {
+void GameScene::addBoundary() {
     // Create physicsBody
     auto physicBody = PhysicsBody::createEdgeBox(LayoutUtil::getVisibleSize());
     physicBody->setDynamic(false);
+    physicBody->setTag(BOUNDARY_TAG);
     // Set bitmasks
-    physicBody->setGroup(Constants::EDGE_PHYSIC_GROUP);
-    physicBody->setCategoryBitmask(Constants::EDGE_PHYSIC_CATEGORY_BM);
-    physicBody->setContactTestBitmask(Constants::EDGE_PHYSIC_CONTACT_BM);
+    physicBody->setGroup(Constants::BOUND_PHYSIC_GROUP);
+    physicBody->setCategoryBitmask(Constants::BOUND_PHYSIC_CATEGORY_BM);
+    physicBody->setContactTestBitmask(Constants::BOUND_PHYSIC_CONTACT_BM);
     // Create sprite
-    auto edge = Sprite::create();
-    edge->setPosition(LayoutUtil::getCenterPosition());
-    edge->setPhysicsBody(physicBody);
+    auto boudary = Sprite::create();
+    boudary->setPosition(LayoutUtil::getCenterPosition());
+    boudary->setPhysicsBody(physicBody);
     // Add to layer
-    addChild(edge);
+    addChild(boudary);
 }
 
 void GameScene::addPlayer() {
     player = PlayerSprite::create();
     player->setPosition(LayoutUtil::getCenterPosition());
+    player->getPhysicsBody()->setTag(PLAYER_TAG);
     addChild(player);
 }
 
@@ -106,6 +109,27 @@ void GameScene::addKeyboardListener() {
         }
     };
 
-    Director::getInstance()->getEventDispatcher()->
-        addEventListenerWithSceneGraphPriority(keyboardListener, this);
+    _eventDispatcher->addEventListenerWithSceneGraphPriority(keyboardListener, this);
+}
+
+void GameScene::addContactListener() {
+    auto contactListener = EventListenerPhysicsContact::create();
+
+    contactListener->onContactBegin = [](PhysicsContact& contact) {
+        auto body1 = contact.getShapeA()->getBody();
+        auto body2 = contact.getShapeB()->getBody();
+
+        if (body1 && body2) {
+            // When player hits the wall, stop the player
+            if (body1->getTag() == PLAYER_TAG && body2->getTag() == BOUNDARY_TAG) {
+                body1->setVelocity(Vec2(0, 0));
+            } else if (body2->getTag() == PLAYER_TAG && body1->getTag() == BOUNDARY_TAG) {
+                body2->setVelocity(Vec2(0, 0));
+            }
+        }
+
+        return true;
+    };
+
+    _eventDispatcher->addEventListenerWithFixedPriority(contactListener, 1);
 }

@@ -11,13 +11,16 @@ public:
     virtual bool init();
     CREATE_FUNC(GameScene);
 private:
+    static const int PLAYER_TAG = 0;
+    static const int BOUNDARY_TAG = 1;
+
     PlayerSprite *player = NULL;
 
     /*
-    Add edge physics body.
+    Add boundary physics body.
     Author: ChuyangLiu
     */
-    void addEdge();
+    void addBoundary();
 
     /*
     Add player.
@@ -30,6 +33,12 @@ private:
     Author: ChuyangLiu
     */
     void addKeyboardListener();
+
+    /*
+    Add physics body contact event listener.
+    Author: ChuyangLiu
+    */
+    void addContactListener();
 
     /*
     Callback for schedule.
