@@ -32,6 +32,12 @@ public:
     static cocos2d::Vec2 getPosition(const PositionType &type);
 
     /*
+    Get the unit direction vector between two points.
+    Author: ChuyangLiu
+    */
+    static cocos2d::Vec2 getUnitDirectionVector(const cocos2d::Vec2 &from, const cocos2d::Vec2 &to);
+
+    /*
     Check if a sprite reaches the {LEFT|UP|RIGHT|DOWN} boundary 
     Author: ChuyangLiu
     */

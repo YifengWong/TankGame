@@ -3,8 +3,9 @@
 class Constants {
 public:
     static const int PLAYER_MOVE_DIST = 5;
-    static const int PLAYER_BULLET_SPEED = 300;
-    static const int BULLET_LAST_TIME = 3;
+    static const int ENEMY_MOVE_DIST = 50;
+    static const int PLAYER_BULLET_SPEED = 200;
+    static const int BULLET_LAST_TIME = 2;
 
     // Debug switchers
     static const bool DRAW_WORLD_EDGE = true;

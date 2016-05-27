@@ -1,5 +1,6 @@
 #include "EnemySprite.h"
 #include "BulletSprite.h"
+#include "LayoutUtil.h"
 #include "Constants.h"
 
 USING_NS_CC;
@@ -43,7 +44,25 @@ void EnemySprite::scheduleAI() {
     schedule([&](float f) {
         if (layer == NULL || player == NULL) return;
 
-        fire(player->getPosition());
+        // AI decision
+        if (rand() % 100 < 50) {
+            if (rand() % 100 < 50) {
+                fire(player->getPosition());
+            } else {
+                fire(LayoutUtil::getPosition(LayoutUtil::PositionType::CENTER));
+            }
+        }
+
+        if (rand() % 100 < 50) {
+            Vec2 vec;
+            if (rand() % 100 < 50) {
+                vec = LayoutUtil::getUnitDirectionVector(this->getPosition(), player->getPosition());
+            } else {
+                auto pos = static_cast<LayoutUtil::PositionType>(rand() % 5);
+                vec = LayoutUtil::getUnitDirectionVector(this->getPosition(), LayoutUtil::getPosition(pos));
+            }
+            this->runAction(MoveBy::create(1, vec * Constants::ENEMY_MOVE_DIST));
+        }
 
     }, 1, "EnemyAISchedule");
 }

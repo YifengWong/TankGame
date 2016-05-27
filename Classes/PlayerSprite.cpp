@@ -90,13 +90,11 @@ void PlayerSprite::resetMoveVal(const Direction &direc) {
 }
 
 void PlayerSprite::fire(Layer *layer, const cocos2d::Vec2 &target) {
-    // Create unit direction vector
-    auto directionVec = target - getPosition();
-    directionVec.normalize();
+    auto vec = LayoutUtil::getUnitDirectionVector(getPosition(), target);
     // Add bullet
     auto bullet = BulletSprite::createPlayerBullet();
     bullet->setPosition(getPosition());
-    bullet->getPhysicsBody()->setVelocity(directionVec * Constants::PLAYER_BULLET_SPEED);
+    bullet->getPhysicsBody()->setVelocity(vec * Constants::PLAYER_BULLET_SPEED);
     // Add to layer
     layer->addChild(bullet);
 }

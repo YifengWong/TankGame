@@ -67,3 +67,9 @@ bool LayoutUtil::isReachBoundary(const cocos2d::Sprite *sprite, const Direction 
     }
     return reach;
 }
+
+cocos2d::Vec2 LayoutUtil::getUnitDirectionVector(const cocos2d::Vec2 &from, const cocos2d::Vec2 &to) {
+    auto vec = to - from;
+    vec.normalize();
+    return vec;
+}

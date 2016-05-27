@@ -71,9 +71,13 @@ void GameScene::addPlayer() {
 }
 
 void GameScene::addEnemey() {
-    auto enemy = EnemySprite::create(this, player);
-    enemy->setPosition(LayoutUtil::getPosition(LayoutUtil::PositionType::RIGHT_BOTTOM));
-    addChild(enemy);
+    auto enemy1 = EnemySprite::create(this, player);
+    enemy1->setPosition(LayoutUtil::getPosition(LayoutUtil::PositionType::RIGHT_BOTTOM));
+    addChild(enemy1);
+
+    auto enemy2 = EnemySprite::create(this, player);
+    enemy2->setPosition(LayoutUtil::getPosition(LayoutUtil::PositionType::RIGHT_TOP));
+    addChild(enemy2);
 }
 
 void GameScene::addKeyboardListener() {
