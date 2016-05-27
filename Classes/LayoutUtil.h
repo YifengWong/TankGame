@@ -1,6 +1,12 @@
 #pragma once
 
 /*
+Move direction declaration.
+Author: ChuyangLiu
+*/
+enum Direction { LEFT, UP, RIGHT, DOWN };
+
+/*
 Utilities for layout operation.
 */
 class LayoutUtil {
@@ -22,4 +28,10 @@ public:
     Author: ChuyangLiu
     */
     static cocos2d::Vec2 getCenterPosition();
+
+    /*
+    Check if a sprite reaches the {LEFT|UP|RIGHT|DOWN} boundary 
+    Author: ChuyangLiu
+    */
+    static bool isReachBoundary(const cocos2d::Sprite *sprite, const Direction &boundDirec);
 };

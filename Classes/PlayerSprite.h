@@ -1,5 +1,7 @@
 #pragma once
 
+#include "LayoutUtil.h"
+
 /*
 Player sprite: a subclass of cocos2d::sprite
 */
@@ -12,23 +14,24 @@ public:
     static PlayerSprite* create();
 
     /*
-    Move direction declaration.
+    Start moving by the move value.
     Author: ChuyangLiu
     */
-    enum Direction { LEFT, UP, RIGHT, DOWN };
+    void move();
 
     /*
-    Move the player towards the direction
+    Set the move value of the player towards the direction.
     Author: ChuyangLiu
     */
-    void startMove(const Direction &direc);
+    void setMoveVal(const Direction &direc);
 
     /*
-    Stop moving the towards the direction
+    Reset the move value of the player towards the direction.
     Author: ChuyangLiu
     */
-    void stopMove(const Direction &direc);
+    void resetMoveVal(const Direction &direc);
 
 private:
-
+    // Move value of the player
+    int moveX, moveY;
 };

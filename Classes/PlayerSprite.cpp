@@ -17,49 +17,64 @@ PlayerSprite* PlayerSprite::create() {
     // Set player sprites
     player->setAnchorPoint(Vec2(0.5, 0.5));
     player->setPhysicsBody(physicBody);
+    player->moveX = player->moveY = 0;
 
     return player;
 }
 
-void PlayerSprite::startMove(const Direction &direc) {
-    auto physicBody = getPhysicsBody();
-    if (physicBody == NULL) return;
+void PlayerSprite::move() {
+    if (!(moveX < 0 && LayoutUtil::isReachBoundary(this, LEFT)
+        || moveX  > 0 && LayoutUtil::isReachBoundary(this, RIGHT)
+        || moveY < 0 && LayoutUtil::isReachBoundary(this, DOWN)
+        || moveY > 0 && LayoutUtil::isReachBoundary(this, UP))) {
+        setPosition(getPosition() + Vec2(moveX, moveY));
+    }
+}
+
+void PlayerSprite::setMoveVal(const Direction &direc) {
     switch (direc) {
-        case PlayerSprite::LEFT:
-            physicBody->setVelocity(Point(-Constants::PLAYER_MOVE_DIST, physicBody->getVelocity().y));
+        case LEFT:
+            if (!LayoutUtil::isReachBoundary(this, LEFT)) {
+                setPosition(getPositionX() - 1, getPositionY());
+            }
+            moveX -= Constants::PLAYER_MOVE_DIST;
             break;
-        case PlayerSprite::UP:
-            physicBody->setVelocity(Point(physicBody->getVelocity().x, Constants::PLAYER_MOVE_DIST));
+        case UP:
+            if (!LayoutUtil::isReachBoundary(this, UP)) {
+                setPosition(getPositionX(), getPositionY() + 1);
+            }
+            moveY += Constants::PLAYER_MOVE_DIST;
             break;
-        case PlayerSprite::RIGHT:
-            physicBody->setVelocity(Point(Constants::PLAYER_MOVE_DIST, physicBody->getVelocity().y));
+        case RIGHT:
+            if (!LayoutUtil::isReachBoundary(this, RIGHT)) {
+                setPosition(getPositionX() + 1, getPositionY());
+            }
+            moveX += Constants::PLAYER_MOVE_DIST;
             break;
-        case PlayerSprite::DOWN:
-            physicBody->setVelocity(Point(physicBody->getVelocity().x, -Constants::PLAYER_MOVE_DIST));
+        case DOWN:
+            if (!LayoutUtil::isReachBoundary(this, DOWN)) {
+                setPosition(getPositionX(), getPositionY() - 1);
+            }
+            moveY -= Constants::PLAYER_MOVE_DIST;
             break;
         default:
             break;
     }
 }
 
-void PlayerSprite::stopMove(const Direction &direc) {
-    auto physicBody = getPhysicsBody();
-    // If does not have a physic body 
-    // or the body is already stopped, exit
-    if (physicBody == NULL || physicBody->getVelocity() == Vec2(0, 0)) return;
-
+void PlayerSprite::resetMoveVal(const Direction &direc) {
     switch (direc) {
-        case PlayerSprite::LEFT:
-            physicBody->setVelocity(physicBody->getVelocity() + Point(Constants::PLAYER_MOVE_DIST, 0));
+        case LEFT:
+            moveX += Constants::PLAYER_MOVE_DIST;
             break;
-        case PlayerSprite::UP:
-            physicBody->setVelocity(physicBody->getVelocity() + Point(0, -Constants::PLAYER_MOVE_DIST));
+        case UP:
+            moveY -= Constants::PLAYER_MOVE_DIST;
             break;
-        case PlayerSprite::RIGHT:
-            physicBody->setVelocity(physicBody->getVelocity() + Point(-Constants::PLAYER_MOVE_DIST, 0));
+        case RIGHT:
+            moveX -= Constants::PLAYER_MOVE_DIST;
             break;
-        case PlayerSprite::DOWN:
-            physicBody->setVelocity(physicBody->getVelocity() + Point(0, Constants::PLAYER_MOVE_DIST));
+        case DOWN:
+            moveY += Constants::PLAYER_MOVE_DIST;
             break;
         default:
             break;

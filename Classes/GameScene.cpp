@@ -1,5 +1,4 @@
 #include "GameScene.h"
-#include "LayoutUtil.h"
 #include "Constants.h"
 
 USING_NS_CC;
@@ -37,7 +36,9 @@ bool GameScene::init() {
 }
 
 void GameScene::update(float f) {
-
+    if (player != NULL) {
+        player->move();
+    }
 }
 
 void GameScene::addBoundary() {
@@ -71,16 +72,16 @@ void GameScene::addKeyboardListener() {
         if (player != NULL) {
             switch (code) {
                 case cocos2d::EventKeyboard::KeyCode::KEY_A:
-                    player->startMove(PlayerSprite::Direction::LEFT);
+                    player->setMoveVal(Direction::LEFT);
                     break;
                 case cocos2d::EventKeyboard::KeyCode::KEY_D:
-                    player->startMove(PlayerSprite::Direction::RIGHT);
+                    player->setMoveVal(Direction::RIGHT);
                     break;
                 case cocos2d::EventKeyboard::KeyCode::KEY_W:
-                    player->startMove(PlayerSprite::Direction::UP);
+                    player->setMoveVal(Direction::UP);
                     break;
                 case cocos2d::EventKeyboard::KeyCode::KEY_S:
-                    player->startMove(PlayerSprite::Direction::DOWN);
+                    player->setMoveVal(Direction::DOWN);
                     break;
                 default:
                     break;
@@ -92,16 +93,16 @@ void GameScene::addKeyboardListener() {
         if (player != NULL) {
             switch (code) {
                 case cocos2d::EventKeyboard::KeyCode::KEY_A:
-                    player->stopMove(PlayerSprite::Direction::LEFT);
+                    player->resetMoveVal(Direction::LEFT);
                     break;
                 case cocos2d::EventKeyboard::KeyCode::KEY_D:
-                    player->stopMove(PlayerSprite::Direction::RIGHT);
+                    player->resetMoveVal(Direction::RIGHT);
                     break;
                 case cocos2d::EventKeyboard::KeyCode::KEY_W:
-                    player->stopMove(PlayerSprite::Direction::UP);
+                    player->resetMoveVal(Direction::UP);
                     break;
                 case cocos2d::EventKeyboard::KeyCode::KEY_S:
-                    player->stopMove(PlayerSprite::Direction::DOWN);
+                    player->resetMoveVal(Direction::DOWN);
                     break;
                 default:
                     break;
@@ -120,12 +121,7 @@ void GameScene::addContactListener() {
         auto body2 = contact.getShapeB()->getBody();
 
         if (body1 && body2) {
-            // When player hits the wall, stop the player
-            if (body1->getTag() == PLAYER_TAG && body2->getTag() == BOUNDARY_TAG) {
-                body1->setVelocity(Vec2(0, 0));
-            } else if (body2->getTag() == PLAYER_TAG && body1->getTag() == BOUNDARY_TAG) {
-                body2->setVelocity(Vec2(0, 0));
-            }
+            // TODO Contack listener
         }
 
         return true;
