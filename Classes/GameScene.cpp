@@ -49,6 +49,7 @@ void GameScene::addBoundary() {
     // Set bitmasks
     physicBody->setGroup(Constants::BOUND_PHYSIC_GROUP);
     physicBody->setCategoryBitmask(Constants::BOUND_PHYSIC_CATEGORY_BM);
+    physicBody->setCollisionBitmask(Constants::BOUND_PHYSIC_COLLISION_BM);
     physicBody->setContactTestBitmask(Constants::BOUND_PHYSIC_CONTACT_BM);
     // Create sprite
     auto boudary = Sprite::create();
@@ -122,6 +123,7 @@ void GameScene::addContactListener() {
 
         if (body1 && body2) {
             // TODO Contack listener
+            log("onContactBegin() triggered.");
         }
 
         return true;

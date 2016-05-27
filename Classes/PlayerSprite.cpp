@@ -12,6 +12,7 @@ PlayerSprite* PlayerSprite::create() {
     // Set group and bitmasks
     physicBody->setGroup(Constants::PLAYER_PHYSIC_GROUP);
     physicBody->setCategoryBitmask(Constants::PLAYER_PHYSIC_CATEGORY_BM);
+    physicBody->setCollisionBitmask(Constants::PLAYER_PHYSIC_COLLISION_BM);
     physicBody->setContactTestBitmask(Constants::PLAYER_PHYSIC_CONTACT_BM);
 
     // Set player sprites
