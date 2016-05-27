@@ -18,6 +18,13 @@ PlayerBullet* PlayerBullet::create() {
     // Set player sprites
     bullet->setAnchorPoint(Vec2(0.5, 0.5));
     bullet->setPhysicsBody(physicBody);
+    bullet->scheduleAutoDisappear();
 
     return bullet;
+}
+
+void PlayerBullet::scheduleAutoDisappear() {
+    scheduleOnce([&](float f) {
+        this->removeFromParent();
+    }, Constants::BULLET_LAST_TIME, "key");
 }

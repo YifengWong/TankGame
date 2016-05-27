@@ -7,6 +7,7 @@ class Constants {
 public:
     static const int PLAYER_MOVE_DIST = 5;
     static const int PLAYER_BULLET_SPEED = 300;
+    static const int BULLET_LAST_TIME = 3;
 
     // PhysicsBody groups and bitmasks
     static const int BOUND_PHYSIC_GROUP = 1;

@@ -10,4 +10,11 @@ public:
     Author: ChuyangLiu
     */
     static PlayerBullet* create();
-};
+
+private:
+    /*
+    Create a schedule to disappear the bullet after some time.
+    Author: ChuyangLiu
+    */
+    void scheduleAutoDisappear();
+;};

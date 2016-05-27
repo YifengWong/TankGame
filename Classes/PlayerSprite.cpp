@@ -93,9 +93,10 @@ void PlayerSprite::fire(Layer *layer, const cocos2d::Vec2 &target) {
     // Create unit direction vector
     auto directionVec = target - getPosition();
     directionVec.normalize();
-    // Shoot
+    // Add bullet
     auto bullet = PlayerBullet::create();
     bullet->setPosition(getPosition());
     bullet->getPhysicsBody()->setVelocity(directionVec * Constants::PLAYER_BULLET_SPEED);
+    // Add to layer
     layer->addChild(bullet);
 }
