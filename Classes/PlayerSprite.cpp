@@ -1,11 +1,11 @@
 #include "PlayerSprite.h"
 #include "Constants.h"
-#include "PlayerBullet.h"
+#include "BulletSprite.h"
 
 USING_NS_CC;
 
 PlayerSprite* PlayerSprite::create() {
-    auto sprite = Sprite::create("player_test.png");
+    auto sprite = Sprite::create("player.png");
     auto player = static_cast<PlayerSprite*>(sprite);
 
     // Create physics body
@@ -94,7 +94,7 @@ void PlayerSprite::fire(Layer *layer, const cocos2d::Vec2 &target) {
     auto directionVec = target - getPosition();
     directionVec.normalize();
     // Add bullet
-    auto bullet = PlayerBullet::create();
+    auto bullet = BulletSprite::createPlayerBullet();
     bullet->setPosition(getPosition());
     bullet->getPhysicsBody()->setVelocity(directionVec * Constants::PLAYER_BULLET_SPEED);
     // Add to layer

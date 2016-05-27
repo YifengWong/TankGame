@@ -11,9 +11,6 @@ public:
     virtual bool init();
     CREATE_FUNC(GameScene);
 private:
-    static const int PLAYER_TAG = 0;
-    static const int BOUNDARY_TAG = 1;
-
     PlayerSprite *player = NULL;
 
     /*

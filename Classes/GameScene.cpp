@@ -7,8 +7,9 @@ using namespace cocos2d::ui;
 Scene* GameScene::createScene() {
     // Create a scene with a physics world
     auto scene = Scene::createWithPhysics();
-    scene->getPhysicsWorld()->setDebugDrawMask(PhysicsWorld::DEBUGDRAW_ALL);
     scene->getPhysicsWorld()->setGravity(Point(0, 0));
+    scene->getPhysicsWorld()->setDebugDrawMask(
+        Constants::DRAW_WORLD_EDGE ? PhysicsWorld::DEBUGDRAW_ALL : PhysicsWorld::DEBUGDRAW_NONE);
 
     auto layer = GameScene::create();
     scene->addChild(layer);
@@ -44,10 +45,10 @@ void GameScene::update(float f) {
 
 void GameScene::addBoundary() {
     // Create physicsBody
+    // Customize PhysicsMaterial to enable mirror reflection
     auto physicBody = PhysicsBody::createEdgeBox(LayoutUtil::getVisibleSize(),
                                                  PhysicsMaterial(0, 2, 0));
     physicBody->setDynamic(false);
-    physicBody->setTag(BOUNDARY_TAG);
     // Set bitmasks
     physicBody->setGroup(Constants::BOUND_PHYSIC_GROUP);
     physicBody->setCategoryBitmask(Constants::BOUND_PHYSIC_CATEGORY_BM);
@@ -64,7 +65,6 @@ void GameScene::addBoundary() {
 void GameScene::addPlayer() {
     player = PlayerSprite::create();
     player->setPosition(LayoutUtil::getCenterPosition());
-    player->getPhysicsBody()->setTag(PLAYER_TAG);
     addChild(player);
 }
 
@@ -120,8 +120,8 @@ void GameScene::addMouseListener() {
     auto mouseListener = EventListenerMouse::create();
 
     mouseListener->onMouseUp = [&](EventMouse *event) {
-        // getLocationInView() returns openGL coordinate
-        // Maybe this is a bug.
+        // getLocationInView() returns openGL coordinate,
+        // not screen coordiante, maybe this is a bug.
         Vec2 target = event->getLocationInView();
         player->fire(this, target);
     };
