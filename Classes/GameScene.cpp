@@ -44,7 +44,8 @@ void GameScene::update(float f) {
 
 void GameScene::addBoundary() {
     // Create physicsBody
-    auto physicBody = PhysicsBody::createEdgeBox(LayoutUtil::getVisibleSize());
+    auto physicBody = PhysicsBody::createEdgeBox(LayoutUtil::getVisibleSize(),
+                                                 PhysicsMaterial(0, 2, 0));
     physicBody->setDynamic(false);
     physicBody->setTag(BOUNDARY_TAG);
     // Set bitmasks
