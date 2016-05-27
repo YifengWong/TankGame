@@ -26,6 +26,12 @@ private:
     void addPlayer();
 
     /*
+    Add enemy.
+    Author: ChuyangLiu
+    */
+    void addEnemey();
+
+    /*
     Add keyboard event listener.
     Author: ChuyangLiu
     */

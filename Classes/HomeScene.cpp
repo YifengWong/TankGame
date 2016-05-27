@@ -29,7 +29,7 @@ void HomeScene::addStartBtn() {
     auto startBtn = Button::create();
     startBtn->setTitleText("Start");
     startBtn->setTitleFontSize(30);
-    startBtn->setPosition(LayoutUtil::getCenterPosition());
+    startBtn->setPosition(LayoutUtil::getPosition(LayoutUtil::PositionType::CENTER));
     startBtn->addClickEventListener([](Ref* pSender) {
         Director::getInstance()->replaceScene(GameScene::createScene());
     });

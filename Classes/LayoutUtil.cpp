@@ -2,19 +2,41 @@
 
 USING_NS_CC;
 
-Vec2 LayoutUtil::getCenterPosition() {
-    auto origin = getOrigin();
-    auto visibleSize = getVisibleSize();
-    return Vec2(origin.x + visibleSize.width / 2,
-                origin.y + visibleSize.height / 2);
-}
-
 Vec2 LayoutUtil::getOrigin() {
     return Director::getInstance()->getVisibleOrigin();
 }
 
 Size LayoutUtil::getVisibleSize() {
     return Director::getInstance()->getVisibleSize();
+}
+
+Vec2 LayoutUtil::getPosition(const PositionType &type) {
+    auto origin = getOrigin();
+    auto visibleSize = getVisibleSize();
+    const int offset = 70;
+    switch (type) {
+        case LEFT_TOP:
+            return Vec2(origin.x + offset,
+                        origin.y + visibleSize.height - offset);
+            break;
+        case LEFT_BOTTOM:
+            return Vec2(origin.x + offset,
+                        origin.y + offset);
+            break;
+        case RIGHT_TOP:
+            return Vec2(origin.x + visibleSize.width - offset,
+                        origin.y + visibleSize.height - offset);
+            break;
+        case RIGHT_BOTTOM:
+            return Vec2(origin.x + visibleSize.width - offset,
+                        origin.y + offset);
+            break;
+        case CENTER:
+        default:
+            return Vec2(origin.x + visibleSize.width / 2,
+                        origin.y + visibleSize.height / 2);
+            break;
+    }
 }
 
 bool LayoutUtil::isReachBoundary(const cocos2d::Sprite *sprite, const Direction &boundDirec) {

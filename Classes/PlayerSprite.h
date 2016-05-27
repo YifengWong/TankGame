@@ -32,7 +32,7 @@ public:
     void resetMoveVal(const Direction &direc);
 
     /*
-    Fire at the position.
+    Player fire at the target.
     Author: ChuyangLiu
     */
     void fire(cocos2d::Layer *layer, const cocos2d::Vec2 &target);

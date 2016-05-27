@@ -1,8 +1,5 @@
 #pragma once
 
-/*
-Store constants.
-*/
 class Constants {
 public:
     static const int PLAYER_MOVE_DIST = 5;
@@ -22,6 +19,11 @@ public:
     static const int PLAYER_PHYSIC_CATEGORY_BM = 0x00000001;
     static const int PLAYER_PHYSIC_COLLISION_BM = 0x0000000;
     static const int PLAYER_PHYSIC_CONTACT_BM = 0x00000010;
+    // Enemy physic groups and bitmasks
+    static const int ENEMY_PHYSIC_GROUP = -1;
+    static const int ENEMY_PHYSIC_CATEGORY_BM = 0x00000001;
+    static const int ENEMY_PHYSIC_COLLISION_BM = 0x0000000;
+    static const int ENEMY_PHYSIC_CONTACT_BM = 0x00000010;
     // Player bullet physic groups and bitmasks
     static const int BULLET_PLAYER_PHYSIC_GROUP = -1;
     static const int BULLET_PLAYER_PHYSIC_CATEGORY_BM = 0x00000001;

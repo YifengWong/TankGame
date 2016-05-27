@@ -24,10 +24,12 @@ public:
     static cocos2d::Size getVisibleSize();
 
     /*
-    Return center position of the game window.
+    Return {CENTER|LEFT_TOP|LEFT_BOTTOM|RIGHT_TOP|RIGHT_BOTTOM} 
+    position of the game window.
     Author: ChuyangLiu
     */
-    static cocos2d::Vec2 getCenterPosition();
+    enum PositionType { CENTER, LEFT_TOP, LEFT_BOTTOM, RIGHT_TOP, RIGHT_BOTTOM };
+    static cocos2d::Vec2 getPosition(const PositionType &type);
 
     /*
     Check if a sprite reaches the {LEFT|UP|RIGHT|DOWN} boundary 

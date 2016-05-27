@@ -1,7 +1,7 @@
 #pragma once
 
 /*
-Player's bullet.
+A bullet sprite
 */
 class BulletSprite : public cocos2d::Sprite {
 public:

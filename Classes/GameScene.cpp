@@ -1,4 +1,5 @@
 #include "GameScene.h"
+#include "EnemySprite.h"
 #include "Constants.h"
 
 USING_NS_CC;
@@ -25,6 +26,7 @@ bool GameScene::init() {
     // Add sprites
     addBoundary();
     addPlayer();
+    addEnemey();
 
     // Add event listeners
     addKeyboardListener();
@@ -56,7 +58,7 @@ void GameScene::addBoundary() {
     physicBody->setContactTestBitmask(Constants::BOUND_PHYSIC_CONTACT_BM);
     // Create sprite
     auto boudary = Sprite::create();
-    boudary->setPosition(LayoutUtil::getCenterPosition());
+    boudary->setPosition(LayoutUtil::getPosition(LayoutUtil::PositionType::CENTER));
     boudary->setPhysicsBody(physicBody);
     // Add to layer
     addChild(boudary);
@@ -64,8 +66,14 @@ void GameScene::addBoundary() {
 
 void GameScene::addPlayer() {
     player = PlayerSprite::create();
-    player->setPosition(LayoutUtil::getCenterPosition());
+    player->setPosition(LayoutUtil::getPosition(LayoutUtil::PositionType::LEFT_BOTTOM));
     addChild(player);
+}
+
+void GameScene::addEnemey() {
+    auto enemy = EnemySprite::create(this, player);
+    enemy->setPosition(LayoutUtil::getPosition(LayoutUtil::PositionType::RIGHT_BOTTOM));
+    addChild(enemy);
 }
 
 void GameScene::addKeyboardListener() {

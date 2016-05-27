@@ -44,7 +44,8 @@ BulletSprite* BulletSprite::createEnemyBullet() {
 }
 
 void BulletSprite::scheduleAutoDisappear() {
+    // The third param is not used
     scheduleOnce([&](float f) {
         this->removeFromParent();
-    }, Constants::BULLET_LAST_TIME, "key");
+    }, Constants::BULLET_LAST_TIME, "BulletSchedule");
 }
