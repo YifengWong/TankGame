@@ -1,6 +1,6 @@
 #include "PlayerSprite.h"
 #include "Constants.h"
-#include "BulletSprite.h"
+#include "PlayerBulletSprite.h"
 
 USING_NS_CC;
 
@@ -93,7 +93,7 @@ void PlayerSprite::resetMoveVal(const Direction &direc) {
 void PlayerSprite::fire(Layer *layer, const cocos2d::Vec2 &target) {
     auto vec = LayoutUtil::getUnitDirectionVector(getPosition(), target);
     // Add bullet
-    auto bullet = BulletSprite::createPlayerBullet();
+    auto bullet = PlayerBulletSprite::createPlayerBullet();
     bullet->setPosition(getPosition());
     bullet->getPhysicsBody()->setVelocity(vec * Constants::PLAYER_BULLET_SPEED);
     // Add to layer

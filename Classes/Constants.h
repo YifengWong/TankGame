@@ -16,22 +16,26 @@ public:
     Six types of the sprite:
     1. Player     2.PlayerBullet    3.Boundary
     4. Enemy      5.EnemyBullet     6.Wall
-    (ps. using Bullet = { PlayerBullet | EnemyBullet })
+    
+    abbr. using Bullet = (PlayerBullet && EnemyBullet)
+          using      X = "Don't care"
 
     Collision events requirements:
-    Object:                 Collide:   Trigger collision event:
-    [Bullet, Bullet]        false      don't care
-    [Bullet, Boundary]      true       false
-    [Bullet, Wall]          true       false
-    [Player, PlayerBullet]  false      don't care
-    [Player, EnemyBullet]   true       true
-    [Player, Boundary]      false      don't care
-    [Player, Wall]          true       false
-    [Player, Enemy]         true       true
-    [Enemy,  PlayerBullet]  true       true
-    [Enemy,  EnemyBullet]   false      don't care
-    [Enemy,  Boundary]      true       false
-    [Enemy,  Wall]          true       false
+    Object:                  Collide:   Trigger collision event:
+    [Bullet, Bullet]         false      X
+    [Bullet, Boundary]       true       false
+    [Bullet, Wall]           true       false
+    [Player, Player]         false      X
+    [Player, PlayerBullet]   false      X
+    [Player, EnemyBullet]    true       true
+    [Player, Boundary]       false      X
+    [Player, Wall]           true       false
+    [Player, Enemy]          true       true
+    [Enemy,  Enemy]          false      X
+    [Enemy,  PlayerBullet]   true       true
+    [Enemy,  EnemyBullet]    false      X
+    [Enemy,  Boundary]       true       false
+    [Enemy,  Wall]           true       false
     */
 
     // PhysicBody tag

@@ -1,21 +1,15 @@
 #pragma once
 
 /*
-A bullet sprite
+A player bullet sprite
 */
-class BulletSprite : public cocos2d::Sprite {
+class PlayerBulletSprite : public cocos2d::Sprite {
 public:
     /*
     Create a bullet for player.
     Author: ChuyangLiu
     */
-    static BulletSprite* createPlayerBullet();
-
-    /*
-    Create a bullet for enemy.
-    Author: ChuyangLiu
-    */
-    static BulletSprite* createEnemyBullet();
+    static PlayerBulletSprite* createPlayerBullet();
 
 private:
     /*

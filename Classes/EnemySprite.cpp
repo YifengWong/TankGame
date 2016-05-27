@@ -1,5 +1,5 @@
 #include "EnemySprite.h"
-#include "BulletSprite.h"
+#include "EnemyBulletSprite.h"
 #include "LayoutUtil.h"
 #include "Constants.h"
 
@@ -33,7 +33,7 @@ void EnemySprite::fire(const cocos2d::Vec2 &target) {
     auto directionVec = target - getPosition();
     directionVec.normalize();
     // Add bullet
-    auto bullet = BulletSprite::createEnemyBullet();
+    auto bullet = EnemyBulletSprite::createEnemyBullet();
     bullet->setPosition(getPosition());
     bullet->getPhysicsBody()->setVelocity(directionVec * Constants::PLAYER_BULLET_SPEED);
     // Add to layer

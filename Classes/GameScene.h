@@ -1,6 +1,8 @@
 #pragma once
 
-#include "PlayerSprite.h"
+#include "EnemySprite.h"
+#include "PlayerBulletSprite.h"
+#include "EnemyBulletSprite.h"
 
 /*
 Game Scene
@@ -54,6 +56,24 @@ private:
     Author: ChuyangLiu
     */
     void addContactListener();
+
+    /*
+    Called when the player hits an enemy.
+    Author: ChuyangLiu
+    */
+    void meetPlayerWithEnemy(PlayerSprite *player, EnemySprite *enemy);
+
+    /*
+    Called when the player hits an enemy bullet.
+    Author: ChuyangLiu
+    */
+    void meetPlayerWithEnemyBullet(PlayerSprite *player, EnemyBulletSprite *enemyBullet);
+
+    /*
+    Called when the player hits an enemy bullet.
+    Author: ChuyangLiu
+    */
+    void meetEnemyWithPlayerBullet(EnemySprite *enemy, PlayerBulletSprite *playerBullet);
 
     /*
     Callback for schedule.

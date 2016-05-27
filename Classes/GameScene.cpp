@@ -1,5 +1,4 @@
 #include "GameScene.h"
-#include "EnemySprite.h"
 #include "Constants.h"
 #include "WallSprite.h"
 
@@ -153,17 +152,63 @@ void GameScene::addMouseListener() {
 void GameScene::addContactListener() {
     auto contactListener = EventListenerPhysicsContact::create();
 
-    contactListener->onContactBegin = [](PhysicsContact& contact) {
+    contactListener->onContactBegin = [&](PhysicsContact& contact) {
         auto body1 = contact.getShapeA()->getBody();
         auto body2 = contact.getShapeB()->getBody();
 
         if (body1 && body2) {
-            // TODO Contack listener
-            log("onContactBegin() triggered.");
+            // Player hits enemy
+            if (body1->getTag() == Constants::PLAYER_TAG
+                && body2->getTag() == Constants::ENEMY_TAG) {
+                meetPlayerWithEnemy(static_cast<PlayerSprite*>(body1->getNode()),
+                                    static_cast<EnemySprite*>(body2->getNode()));
+            } else if (body1->getTag() == Constants::ENEMY_TAG
+                       && body2->getTag() == Constants::PLAYER_TAG) {
+                meetPlayerWithEnemy(static_cast<PlayerSprite*>(body2->getNode()),
+                                    static_cast<EnemySprite*>(body1->getNode()));
+            }
+
+            // Player hits enemy bullet
+            if (body1->getTag() == Constants::PLAYER_TAG
+                && body2->getTag() == Constants::BULLET_ENEMY_TAG) {
+                meetPlayerWithEnemyBullet(static_cast<PlayerSprite*>(body1->getNode()),
+                                          static_cast<EnemyBulletSprite*>(body2->getNode()));
+            } else if (body1->getTag() == Constants::BULLET_ENEMY_TAG
+                       && body2->getTag() == Constants::PLAYER_TAG) {
+                meetPlayerWithEnemyBullet(static_cast<PlayerSprite*>(body2->getNode()),
+                                          static_cast<EnemyBulletSprite*>(body1->getNode()));
+            }
+
+            // Enemy hits player bullet
+            if (body1->getTag() == Constants::ENEMY_TAG
+                && body2->getTag() == Constants::BULLET_PLAYER_TAG) {
+                meetEnemyWithPlayerBullet(static_cast<EnemySprite*>(body1->getNode()),
+                                          static_cast<PlayerBulletSprite*>(body2->getNode()));
+            } else if (body1->getTag() == Constants::BULLET_PLAYER_TAG
+                       && body2->getTag() == Constants::ENEMY_TAG) {
+                meetEnemyWithPlayerBullet(static_cast<EnemySprite*>(body2->getNode()),
+                                          static_cast<PlayerBulletSprite*>(body1->getNode()));
+            }
         }
 
         return true;
     };
 
     _eventDispatcher->addEventListenerWithFixedPriority(contactListener, 1);
+}
+
+
+void GameScene::meetPlayerWithEnemy(PlayerSprite *player, EnemySprite *enemy) {
+    // TODO Event: when player meets enemy
+    log("meetPlayerWithEnemy()");
+}
+
+void GameScene::meetPlayerWithEnemyBullet(PlayerSprite *player, EnemyBulletSprite *enemyBullet) {
+    // TODO Event: when player meets enemy bullet
+    log("meetPlayerWithEnemyBullet()");
+}
+
+void GameScene::meetEnemyWithPlayerBullet(EnemySprite *enemy, PlayerBulletSprite *playerBullet) {
+    // TODO Event: when enemy meets player bullet
+    log("meetEnemyWithPlayerBullet()");
 }
