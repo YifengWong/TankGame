@@ -31,9 +31,7 @@ void HomeScene::addStartBtn() {
     startBtn->setTitleFontSize(30);
     startBtn->setPosition(LayoutUtil::getCenterPosition());
     startBtn->addClickEventListener([](Ref* pSender) {
-        Director::getInstance()->
-            replaceScene(TransitionFade::create(1.0,
-                         GameScene::createScene(), Color3B(255, 255, 255)));
+        Director::getInstance()->replaceScene(GameScene::createScene());
     });
     addChild(startBtn, 0);
 }

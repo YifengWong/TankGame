@@ -23,11 +23,17 @@ PlayerSprite* PlayerSprite::create() {
 }
 
 void PlayerSprite::move() {
-    if (!(moveX < 0 && LayoutUtil::isReachBoundary(this, LEFT)
-        || moveX  > 0 && LayoutUtil::isReachBoundary(this, RIGHT)
-        || moveY < 0 && LayoutUtil::isReachBoundary(this, DOWN)
-        || moveY > 0 && LayoutUtil::isReachBoundary(this, UP))) {
-        setPosition(getPosition() + Vec2(moveX, moveY));
+    if (moveX < 0 && !LayoutUtil::isReachBoundary(this, LEFT)) {
+        setPosition(getPosition() + Vec2(moveX, 0));
+    }
+    if (moveX > 0 && !LayoutUtil::isReachBoundary(this, RIGHT)) {
+        setPosition(getPosition() + Vec2(moveX, 0));
+    }
+    if (moveY < 0 && !LayoutUtil::isReachBoundary(this, DOWN)) {
+        setPosition(getPosition() + Vec2(0, moveY));
+    }
+    if (moveY > 0 && !LayoutUtil::isReachBoundary(this, UP)) {
+        setPosition(getPosition() + Vec2(0, moveY));
     }
 }
 
