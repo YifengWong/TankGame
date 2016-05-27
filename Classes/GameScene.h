@@ -35,6 +35,12 @@ private:
     void addKeyboardListener();
 
     /*
+    Add mouse event listener.
+    Author: ChuyangLiu
+    */
+    void addMouseListener();
+
+    /*
     Add physics body contact event listener.
     Author: ChuyangLiu
     */

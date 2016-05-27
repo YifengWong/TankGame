@@ -28,6 +28,7 @@ bool GameScene::init() {
     // Add event listeners
     addKeyboardListener();
     addContactListener();
+    addMouseListener();
 
     // Set schedule
     schedule(schedule_selector(GameScene::update));
@@ -112,6 +113,19 @@ void GameScene::addKeyboardListener() {
     };
 
     _eventDispatcher->addEventListenerWithSceneGraphPriority(keyboardListener, this);
+}
+
+void GameScene::addMouseListener() {
+    auto mouseListener = EventListenerMouse::create();
+
+    mouseListener->onMouseUp = [&](EventMouse *event) {
+        // getLocationInView() returns openGL coordinate
+        // Maybe this is a bug.
+        Vec2 target = event->getLocationInView();
+        player->fire(this, target);
+    };
+
+    _eventDispatcher->addEventListenerWithSceneGraphPriority(mouseListener, this);
 }
 
 void GameScene::addContactListener() {

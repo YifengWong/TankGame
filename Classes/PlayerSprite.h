@@ -3,7 +3,7 @@
 #include "LayoutUtil.h"
 
 /*
-Player sprite: a subclass of cocos2d::sprite
+A player sprite
 */
 class PlayerSprite : public cocos2d::Sprite {
 public:
@@ -30,6 +30,12 @@ public:
     Author: ChuyangLiu
     */
     void resetMoveVal(const Direction &direc);
+
+    /*
+    Fire at the position.
+    Author: ChuyangLiu
+    */
+    void fire(cocos2d::Layer *layer, const cocos2d::Vec2 &target);
 
 private:
     // Move value of the player
