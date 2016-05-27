@@ -14,6 +14,7 @@ BulletSprite* BulletSprite::createPlayerBullet() {
     physicBody->setCategoryBitmask(Constants::BULLET_PLAYER_PHYSIC_CATEGORY_BM);
     physicBody->setCollisionBitmask(Constants::BULLET_PLAYER_PHYSIC_COLLISION_BM);
     physicBody->setContactTestBitmask(Constants::BULLET_PLAYER_PHYSIC_CONTACT_BM);
+    physicBody->setTag(Constants::BULLET_PLAYER_TAG);
 
     // Set bullet sprites
     bullet->setAnchorPoint(Vec2(0.5, 0.5));
@@ -34,6 +35,7 @@ BulletSprite* BulletSprite::createEnemyBullet() {
     physicBody->setCategoryBitmask(Constants::BULLET_ENEMY_PHYSIC_CATEGORY_BM);
     physicBody->setCollisionBitmask(Constants::BULLET_ENEMY_PHYSIC_COLLISION_BM);
     physicBody->setContactTestBitmask(Constants::BULLET_ENEMY_PHYSIC_CONTACT_BM);
+    physicBody->setTag(Constants::BULLET_ENEMY_TAG);
 
     // Set bullet sprites
     bullet->setAnchorPoint(Vec2(0.5, 0.5));

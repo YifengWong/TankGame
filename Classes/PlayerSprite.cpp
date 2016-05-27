@@ -9,12 +9,13 @@ PlayerSprite* PlayerSprite::create() {
     auto player = static_cast<PlayerSprite*>(sprite);
 
     // Create physics body
-    auto physicBody = PhysicsBody::createCircle(player->getContentSize().height / 2);
+    auto physicBody = PhysicsBody::createBox(player->getContentSize());
     // Set group and bitmasks
     physicBody->setGroup(Constants::PLAYER_PHYSIC_GROUP);
     physicBody->setCategoryBitmask(Constants::PLAYER_PHYSIC_CATEGORY_BM);
     physicBody->setCollisionBitmask(Constants::PLAYER_PHYSIC_COLLISION_BM);
     physicBody->setContactTestBitmask(Constants::PLAYER_PHYSIC_CONTACT_BM);
+    physicBody->setTag(Constants::PLAYER_TAG);
 
     // Set player sprites
     player->setAnchorPoint(Vec2(0.5, 0.5));

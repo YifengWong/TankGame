@@ -32,6 +32,12 @@ private:
     void addEnemey();
 
     /*
+    Add walls.
+    Author: ChuyangLiu
+    */
+    void addWall();
+
+    /*
     Add keyboard event listener.
     Author: ChuyangLiu
     */

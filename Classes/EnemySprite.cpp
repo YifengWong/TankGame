@@ -10,12 +10,13 @@ EnemySprite* EnemySprite::create(cocos2d::Layer *layer, PlayerSprite *player) {
     auto enemy = static_cast<EnemySprite*>(sprite);
 
     // Create physics body
-    auto physicBody = PhysicsBody::createCircle(enemy->getContentSize().height / 2);
+    auto physicBody = PhysicsBody::createBox(enemy->getContentSize());
     // Set group and bitmasks
     physicBody->setGroup(Constants::ENEMY_PHYSIC_GROUP);
     physicBody->setCategoryBitmask(Constants::ENEMY_PHYSIC_CATEGORY_BM);
     physicBody->setCollisionBitmask(Constants::ENEMY_PHYSIC_COLLISION_BM);
     physicBody->setContactTestBitmask(Constants::ENEMY_PHYSIC_CONTACT_BM);
+    physicBody->setTag(Constants::ENEMY_TAG);
 
     // Set player sprites
     enemy->setAnchorPoint(Vec2(0.5, 0.5));
@@ -44,6 +45,7 @@ void EnemySprite::scheduleAI() {
     schedule([&](float f) {
         if (layer == NULL || player == NULL) return;
 
+        // TODO Enemy AI design
         // AI decision
         if (rand() % 100 < 50) {
             if (rand() % 100 < 50) {

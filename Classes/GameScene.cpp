@@ -1,6 +1,7 @@
 #include "GameScene.h"
 #include "EnemySprite.h"
 #include "Constants.h"
+#include "WallSprite.h"
 
 USING_NS_CC;
 using namespace cocos2d::ui;
@@ -27,6 +28,7 @@ bool GameScene::init() {
     addBoundary();
     addPlayer();
     addEnemey();
+    addWall();
 
     // Add event listeners
     addKeyboardListener();
@@ -56,6 +58,7 @@ void GameScene::addBoundary() {
     physicBody->setCategoryBitmask(Constants::BOUND_PHYSIC_CATEGORY_BM);
     physicBody->setCollisionBitmask(Constants::BOUND_PHYSIC_COLLISION_BM);
     physicBody->setContactTestBitmask(Constants::BOUND_PHYSIC_CONTACT_BM);
+    physicBody->setTag(Constants::BOUNDARY_TAG);
     // Create sprite
     auto boudary = Sprite::create();
     boudary->setPosition(LayoutUtil::getPosition(LayoutUtil::PositionType::CENTER));
@@ -78,6 +81,12 @@ void GameScene::addEnemey() {
     auto enemy2 = EnemySprite::create(this, player);
     enemy2->setPosition(LayoutUtil::getPosition(LayoutUtil::PositionType::RIGHT_TOP));
     addChild(enemy2);
+}
+
+void GameScene::addWall() {
+    auto wall1 = WallSprite::create();
+    wall1->setPosition(LayoutUtil::getPosition(LayoutUtil::PositionType::CENTER));
+    addChild(wall1);
 }
 
 void GameScene::addKeyboardListener() {
