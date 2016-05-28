@@ -9,7 +9,7 @@ public:
     Create a bullet for enemy.
     Author: ChuyangLiu
     */
-    static EnemyBulletSprite* createEnemyBullet();
+    static EnemyBulletSprite* create();
 
 private:
     /*

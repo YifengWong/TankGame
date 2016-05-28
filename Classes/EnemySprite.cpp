@@ -34,9 +34,9 @@ void EnemySprite::fire(const cocos2d::Vec2 &target) {
     auto directionVec = target - getPosition();
     directionVec.normalize();
     // Add bullet
-    auto bullet = EnemyBulletSprite::createEnemyBullet();
+    auto bullet = EnemyBulletSprite::create();
     bullet->setPosition(getPosition());
-    bullet->getPhysicsBody()->setVelocity(directionVec * Constants::PLAYER_BULLET_SPEED);
+    bullet->getPhysicsBody()->setVelocity(directionVec * Constants::ENEMY_BULLET_SPEED);
     // Add to layer
     layer->addChild(bullet);
 }
@@ -48,7 +48,7 @@ void EnemySprite::scheduleAI() {
 
         // TODO Enemy AI design
         // AI decision
-        if (rand() % 100 < 50) {
+        if (rand() % 100 < 30) {
             if (rand() % 100 < 50) {
                 fire(player->getPosition());
             } else {
@@ -64,7 +64,7 @@ void EnemySprite::scheduleAI() {
                 auto pos = static_cast<LayoutUtil::PositionType>(rand() % 5);
                 vec = LayoutUtil::getUnitDirectionVector(this->getPosition(), LayoutUtil::getPosition(pos));
             }
-            this->runAction(MoveBy::create(1, vec * Constants::ENEMY_MOVE_UNIT));
+            this->getPhysicsBody()->setVelocity(vec * Constants::ENEMY_MOVE_UNIT);
         }
 
     }, 1, "EnemyAISchedule");

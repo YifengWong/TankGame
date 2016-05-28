@@ -223,17 +223,16 @@ void GameScene::addContactListener() {
 
 void GameScene::meetPlayerWithEnemy(PlayerSprite *player, EnemySprite *enemy) {
     // TODO Event: when player meets enemy
-    log("meetPlayerWithEnemy()");
 }
 
 void GameScene::meetPlayerWithEnemyBullet(PlayerSprite *player, EnemyBulletSprite *enemyBullet) {
     // TODO Event: when player meets enemy bullet
-    log("meetPlayerWithEnemyBullet()");
 }
 
 void GameScene::meetEnemyWithPlayerBullet(EnemySprite *enemy, PlayerBulletSprite *playerBullet) {
     // TODO Event: when enemy meets player bullet
-    log("meetEnemyWithPlayerBullet()");
+    //enemy->removeFromParent();
+    //playerBullet->removeFromParent();
 }
 
 void GameScene::meetPlayerWithWall(PlayerSprite *player) {

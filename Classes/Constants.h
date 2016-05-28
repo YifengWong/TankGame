@@ -6,7 +6,8 @@ class Constants {
 public:
     static const int PLAYER_MOVE_UNIT = 100;
     static const int ENEMY_MOVE_UNIT = 50;
-    static const int PLAYER_BULLET_SPEED = 200;
+    static const int PLAYER_BULLET_SPEED = 150;
+    static const int ENEMY_BULLET_SPEED = 150;
     static const int BULLET_LAST_TIME = 2;
 
     // Debug switchers

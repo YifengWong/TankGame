@@ -75,7 +75,7 @@ void PlayerSprite::resetMoveVal(const Direction &direc) {
 void PlayerSprite::fire(Layer *layer, const cocos2d::Vec2 &target) {
     auto vec = LayoutUtil::getUnitDirectionVector(getPosition(), target);
     // Add bullet
-    auto bullet = PlayerBulletSprite::createPlayerBullet();
+    auto bullet = PlayerBulletSprite::create();
     bullet->setPosition(getPosition());
     bullet->getPhysicsBody()->setVelocity(vec * Constants::PLAYER_BULLET_SPEED);
     // Add to layer

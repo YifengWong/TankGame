@@ -3,7 +3,7 @@
 
 USING_NS_CC;
 
-EnemyBulletSprite* EnemyBulletSprite::createEnemyBullet() {
+EnemyBulletSprite* EnemyBulletSprite::create() {
     auto sprite = Sprite::create("bullet_enemy.png");
     auto bullet = static_cast<EnemyBulletSprite*>(sprite);
 

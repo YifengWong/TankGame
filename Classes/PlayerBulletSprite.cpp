@@ -3,7 +3,7 @@
 
 USING_NS_CC;
 
-PlayerBulletSprite* PlayerBulletSprite::createPlayerBullet() {
+PlayerBulletSprite* PlayerBulletSprite::create() {
     auto sprite = Sprite::create("bullet_player.png");
     auto bullet = static_cast<PlayerBulletSprite*>(sprite);
 

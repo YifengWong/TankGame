@@ -9,7 +9,7 @@ public:
     Create a bullet for player.
     Author: ChuyangLiu
     */
-    static PlayerBulletSprite* createPlayerBullet();
+    static PlayerBulletSprite* create();
 
 private:
     /*
