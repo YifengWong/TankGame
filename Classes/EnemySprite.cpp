@@ -16,6 +16,7 @@ EnemySprite* EnemySprite::create(cocos2d::Layer *layer, PlayerSprite *player) {
     physicBody->setCategoryBitmask(Constants::ENEMY_PHYSIC_CATEGORY_BM);
     physicBody->setCollisionBitmask(Constants::ENEMY_PHYSIC_COLLISION_BM);
     physicBody->setContactTestBitmask(Constants::ENEMY_PHYSIC_CONTACT_BM);
+    physicBody->setRotationEnable(false);
     physicBody->setTag(Constants::ENEMY_TAG);
 
     // Set player sprites
@@ -63,7 +64,7 @@ void EnemySprite::scheduleAI() {
                 auto pos = static_cast<LayoutUtil::PositionType>(rand() % 5);
                 vec = LayoutUtil::getUnitDirectionVector(this->getPosition(), LayoutUtil::getPosition(pos));
             }
-            this->runAction(MoveBy::create(1, vec * Constants::ENEMY_MOVE_DIST));
+            this->runAction(MoveBy::create(1, vec * Constants::ENEMY_MOVE_UNIT));
         }
 
     }, 1, "EnemyAISchedule");

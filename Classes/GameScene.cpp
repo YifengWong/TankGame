@@ -26,7 +26,7 @@ bool GameScene::init() {
     // Add sprites
     addBoundary();
     addPlayer();
-    addEnemey();
+    //addEnemey();
     addWall();
 
     // Add event listeners
@@ -41,9 +41,6 @@ bool GameScene::init() {
 }
 
 void GameScene::update(float f) {
-    if (player != NULL) {
-        player->move();
-    }
 }
 
 void GameScene::addBoundary() {
@@ -53,11 +50,11 @@ void GameScene::addBoundary() {
                                                  PhysicsMaterial(0, 2, 0));
     physicBody->setDynamic(false);
     // Set bitmasks
-    physicBody->setGroup(Constants::BOUND_PHYSIC_GROUP);
-    physicBody->setCategoryBitmask(Constants::BOUND_PHYSIC_CATEGORY_BM);
-    physicBody->setCollisionBitmask(Constants::BOUND_PHYSIC_COLLISION_BM);
-    physicBody->setContactTestBitmask(Constants::BOUND_PHYSIC_CONTACT_BM);
-    physicBody->setTag(Constants::BOUNDARY_TAG);
+    physicBody->setGroup(Constants::WALL_PHYSIC_GROUP);
+    physicBody->setCategoryBitmask(Constants::WALL_PHYSIC_CATEGORY_BM);
+    physicBody->setCollisionBitmask(Constants::WALL_PHYSIC_COLLISION_BM);
+    physicBody->setContactTestBitmask(Constants::WALL_PHYSIC_CONTACT_BM);
+    physicBody->setTag(Constants::WALL_TAG);
     // Create sprite
     auto boudary = Sprite::create();
     boudary->setPosition(LayoutUtil::getPosition(LayoutUtil::PositionType::CENTER));
@@ -152,10 +149,9 @@ void GameScene::addMouseListener() {
 void GameScene::addContactListener() {
     auto contactListener = EventListenerPhysicsContact::create();
 
-    contactListener->onContactBegin = [&](PhysicsContact& contact) {
+    contactListener->onContactBegin = [&](PhysicsContact &contact) {
         auto body1 = contact.getShapeA()->getBody();
         auto body2 = contact.getShapeB()->getBody();
-
         if (body1 && body2) {
             // Player hits enemy
             if (body1->getTag() == Constants::PLAYER_TAG
@@ -190,8 +186,22 @@ void GameScene::addContactListener() {
                                           static_cast<PlayerBulletSprite*>(body1->getNode()));
             }
         }
-
         return true;
+    };
+
+    contactListener->onContactSeparate = [&](PhysicsContact &contact) {
+        auto body1 = contact.getShapeA()->getBody();
+        auto body2 = contact.getShapeB()->getBody();
+        if (body1 && body2) {
+            // Player hits the wall
+            if (body1->getTag() == Constants::PLAYER_TAG
+                && body2->getTag() == Constants::WALL_TAG) {
+                meetPlayerWithWall(static_cast<PlayerSprite*>(body1->getNode()));
+            } else if (body1->getTag() == Constants::WALL_TAG
+                       && body2->getTag() == Constants::PLAYER_TAG) {
+                meetPlayerWithWall(static_cast<PlayerSprite*>(body2->getNode()));
+            }
+        }
     };
 
     _eventDispatcher->addEventListenerWithFixedPriority(contactListener, 1);
@@ -211,4 +221,8 @@ void GameScene::meetPlayerWithEnemyBullet(PlayerSprite *player, EnemyBulletSprit
 void GameScene::meetEnemyWithPlayerBullet(EnemySprite *enemy, PlayerBulletSprite *playerBullet) {
     // TODO Event: when enemy meets player bullet
     log("meetEnemyWithPlayerBullet()");
+}
+
+void GameScene::meetPlayerWithWall(PlayerSprite *player) {
+    player->getPhysicsBody()->setVelocity(Vec2(0, 0));
 }

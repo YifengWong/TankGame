@@ -14,12 +14,6 @@ public:
     static PlayerSprite* create();
 
     /*
-    Start moving by the move value.
-    Author: ChuyangLiu
-    */
-    void move();
-
-    /*
     Set the move value of the player towards the direction.
     Author: ChuyangLiu
     */
@@ -38,6 +32,5 @@ public:
     void fire(cocos2d::Layer *layer, const cocos2d::Vec2 &target);
 
 private:
-    // Move value of the player
-    int moveX, moveY;
+
 };

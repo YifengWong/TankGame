@@ -4,8 +4,8 @@
 
 class Constants {
 public:
-    static const int PLAYER_MOVE_DIST = 5;
-    static const int ENEMY_MOVE_DIST = 50;
+    static const int PLAYER_MOVE_UNIT = 100;
+    static const int ENEMY_MOVE_UNIT = 50;
     static const int PLAYER_BULLET_SPEED = 200;
     static const int BULLET_LAST_TIME = 2;
 
@@ -43,21 +43,22 @@ public:
     static const int ENEMY_TAG = 1;
     static const int BULLET_PLAYER_TAG = 2;
     static const int BULLET_ENEMY_TAG = 3;
-    static const int BOUNDARY_TAG = 4;
-    static const int WALL_TAG = 5;
+    static const int WALL_TAG = 4;
+    //static const int BOUNDARY_TAG = 4;
+
 
     // Boundary physic groups and bitmasks
-    static const int BOUND_PHYSIC_GROUP = 1;
-    static const int BOUND_PHYSIC_CATEGORY_BM = 0x0000001;   // 0001
-    static const int BOUND_PHYSIC_COLLISION_BM = 0x0000002;  // 0010
-    static const int BOUND_PHYSIC_CONTACT_BM = 0x00000000;   // 0000
+    //static const int BOUND_PHYSIC_GROUP = 1;
+    //static const int BOUND_PHYSIC_CATEGORY_BM = 0x0000001;   // 0001
+    //static const int BOUND_PHYSIC_COLLISION_BM = 0x0000002;  // 0010
+    //static const int BOUND_PHYSIC_CONTACT_BM = 0x00000000;   // 0000
     // Wall physic groups and bitmasks
     static const int WALL_PHYSIC_GROUP = 1;
     static const int WALL_PHYSIC_CATEGORY_BM = 0x0000001;   // 0001
-    static const int WALL_PHYSIC_COLLISION_BM = 0x0000002;  // 0110
-    static const int WALL_PHYSIC_CONTACT_BM = 0x00000000;   // 0000
+    static const int WALL_PHYSIC_COLLISION_BM = 0x0000006;  // 0110
+    static const int WALL_PHYSIC_CONTACT_BM = 0x00000001;   // 0001
     // Player physic groups and bitmasks
-    static const int PLAYER_PHYSIC_GROUP = 2;
+    static const int PLAYER_PHYSIC_GROUP = 1;
     static const int PLAYER_PHYSIC_CATEGORY_BM = 0x00000001;  // 0001
     static const int PLAYER_PHYSIC_COLLISION_BM = 0x0000004;  // 0101
     static const int PLAYER_PHYSIC_CONTACT_BM = 0x00000003;   // 0011
@@ -68,7 +69,7 @@ public:
     static const int ENEMY_PHYSIC_CONTACT_BM = 0x00000010;
     // Player bullet physic groups and bitmasks
     static const int BULLET_PLAYER_PHYSIC_GROUP = -1;
-    static const int BULLET_PLAYER_PHYSIC_CATEGORY_BM = 0x00000010;  // 0010
+    static const int BULLET_PLAYER_PHYSIC_CATEGORY_BM = 0x00000002;  // 0010
     static const int BULLET_PLAYER_PHYSIC_COLLISION_BM = 0x0000001;  // 0001
     static const int BULLET_PLAYER_PHYSIC_CONTACT_BM = 0x00000010;
     // Enemy bullet physic groups and bitmasks

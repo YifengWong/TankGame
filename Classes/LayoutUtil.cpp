@@ -47,20 +47,21 @@ bool LayoutUtil::isReachBoundary(const cocos2d::Sprite *sprite, const Direction 
     int height = sprite->getContentSize().height;
     auto origin = getOrigin();
     auto visibleSize = getVisibleSize();
+    const int offset = 3;
 
     bool reach = false;
     switch (boundDirec) {
         case LEFT:
-            if (x - origin.x <= width / 2) reach = true;
+            if (x - origin.x <= width / 2 + offset) reach = true;
             break;
         case UP:
-            if (origin.y + visibleSize.height - y <= height / 2) reach = true;
+            if (origin.y + visibleSize.height - y <= height / 2 + offset) reach = true;
             break;
         case RIGHT:
-            if (origin.x + visibleSize.width - x <= width / 2) reach = true;
+            if (origin.x + visibleSize.width - x <= width / 2 + offset) reach = true;
             break;
         case DOWN:
-            if (y - origin.y <= height / 2) reach = true;
+            if (y - origin.y <= height / 2 + offset) reach = true;
             break;
         default:
             break;
