@@ -31,7 +31,7 @@ EnemyBulletSprite* EnemyBulletSprite::create() {
 void EnemyBulletSprite::scheduleAutoDisappear() {
     // The third param is not used
     scheduleOnce([&](float f) {
-        if (this != nullptr) {
+        if (this) {
             this->removeFromParent();
         }
     }, Constants::BULLET_LAST_TIME, "BulletSchedule");

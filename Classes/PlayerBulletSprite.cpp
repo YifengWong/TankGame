@@ -3,6 +3,8 @@
 
 USING_NS_CC;
 
+unsigned PlayerBulletSprite::bulletCnt = 0;
+
 PlayerBulletSprite* PlayerBulletSprite::create() {
     PlayerBulletSprite *bullet = new (std::nothrow) PlayerBulletSprite();
     if (bullet && bullet->initWithFile("bullet_player.png")) {
@@ -21,6 +23,7 @@ PlayerBulletSprite* PlayerBulletSprite::create() {
         bullet->setAnchorPoint(Vec2(0.5, 0.5));
         bullet->setPhysicsBody(physicBody);
         bullet->scheduleAutoDisappear();
+        ++PlayerBulletSprite::bulletCnt;
 
         return bullet;
     }
@@ -31,8 +34,19 @@ PlayerBulletSprite* PlayerBulletSprite::create() {
 void PlayerBulletSprite::scheduleAutoDisappear() {
     // The third param is not used
     scheduleOnce([&](float f) {
-        if (this != nullptr) {
+        if (this) {
             this->removeFromParent();
         }
     }, Constants::BULLET_LAST_TIME, "BulletSchedule");
+}
+
+void PlayerBulletSprite::removeFromParent() {
+    if (bulletCnt > 0) {
+        --bulletCnt;
+    }
+    Node::removeFromParent();
+}
+
+unsigned PlayerBulletSprite::getBulletCount() {
+    return bulletCnt;
 }

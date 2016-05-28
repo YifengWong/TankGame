@@ -99,7 +99,7 @@ void GameScene::addKeyboardListener() {
     auto keyboardListener = EventListenerKeyboard::create();
 
     keyboardListener->onKeyPressed = [&](EventKeyboard::KeyCode code, Event* event) {
-        if (player != nullptr) {
+        if (player) {
             switch (code) {
                 case cocos2d::EventKeyboard::KeyCode::KEY_A:
                     player->setMoveVal(Direction::LEFT);
@@ -120,7 +120,7 @@ void GameScene::addKeyboardListener() {
     };
 
     keyboardListener->onKeyReleased = [&](EventKeyboard::KeyCode code, Event* event) {
-        if (player != nullptr) {
+        if (player) {
             switch (code) {
                 case cocos2d::EventKeyboard::KeyCode::KEY_A:
                     player->resetMoveVal(Direction::LEFT);
@@ -149,9 +149,11 @@ void GameScene::addMouseListener() {
     mouseListener->onMouseUp = [&](EventMouse *event) {
         // getLocationInView() returns openGL coordinate,
         // not screen coordiante, maybe this is a bug.
-        if (player == nullptr) return;
-        Vec2 target = event->getLocationInView();
-        player->fire(this, target);
+        if (player && event->getMouseButton() == MouseButton::Left
+            && PlayerBulletSprite::getBulletCount() < Constants::PLAYER_BULLET_NUM_LIMIT) {
+            Vec2 target = event->getLocationInView();
+            player->fire(this, target);
+        }
     };
 
     _eventDispatcher->addEventListenerWithSceneGraphPriority(mouseListener, this);
@@ -160,7 +162,7 @@ void GameScene::addMouseListener() {
 void GameScene::addContactListener() {
     auto contactListener = EventListenerPhysicsContact::create();
 
-    contactListener->onContactBegin = [&](PhysicsContact &contact) {
+    contactListener->onContactSeparate = [&](PhysicsContact &contact) {
         auto body1 = contact.getShapeA()->getBody();
         auto body2 = contact.getShapeB()->getBody();
         if (body1 && body2) {
@@ -192,14 +194,7 @@ void GameScene::addContactListener() {
                 meetEnemyWithPlayerBullet(static_cast<EnemySprite*>(body2->getNode()),
                                           static_cast<PlayerBulletSprite*>(body1->getNode()));
             }
-        }
-        return true;
-    };
 
-    contactListener->onContactSeparate = [&](PhysicsContact &contact) {
-        auto body1 = contact.getShapeA()->getBody();
-        auto body2 = contact.getShapeB()->getBody();
-        if (body1 && body2) {
             // Player hits the wall
             if (body1->getTag() == Constants::PLAYER_TAG
                 && body2->getTag() == Constants::WALL_TAG) {
@@ -225,27 +220,43 @@ void GameScene::addContactListener() {
 
 
 void GameScene::meetPlayerWithEnemy(EnemySprite *enemy) {
-    //GameScene::player->removeFromParent();
-    //GameScene::player = nullptr;
+    if (GameScene::player) {
+        //GameScene::player->removeFromParent();
+        //GameScene::player = nullptr;
+    }
 }
 
 void GameScene::meetPlayerWithEnemyBullet(EnemyBulletSprite *enemyBullet) {
-    //GameScene::player->removeFromParent();
-    //GameScene::player = nullptr;
-    enemyBullet->removeFromParent();
-    enemyBullet = nullptr;
+    if (GameScene::player) {
+        //GameScene::player->removeFromParent();
+        //GameScene::player = nullptr;
+    }
+
+    if (enemyBullet) {
+        enemyBullet->removeFromParent();
+        enemyBullet = nullptr;
+    }
 }
 
 void GameScene::meetEnemyWithPlayerBullet(EnemySprite *enemy, PlayerBulletSprite *playerBullet) {
-    playerBullet->removeFromParent();
-    playerBullet = nullptr;
-    //enemy->removeFromParent();
+    if (playerBullet) {
+        playerBullet->removeFromParent();
+        playerBullet = nullptr;
+    }
+
+    if (enemy) {
+        enemy->removeFromParent();
+    }
 }
 
 void GameScene::meetPlayerWithWall(PlayerSprite *player) {
-    GameScene::player->getPhysicsBody()->setVelocity(Vec2(0, 0));
+    if (GameScene::player) {
+        GameScene::player->getPhysicsBody()->setVelocity(Vec2(0, 0));
+    }
 }
 
 void GameScene::meetEnemyWithWall(EnemySprite *enemy) {
-    enemy->getPhysicsBody()->setVelocity(Vec2(0, 0));
+    if (enemy) {
+        enemy->getPhysicsBody()->setVelocity(Vec2(0, 0));
+    }
 }

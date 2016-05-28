@@ -51,7 +51,6 @@ void EnemySprite::scheduleAI() {
         if (this == nullptr || layer == nullptr
             || GameScene::getPlayer() == nullptr) return;
 
-        // TODO Enemy AI design
         // AI decision
         if (rand() % 100 < 30) {
             if (rand() % 100 < 50) {
