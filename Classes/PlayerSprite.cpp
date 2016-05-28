@@ -1,5 +1,5 @@
 #include "PlayerSprite.h"
-#include "Constants.h"
+#include "GameParam.h"
 #include "PlayerBulletSprite.h"
 
 USING_NS_CC;
@@ -12,12 +12,12 @@ PlayerSprite* PlayerSprite::create() {
         // Create physics body
         auto physicBody = PhysicsBody::createBox(player->getContentSize());
         // Set group and bitmasks
-        physicBody->setGroup(Constants::PLAYER_PHYSIC_GROUP);
-        physicBody->setCategoryBitmask(Constants::PLAYER_PHYSIC_CATEGORY_BM);
-        physicBody->setCollisionBitmask(Constants::PLAYER_PHYSIC_COLLISION_BM);
-        physicBody->setContactTestBitmask(Constants::PLAYER_PHYSIC_CONTACT_BM);
+        physicBody->setGroup(GameParam::PLAYER_PHYSIC_GROUP);
+        physicBody->setCategoryBitmask(GameParam::PLAYER_PHYSIC_CATEGORY_BM);
+        physicBody->setCollisionBitmask(GameParam::PLAYER_PHYSIC_COLLISION_BM);
+        physicBody->setContactTestBitmask(GameParam::PLAYER_PHYSIC_CONTACT_BM);
         physicBody->setRotationEnable(false);
-        physicBody->setTag(Constants::PLAYER_TAG);
+        physicBody->setTag(GameParam::PLAYER_TAG);
 
         // Set player sprites
         player->setAnchorPoint(Vec2(0.5, 0.5));
@@ -34,16 +34,16 @@ void PlayerSprite::setMoveVal(const Direction &direc) {
     if (physicBody == nullptr) return;
     switch (direc) {
         case LEFT:
-            physicBody->setVelocity(Vec2(-Constants::PLAYER_MOVE_UNIT, physicBody->getVelocity().y));
+            physicBody->setVelocity(Vec2(-GameParam::PLAYER_MOVE_UNIT, physicBody->getVelocity().y));
             break;
         case UP:
-            physicBody->setVelocity(Vec2(physicBody->getVelocity().x, Constants::PLAYER_MOVE_UNIT));
+            physicBody->setVelocity(Vec2(physicBody->getVelocity().x, GameParam::PLAYER_MOVE_UNIT));
             break;
         case RIGHT:
-            physicBody->setVelocity(Vec2(Constants::PLAYER_MOVE_UNIT, physicBody->getVelocity().y));
+            physicBody->setVelocity(Vec2(GameParam::PLAYER_MOVE_UNIT, physicBody->getVelocity().y));
             break;
         case DOWN:
-            physicBody->setVelocity(Vec2(physicBody->getVelocity().x, -Constants::PLAYER_MOVE_UNIT));
+            physicBody->setVelocity(Vec2(physicBody->getVelocity().x, -GameParam::PLAYER_MOVE_UNIT));
             break;
         default:
             break;
@@ -56,19 +56,19 @@ void PlayerSprite::resetMoveVal(const Direction &direc) {
     switch (direc) {
         case LEFT:
             if (physicBody->getVelocity().x == 0) break;
-            physicBody->setVelocity(physicBody->getVelocity() + Vec2(Constants::PLAYER_MOVE_UNIT, 0));
+            physicBody->setVelocity(physicBody->getVelocity() + Vec2(GameParam::PLAYER_MOVE_UNIT, 0));
             break;
         case UP:
             if (physicBody->getVelocity().y == 0) break;
-            physicBody->setVelocity(physicBody->getVelocity() + Vec2(0, -Constants::PLAYER_MOVE_UNIT));
+            physicBody->setVelocity(physicBody->getVelocity() + Vec2(0, -GameParam::PLAYER_MOVE_UNIT));
             break;
         case RIGHT:
             if (physicBody->getVelocity().x == 0) break;
-            physicBody->setVelocity(physicBody->getVelocity() + Vec2(-Constants::PLAYER_MOVE_UNIT, 0));
+            physicBody->setVelocity(physicBody->getVelocity() + Vec2(-GameParam::PLAYER_MOVE_UNIT, 0));
             break;
         case DOWN:
             if (physicBody->getVelocity().y == 0) break;
-            physicBody->setVelocity(physicBody->getVelocity() + Vec2(0, Constants::PLAYER_MOVE_UNIT));
+            physicBody->setVelocity(physicBody->getVelocity() + Vec2(0, GameParam::PLAYER_MOVE_UNIT));
             break;
         default:
             break;
@@ -80,7 +80,7 @@ void PlayerSprite::fire(Layer *layer, const cocos2d::Vec2 &target) {
     // Add bullet
     auto bullet = PlayerBulletSprite::create();
     bullet->setPosition(getPosition());
-    bullet->getPhysicsBody()->setVelocity(vec * Constants::PLAYER_BULLET_SPEED);
+    bullet->getPhysicsBody()->setVelocity(vec * GameParam::PLAYER_BULLET_SPEED);
     // Add to layer
     layer->addChild(bullet);
 }

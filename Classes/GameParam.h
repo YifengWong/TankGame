@@ -1,8 +1,6 @@
 #pragma once
 
-#include <bitset>
-
-class Constants {
+class GameParam {
 public:
     static const int PLAYER_MOVE_UNIT = 100;
     static const int ENEMY_MOVE_UNIT = 50;

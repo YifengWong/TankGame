@@ -1,5 +1,5 @@
 #include "GameScene.h"
-#include "Constants.h"
+#include "GameParam.h"
 #include "WallSprite.h"
 
 USING_NS_CC;
@@ -16,7 +16,7 @@ Scene* GameScene::createScene() {
     auto scene = Scene::createWithPhysics();
     scene->getPhysicsWorld()->setGravity(Point(0, 0));
     scene->getPhysicsWorld()->setDebugDrawMask(
-        Constants::DRAW_WORLD_EDGE ? PhysicsWorld::DEBUGDRAW_ALL : PhysicsWorld::DEBUGDRAW_NONE);
+        GameParam::DRAW_WORLD_EDGE ? PhysicsWorld::DEBUGDRAW_ALL : PhysicsWorld::DEBUGDRAW_NONE);
 
     auto layer = GameScene::create();
     scene->addChild(layer);
@@ -56,11 +56,11 @@ void GameScene::addBoundary() {
                                                  PhysicsMaterial(0, 2, 0));
     physicBody->setDynamic(false);
     // Set bitmasks
-    physicBody->setGroup(Constants::WALL_PHYSIC_GROUP);
-    physicBody->setCategoryBitmask(Constants::WALL_PHYSIC_CATEGORY_BM);
-    physicBody->setCollisionBitmask(Constants::WALL_PHYSIC_COLLISION_BM);
-    physicBody->setContactTestBitmask(Constants::WALL_PHYSIC_CONTACT_BM);
-    physicBody->setTag(Constants::WALL_TAG);
+    physicBody->setGroup(GameParam::WALL_PHYSIC_GROUP);
+    physicBody->setCategoryBitmask(GameParam::WALL_PHYSIC_CATEGORY_BM);
+    physicBody->setCollisionBitmask(GameParam::WALL_PHYSIC_COLLISION_BM);
+    physicBody->setContactTestBitmask(GameParam::WALL_PHYSIC_CONTACT_BM);
+    physicBody->setTag(GameParam::WALL_TAG);
     // Create sprite
     auto boudary = Sprite::create();
     boudary->setPosition(LayoutUtil::getPosition(LayoutUtil::PositionType::CENTER));
@@ -150,7 +150,7 @@ void GameScene::addMouseListener() {
         // getLocationInView() returns openGL coordinate,
         // not screen coordiante, maybe this is a bug.
         if (player && event->getMouseButton() == MouseButton::Left
-            && PlayerBulletSprite::getBulletCount() < Constants::PLAYER_BULLET_NUM_LIMIT) {
+            && PlayerBulletSprite::getBulletCount() < GameParam::PLAYER_BULLET_NUM_LIMIT) {
             Vec2 target = event->getLocationInView();
             player->fire(this, target);
         }
@@ -167,49 +167,49 @@ void GameScene::addContactListener() {
         auto body2 = contact.getShapeB()->getBody();
         if (body1 && body2) {
             // Player hits enemy
-            if (body1->getTag() == Constants::PLAYER_TAG
-                && body2->getTag() == Constants::ENEMY_TAG) {
+            if (body1->getTag() == GameParam::PLAYER_TAG
+                && body2->getTag() == GameParam::ENEMY_TAG) {
                 meetPlayerWithEnemy(static_cast<EnemySprite*>(body2->getNode()));
-            } else if (body1->getTag() == Constants::ENEMY_TAG
-                       && body2->getTag() == Constants::PLAYER_TAG) {
+            } else if (body1->getTag() == GameParam::ENEMY_TAG
+                       && body2->getTag() == GameParam::PLAYER_TAG) {
                 meetPlayerWithEnemy(static_cast<EnemySprite*>(body1->getNode()));
             }
 
             // Player hits enemy bullet
-            if (body1->getTag() == Constants::PLAYER_TAG
-                && body2->getTag() == Constants::BULLET_ENEMY_TAG) {
+            if (body1->getTag() == GameParam::PLAYER_TAG
+                && body2->getTag() == GameParam::BULLET_ENEMY_TAG) {
                 meetPlayerWithEnemyBullet(static_cast<EnemyBulletSprite*>(body2->getNode()));
-            } else if (body1->getTag() == Constants::BULLET_ENEMY_TAG
-                       && body2->getTag() == Constants::PLAYER_TAG) {
+            } else if (body1->getTag() == GameParam::BULLET_ENEMY_TAG
+                       && body2->getTag() == GameParam::PLAYER_TAG) {
                 meetPlayerWithEnemyBullet(static_cast<EnemyBulletSprite*>(body1->getNode()));
             }
 
             // Enemy hits player bullet
-            if (body1->getTag() == Constants::ENEMY_TAG
-                && body2->getTag() == Constants::BULLET_PLAYER_TAG) {
+            if (body1->getTag() == GameParam::ENEMY_TAG
+                && body2->getTag() == GameParam::BULLET_PLAYER_TAG) {
                 meetEnemyWithPlayerBullet(static_cast<EnemySprite*>(body1->getNode()),
                                           static_cast<PlayerBulletSprite*>(body2->getNode()));
-            } else if (body1->getTag() == Constants::BULLET_PLAYER_TAG
-                       && body2->getTag() == Constants::ENEMY_TAG) {
+            } else if (body1->getTag() == GameParam::BULLET_PLAYER_TAG
+                       && body2->getTag() == GameParam::ENEMY_TAG) {
                 meetEnemyWithPlayerBullet(static_cast<EnemySprite*>(body2->getNode()),
                                           static_cast<PlayerBulletSprite*>(body1->getNode()));
             }
 
             // Player hits the wall
-            if (body1->getTag() == Constants::PLAYER_TAG
-                && body2->getTag() == Constants::WALL_TAG) {
+            if (body1->getTag() == GameParam::PLAYER_TAG
+                && body2->getTag() == GameParam::WALL_TAG) {
                 meetPlayerWithWall(static_cast<PlayerSprite*>(body1->getNode()));
-            } else if (body1->getTag() == Constants::WALL_TAG
-                       && body2->getTag() == Constants::PLAYER_TAG) {
+            } else if (body1->getTag() == GameParam::WALL_TAG
+                       && body2->getTag() == GameParam::PLAYER_TAG) {
                 meetPlayerWithWall(static_cast<PlayerSprite*>(body2->getNode()));
             }
 
             // Enemy hits the wall
-            if (body1->getTag() == Constants::ENEMY_TAG
-                && body2->getTag() == Constants::WALL_TAG) {
+            if (body1->getTag() == GameParam::ENEMY_TAG
+                && body2->getTag() == GameParam::WALL_TAG) {
                 meetEnemyWithWall(static_cast<EnemySprite*>(body1->getNode()));
-            } else if (body1->getTag() == Constants::WALL_TAG
-                       && body2->getTag() == Constants::ENEMY_TAG) {
+            } else if (body1->getTag() == GameParam::WALL_TAG
+                       && body2->getTag() == GameParam::ENEMY_TAG) {
                 meetEnemyWithWall(static_cast<EnemySprite*>(body2->getNode()));
             }
         }

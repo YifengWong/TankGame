@@ -1,5 +1,5 @@
 #include "PlayerBulletSprite.h"
-#include "Constants.h"
+#include "GameParam.h"
 
 USING_NS_CC;
 
@@ -13,11 +13,11 @@ PlayerBulletSprite* PlayerBulletSprite::create() {
         // Create physics body
         auto physicBody = PhysicsBody::createCircle(bullet->getContentSize().height / 2);
         // Set group and bitmasks
-        physicBody->setGroup(Constants::BULLET_PLAYER_PHYSIC_GROUP);
-        physicBody->setCategoryBitmask(Constants::BULLET_PLAYER_PHYSIC_CATEGORY_BM);
-        physicBody->setCollisionBitmask(Constants::BULLET_PLAYER_PHYSIC_COLLISION_BM);
-        physicBody->setContactTestBitmask(Constants::BULLET_PLAYER_PHYSIC_CONTACT_BM);
-        physicBody->setTag(Constants::BULLET_PLAYER_TAG);
+        physicBody->setGroup(GameParam::BULLET_PLAYER_PHYSIC_GROUP);
+        physicBody->setCategoryBitmask(GameParam::BULLET_PLAYER_PHYSIC_CATEGORY_BM);
+        physicBody->setCollisionBitmask(GameParam::BULLET_PLAYER_PHYSIC_COLLISION_BM);
+        physicBody->setContactTestBitmask(GameParam::BULLET_PLAYER_PHYSIC_CONTACT_BM);
+        physicBody->setTag(GameParam::BULLET_PLAYER_TAG);
 
         // Set bullet sprites
         bullet->setAnchorPoint(Vec2(0.5, 0.5));
@@ -37,7 +37,7 @@ void PlayerBulletSprite::scheduleAutoDisappear() {
         if (this) {
             this->removeFromParent();
         }
-    }, Constants::BULLET_LAST_TIME, "BulletSchedule");
+    }, GameParam::BULLET_LAST_TIME, "BulletSchedule");
 }
 
 void PlayerBulletSprite::removeFromParent() {
