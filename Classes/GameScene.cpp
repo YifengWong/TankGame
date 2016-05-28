@@ -26,7 +26,7 @@ bool GameScene::init() {
     // Add sprites
     addBoundary();
     addPlayer();
-    //addEnemey();
+    addEnemey();
     addWall();
 
     // Add event listeners
@@ -65,7 +65,7 @@ void GameScene::addBoundary() {
 
 void GameScene::addPlayer() {
     player = PlayerSprite::create();
-    player->setPosition(LayoutUtil::getPosition(LayoutUtil::PositionType::LEFT_BOTTOM));
+    player->setPosition(LayoutUtil::getPosition(LayoutUtil::PositionType::CENTER));
     addChild(player);
 }
 
@@ -75,14 +75,18 @@ void GameScene::addEnemey() {
     addChild(enemy1);
 
     auto enemy2 = EnemySprite::create(this, player);
-    enemy2->setPosition(LayoutUtil::getPosition(LayoutUtil::PositionType::RIGHT_TOP));
+    enemy2->setPosition(LayoutUtil::getPosition(LayoutUtil::PositionType::LEFT_BOTTOM));
     addChild(enemy2);
 }
 
 void GameScene::addWall() {
     auto wall1 = WallSprite::create();
-    wall1->setPosition(LayoutUtil::getPosition(LayoutUtil::PositionType::CENTER));
+    wall1->setPosition(LayoutUtil::getPosition(LayoutUtil::PositionType::LEFT_TOP));
     addChild(wall1);
+
+    auto wall2 = WallSprite::create();
+    wall2->setPosition(LayoutUtil::getPosition(LayoutUtil::PositionType::RIGHT_TOP));
+    addChild(wall2);
 }
 
 void GameScene::addKeyboardListener() {
@@ -201,6 +205,15 @@ void GameScene::addContactListener() {
                        && body2->getTag() == Constants::PLAYER_TAG) {
                 meetPlayerWithWall(static_cast<PlayerSprite*>(body2->getNode()));
             }
+
+            // Enemy hits the wall
+            if (body1->getTag() == Constants::ENEMY_TAG
+                && body2->getTag() == Constants::WALL_TAG) {
+                meetEnemyWithWall(static_cast<EnemySprite*>(body1->getNode()));
+            } else if (body1->getTag() == Constants::WALL_TAG
+                       && body2->getTag() == Constants::ENEMY_TAG) {
+                meetEnemyWithWall(static_cast<EnemySprite*>(body2->getNode()));
+            }
         }
     };
 
@@ -225,4 +238,8 @@ void GameScene::meetEnemyWithPlayerBullet(EnemySprite *enemy, PlayerBulletSprite
 
 void GameScene::meetPlayerWithWall(PlayerSprite *player) {
     player->getPhysicsBody()->setVelocity(Vec2(0, 0));
+}
+
+void GameScene::meetEnemyWithWall(EnemySprite *enemy) {
+    enemy->getPhysicsBody()->setVelocity(Vec2(0, 0));
 }

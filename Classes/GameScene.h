@@ -82,6 +82,12 @@ private:
     void meetPlayerWithWall(PlayerSprite *player);
 
     /*
+    Called when the player hits the wall.
+    Author: ChuyangLiu
+    */
+    void meetEnemyWithWall(EnemySprite *enemy);
+
+    /*
     Callback for schedule.
     Author: ChuyangLiu
     */
