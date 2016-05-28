@@ -40,7 +40,7 @@ Vec2 LayoutUtil::getPosition(const PositionType &type) {
 }
 
 bool LayoutUtil::isReachBoundary(const cocos2d::Sprite *sprite, const Direction &boundDirec) {
-    if (sprite == NULL) return true;
+    if (sprite == nullptr) return true;
     int x = sprite->getPosition().x;
     int y = sprite->getPosition().y;
     int width = sprite->getContentSize().width;

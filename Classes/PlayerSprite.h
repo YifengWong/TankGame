@@ -32,5 +32,4 @@ public:
     void fire(cocos2d::Layer *layer, const cocos2d::Vec2 &target);
 
 private:
-
 };

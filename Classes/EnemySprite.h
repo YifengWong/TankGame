@@ -11,23 +11,16 @@ public:
     Create an enemy sprite.
     Author: ChuyangLiu
     */
-    static EnemySprite* create(cocos2d::Layer *layer, PlayerSprite* player);
+    static EnemySprite* create(cocos2d::Layer *layer);
 
 private:
-    cocos2d::Layer *layer = NULL;
-    PlayerSprite *player = NULL;
+    cocos2d::Layer *layer = nullptr;
 
     /*
     Set the layer of the enemy.
     Author: ChuyangLiu
     */
     void setLayer(cocos2d::Layer *layer_);
-
-    /*
-    Set the player of the game.
-    Author: ChuyangLiu
-    */
-    void setPlayer(PlayerSprite *player_);
 
     /*
     Schedule the enemy AI.

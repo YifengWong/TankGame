@@ -12,8 +12,15 @@ public:
     static cocos2d::Scene* createScene();
     virtual bool init();
     CREATE_FUNC(GameScene);
+
+    /*
+    Return the player sprite.
+    Author: ChuyangLiu
+    */
+    static PlayerSprite* getPlayer();
+
 private:
-    PlayerSprite *player = NULL;
+    static PlayerSprite *player;
 
     /*
     Add boundary physics body.
@@ -61,13 +68,13 @@ private:
     Called when the player hits an enemy.
     Author: ChuyangLiu
     */
-    void meetPlayerWithEnemy(PlayerSprite *player, EnemySprite *enemy);
+    void meetPlayerWithEnemy(EnemySprite *enemy);
 
     /*
     Called when the player hits an enemy bullet.
     Author: ChuyangLiu
     */
-    void meetPlayerWithEnemyBullet(PlayerSprite *player, EnemyBulletSprite *enemyBullet);
+    void meetPlayerWithEnemyBullet(EnemyBulletSprite *enemyBullet);
 
     /*
     Called when the player hits an enemy bullet.

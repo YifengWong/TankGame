@@ -52,12 +52,12 @@ public:
     static const int PLAYER_PHYSIC_GROUP = -4;
     static const int PLAYER_PHYSIC_CATEGORY_BM = 0x00000004;
     static const int PLAYER_PHYSIC_COLLISION_BM = 0x00000019;
-    static const int PLAYER_PHYSIC_CONTACT_BM = 0x00000009;
+    static const int PLAYER_PHYSIC_CONTACT_BM = 0x00000019;
     // Enemy physic groups and bitmasks
     static const int ENEMY_PHYSIC_GROUP = -2;
     static const int ENEMY_PHYSIC_CATEGORY_BM = 0x00000010;
     static const int ENEMY_PHYSIC_COLLISION_BM = 0x0000007;
-    static const int ENEMY_PHYSIC_CONTACT_BM = 0x00000003;
+    static const int ENEMY_PHYSIC_CONTACT_BM = 0x00000007;
     // Player bullet physic groups and bitmasks
     static const int BULLET_PLAYER_PHYSIC_GROUP = -1;
     static const int BULLET_PLAYER_PHYSIC_CATEGORY_BM = 0x00000002;

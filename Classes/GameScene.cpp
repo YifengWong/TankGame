@@ -5,6 +5,12 @@
 USING_NS_CC;
 using namespace cocos2d::ui;
 
+PlayerSprite* GameScene::player = nullptr;
+
+PlayerSprite* GameScene::getPlayer() {
+    return player;
+}
+
 Scene* GameScene::createScene() {
     // Create a scene with a physics world
     auto scene = Scene::createWithPhysics();
@@ -65,35 +71,35 @@ void GameScene::addBoundary() {
 
 void GameScene::addPlayer() {
     player = PlayerSprite::create();
-    player->setPosition(LayoutUtil::getPosition(LayoutUtil::PositionType::CENTER));
+    player->setPosition(LayoutUtil::getPosition(LayoutUtil::PositionType::LEFT_BOTTOM));
     addChild(player);
 }
 
 void GameScene::addEnemey() {
-    auto enemy1 = EnemySprite::create(this, player);
+    auto enemy1 = EnemySprite::create(this);
     enemy1->setPosition(LayoutUtil::getPosition(LayoutUtil::PositionType::RIGHT_BOTTOM));
     addChild(enemy1);
 
-    auto enemy2 = EnemySprite::create(this, player);
-    enemy2->setPosition(LayoutUtil::getPosition(LayoutUtil::PositionType::LEFT_BOTTOM));
+    auto enemy2 = EnemySprite::create(this);
+    enemy2->setPosition(LayoutUtil::getPosition(LayoutUtil::PositionType::LEFT_TOP));
     addChild(enemy2);
+
+    auto enemy3 = EnemySprite::create(this);
+    enemy3->setPosition(LayoutUtil::getPosition(LayoutUtil::PositionType::RIGHT_TOP));
+    addChild(enemy3);
 }
 
 void GameScene::addWall() {
     auto wall1 = WallSprite::create();
-    wall1->setPosition(LayoutUtil::getPosition(LayoutUtil::PositionType::LEFT_TOP));
+    wall1->setPosition(LayoutUtil::getPosition(LayoutUtil::PositionType::CENTER));
     addChild(wall1);
-
-    auto wall2 = WallSprite::create();
-    wall2->setPosition(LayoutUtil::getPosition(LayoutUtil::PositionType::RIGHT_TOP));
-    addChild(wall2);
 }
 
 void GameScene::addKeyboardListener() {
     auto keyboardListener = EventListenerKeyboard::create();
 
     keyboardListener->onKeyPressed = [&](EventKeyboard::KeyCode code, Event* event) {
-        if (player != NULL) {
+        if (player != nullptr) {
             switch (code) {
                 case cocos2d::EventKeyboard::KeyCode::KEY_A:
                     player->setMoveVal(Direction::LEFT);
@@ -114,7 +120,7 @@ void GameScene::addKeyboardListener() {
     };
 
     keyboardListener->onKeyReleased = [&](EventKeyboard::KeyCode code, Event* event) {
-        if (player != NULL) {
+        if (player != nullptr) {
             switch (code) {
                 case cocos2d::EventKeyboard::KeyCode::KEY_A:
                     player->resetMoveVal(Direction::LEFT);
@@ -143,6 +149,7 @@ void GameScene::addMouseListener() {
     mouseListener->onMouseUp = [&](EventMouse *event) {
         // getLocationInView() returns openGL coordinate,
         // not screen coordiante, maybe this is a bug.
+        if (player == nullptr) return;
         Vec2 target = event->getLocationInView();
         player->fire(this, target);
     };
@@ -160,23 +167,19 @@ void GameScene::addContactListener() {
             // Player hits enemy
             if (body1->getTag() == Constants::PLAYER_TAG
                 && body2->getTag() == Constants::ENEMY_TAG) {
-                meetPlayerWithEnemy(static_cast<PlayerSprite*>(body1->getNode()),
-                                    static_cast<EnemySprite*>(body2->getNode()));
+                meetPlayerWithEnemy(static_cast<EnemySprite*>(body2->getNode()));
             } else if (body1->getTag() == Constants::ENEMY_TAG
                        && body2->getTag() == Constants::PLAYER_TAG) {
-                meetPlayerWithEnemy(static_cast<PlayerSprite*>(body2->getNode()),
-                                    static_cast<EnemySprite*>(body1->getNode()));
+                meetPlayerWithEnemy(static_cast<EnemySprite*>(body1->getNode()));
             }
 
             // Player hits enemy bullet
             if (body1->getTag() == Constants::PLAYER_TAG
                 && body2->getTag() == Constants::BULLET_ENEMY_TAG) {
-                meetPlayerWithEnemyBullet(static_cast<PlayerSprite*>(body1->getNode()),
-                                          static_cast<EnemyBulletSprite*>(body2->getNode()));
+                meetPlayerWithEnemyBullet(static_cast<EnemyBulletSprite*>(body2->getNode()));
             } else if (body1->getTag() == Constants::BULLET_ENEMY_TAG
                        && body2->getTag() == Constants::PLAYER_TAG) {
-                meetPlayerWithEnemyBullet(static_cast<PlayerSprite*>(body2->getNode()),
-                                          static_cast<EnemyBulletSprite*>(body1->getNode()));
+                meetPlayerWithEnemyBullet(static_cast<EnemyBulletSprite*>(body1->getNode()));
             }
 
             // Enemy hits player bullet
@@ -221,22 +224,26 @@ void GameScene::addContactListener() {
 }
 
 
-void GameScene::meetPlayerWithEnemy(PlayerSprite *player, EnemySprite *enemy) {
-    // TODO Event: when player meets enemy
+void GameScene::meetPlayerWithEnemy(EnemySprite *enemy) {
+    //GameScene::player->removeFromParent();
+    //GameScene::player = nullptr;
 }
 
-void GameScene::meetPlayerWithEnemyBullet(PlayerSprite *player, EnemyBulletSprite *enemyBullet) {
-    // TODO Event: when player meets enemy bullet
+void GameScene::meetPlayerWithEnemyBullet(EnemyBulletSprite *enemyBullet) {
+    //GameScene::player->removeFromParent();
+    //GameScene::player = nullptr;
+    enemyBullet->removeFromParent();
+    enemyBullet = nullptr;
 }
 
 void GameScene::meetEnemyWithPlayerBullet(EnemySprite *enemy, PlayerBulletSprite *playerBullet) {
-    // TODO Event: when enemy meets player bullet
+    playerBullet->removeFromParent();
+    playerBullet = nullptr;
     //enemy->removeFromParent();
-    //playerBullet->removeFromParent();
 }
 
 void GameScene::meetPlayerWithWall(PlayerSprite *player) {
-    player->getPhysicsBody()->setVelocity(Vec2(0, 0));
+    GameScene::player->getPhysicsBody()->setVelocity(Vec2(0, 0));
 }
 
 void GameScene::meetEnemyWithWall(EnemySprite *enemy) {

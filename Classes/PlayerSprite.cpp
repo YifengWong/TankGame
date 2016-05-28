@@ -5,30 +5,33 @@
 USING_NS_CC;
 
 PlayerSprite* PlayerSprite::create() {
-    auto sprite = Sprite::create("player.png");
-    auto player = static_cast<PlayerSprite*>(sprite);
+    PlayerSprite *player = new (std::nothrow) PlayerSprite();
+    if (player && player->initWithFile("player.png")) {
+        player->autorelease();
 
-    // Create physics body
-    auto physicBody = PhysicsBody::createBox(player->getContentSize());
-    // Set group and bitmasks
-    physicBody->setGroup(Constants::PLAYER_PHYSIC_GROUP);
-    physicBody->setCategoryBitmask(Constants::PLAYER_PHYSIC_CATEGORY_BM);
-    physicBody->setCollisionBitmask(Constants::PLAYER_PHYSIC_COLLISION_BM);
-    physicBody->setContactTestBitmask(Constants::PLAYER_PHYSIC_CONTACT_BM);
-    physicBody->setRotationEnable(false);
-    physicBody->setTag(Constants::PLAYER_TAG);
+        // Create physics body
+        auto physicBody = PhysicsBody::createBox(player->getContentSize());
+        // Set group and bitmasks
+        physicBody->setGroup(Constants::PLAYER_PHYSIC_GROUP);
+        physicBody->setCategoryBitmask(Constants::PLAYER_PHYSIC_CATEGORY_BM);
+        physicBody->setCollisionBitmask(Constants::PLAYER_PHYSIC_COLLISION_BM);
+        physicBody->setContactTestBitmask(Constants::PLAYER_PHYSIC_CONTACT_BM);
+        physicBody->setRotationEnable(false);
+        physicBody->setTag(Constants::PLAYER_TAG);
 
-    // Set player sprites
-    player->setAnchorPoint(Vec2(0.5, 0.5));
-    player->setPhysicsBody(physicBody);
-    //player->moveX = player->moveY = 0;
+        // Set player sprites
+        player->setAnchorPoint(Vec2(0.5, 0.5));
+        player->setPhysicsBody(physicBody);
 
-    return player;
+        return player;
+    }
+    CC_SAFE_DELETE(player);
+    return nullptr;
 }
 
 void PlayerSprite::setMoveVal(const Direction &direc) {
     auto physicBody = getPhysicsBody();
-    if (physicBody == NULL) return;
+    if (physicBody == nullptr) return;
     switch (direc) {
         case LEFT:
             physicBody->setVelocity(Vec2(-Constants::PLAYER_MOVE_UNIT, physicBody->getVelocity().y));
@@ -49,7 +52,7 @@ void PlayerSprite::setMoveVal(const Direction &direc) {
 
 void PlayerSprite::resetMoveVal(const Direction &direc) {
     auto physicBody = getPhysicsBody();
-    if (physicBody == NULL) return;
+    if (physicBody == nullptr) return;
     switch (direc) {
         case LEFT:
             if (physicBody->getVelocity().x == 0) break;
