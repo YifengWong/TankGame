@@ -3,6 +3,7 @@
 #include "EnemySprite.h"
 #include "PlayerBulletSprite.h"
 #include "EnemyBulletSprite.h"
+#include "WallSprite.h"
 
 /*
 Game Scene
@@ -93,13 +94,25 @@ private:
     Called when the player hits the wall.
     Author: ChuyangLiu
     */
-    void meetPlayerWithWall(PlayerSprite *player);
+    void meetPlayerWithWall(PlayerSprite *player, WallSprite *wall);
 
     /*
     Called when the player hits the wall.
     Author: ChuyangLiu
     */
-    void meetEnemyWithWall(EnemySprite *enemy);
+    void meetEnemyWithWall(EnemySprite *enemy, WallSprite *wall);
+
+    /*
+    Called when the player bullet hits the wall.
+    Author: ChuyangLiu
+    */
+    void meetPlayerBulletWithWall(PlayerBulletSprite *player, WallSprite *wall);
+
+    /*
+    Called when the player bullet hits the wall.
+    Author: ChuyangLiu
+    */
+    void meetEnemyBulletWithWall(EnemyBulletSprite *enemy, WallSprite *wall);
 
     /*
     Callback for schedule.

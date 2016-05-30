@@ -23,7 +23,7 @@ public:
     Collision events requirements:
     Object:                  Collide:   Trigger collision event:
     [Bullet, Bullet]         false      X
-    [Bullet, Wall]           true       false
+    [Bullet, Wall]           true       true
     [Player, Player]         false      X
     [Player, PlayerBullet]   false      X
     [Player, EnemyBullet]    true       true

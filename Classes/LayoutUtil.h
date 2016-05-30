@@ -4,7 +4,12 @@
 Move direction declaration.
 Author: ChuyangLiu
 */
-enum Direction { LEFT, UP, RIGHT, DOWN };
+enum Direction {
+    LEFT,
+    UP,
+    RIGHT,
+    DOWN
+};
 
 /*
 Utilities for layout operation.
@@ -24,14 +29,6 @@ public:
     static cocos2d::Size getVisibleSize();
 
     /*
-    Return {CENTER|LEFT_TOP|LEFT_BOTTOM|RIGHT_TOP|RIGHT_BOTTOM} 
-    position of the game window.
-    Author: ChuyangLiu
-    */
-    enum PositionType { CENTER, LEFT_TOP, LEFT_BOTTOM, RIGHT_TOP, RIGHT_BOTTOM };
-    static cocos2d::Vec2 getPosition(const PositionType &type);
-
-    /*
     Get the unit direction vector between two points.
     Author: ChuyangLiu
     */
@@ -42,4 +39,31 @@ public:
     Author: ChuyangLiu
     */
     static bool isReachBoundary(const cocos2d::Sprite *sprite, const Direction &boundDirec);
+
+    /*
+    Predefined PositionType declaration.
+    Author: ChuyangLiu
+    */
+    enum PositionType {
+        LEFT_TOP,
+        LEFT_BOTTOM,
+        RIGHT_TOP,
+        RIGHT_BOTTOM,
+        CENTER,
+        CENTER_LEFT,
+        CENTER_TOP,
+        CENTER_RIGHT,
+        CENTER_DOWN,
+        CORNER_LEFT_TOP,
+        CORNER_RIGHT_TOP,
+        CORNER_RIGHT_BOTTOM,
+        CORNER_LEFT_BOTTOM
+    };
+
+    /*
+    Return one position specified by @param type
+    position of the game window.
+    Author: ChuyangLiu
+    */
+    static cocos2d::Vec2 getPosition(const PositionType &type);
 };
