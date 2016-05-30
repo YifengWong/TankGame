@@ -17,6 +17,13 @@ private:
     cocos2d::Layer *layer = nullptr;
 
     /*
+    Inaccessible default constructor from outside the class.
+    Use create() to create the instance from outside the class.
+    Author: ChuyangLiu
+    */
+    EnemySprite() {}
+
+    /*
     Set the layer of the enemy.
     Author: ChuyangLiu
     */

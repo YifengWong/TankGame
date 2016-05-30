@@ -28,6 +28,13 @@ private:
     static unsigned bulletCnt;
 
     /*
+    Inaccessible default constructor from outside the class.
+    Use create() to create the instance from outside the class.
+    Author: ChuyangLiu
+    */
+    PlayerBulletSprite() {}
+
+    /*
     Create a schedule to disappear the bullet after some time.
     Author: ChuyangLiu
     */

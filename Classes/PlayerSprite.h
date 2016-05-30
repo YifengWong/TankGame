@@ -32,4 +32,10 @@ public:
     void fire(cocos2d::Layer *layer, const cocos2d::Vec2 &target);
 
 private:
+    /*
+    Inaccessible default constructor from outside the class.
+    Use create() to create the instance from outside the class.
+    Author: ChuyangLiu
+    */
+    PlayerSprite() {}
 };

@@ -245,7 +245,7 @@ void GameScene::meetEnemyWithPlayerBullet(EnemySprite *enemy, PlayerBulletSprite
     }
 
     if (enemy) {
-        enemy->removeFromParent();
+        //enemy->removeFromParent();
     }
 }
 

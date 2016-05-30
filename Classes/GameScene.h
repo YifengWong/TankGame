@@ -23,6 +23,13 @@ private:
     static PlayerSprite *player;
 
     /*
+    Inaccessible default constructor from outside the class.
+    Use createScene() to create the instance from outside the class.
+    Author: ChuyangLiu
+    */
+    GameScene() {}
+
+    /*
     Add boundary physics body.
     Author: ChuyangLiu
     */

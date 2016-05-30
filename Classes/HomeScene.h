@@ -10,6 +10,13 @@ public:
     CREATE_FUNC(HomeScene);
 private:
     /*
+    Inaccessible default constructor from outside the class.
+    Use createScene() to create the instance from outside the class.
+    Author: ChuyangLiu
+    */
+    HomeScene() {}
+
+    /*
     Add start button to the layer.
     Author: ChuyangLiu
     */
