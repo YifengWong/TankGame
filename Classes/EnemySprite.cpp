@@ -1,7 +1,7 @@
 #include "EnemySprite.h"
 #include "EnemyBulletSprite.h"
 #include "LayoutUtil.h"
-#include "GameParam.h"
+#include "GameConfig.h"
 #include "GameScene.h"
 
 USING_NS_CC;
@@ -14,12 +14,12 @@ EnemySprite* EnemySprite::create(cocos2d::Layer *layer) {
         // Create physics body
         auto physicBody = PhysicsBody::createBox(enemy->getContentSize());
         // Set group and bitmasks
-        physicBody->setGroup(GameParam::ENEMY_PHYSIC_GROUP);
-        physicBody->setCategoryBitmask(GameParam::ENEMY_PHYSIC_CATEGORY_BM);
-        physicBody->setCollisionBitmask(GameParam::ENEMY_PHYSIC_COLLISION_BM);
-        physicBody->setContactTestBitmask(GameParam::ENEMY_PHYSIC_CONTACT_BM);
+        physicBody->setGroup(GameConfig::ENEMY_PHYSIC_GROUP);
+        physicBody->setCategoryBitmask(GameConfig::ENEMY_PHYSIC_CATEGORY_BM);
+        physicBody->setCollisionBitmask(GameConfig::ENEMY_PHYSIC_COLLISION_BM);
+        physicBody->setContactTestBitmask(GameConfig::ENEMY_PHYSIC_CONTACT_BM);
         physicBody->setRotationEnable(false);
-        physicBody->setTag(GameParam::ENEMY_TAG);
+        physicBody->setTag(GameConfig::ENEMY_TAG);
 
         // Set player sprites
         enemy->setAnchorPoint(Vec2(0.5, 0.5));
@@ -40,7 +40,7 @@ void EnemySprite::fire(const cocos2d::Vec2 &target) {
     // Add bullet
     auto bullet = EnemyBulletSprite::create();
     bullet->setPosition(getPosition());
-    bullet->getPhysicsBody()->setVelocity(directionVec * GameParam::ENEMY_BULLET_SPEED);
+    bullet->getPhysicsBody()->setVelocity(directionVec * GameConfig::ENEMY_BULLET_SPEED);
     // Add to layer
     layer->addChild(bullet);
 }
@@ -70,7 +70,7 @@ void EnemySprite::scheduleAI() {
                 vec = LayoutUtil::getUnitDirectionVector(this->getPosition(),
                                                          LayoutUtil::getPosition(pos));
             }
-            this->getPhysicsBody()->setVelocity(vec * GameParam::ENEMY_MOVE_UNIT);
+            this->getPhysicsBody()->setVelocity(vec * GameConfig::ENEMY_MOVE_UNIT);
         }
 
     }, 1, "EnemyAISchedule");

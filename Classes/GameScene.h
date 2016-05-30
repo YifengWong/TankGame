@@ -106,13 +106,13 @@ private:
     Called when the player bullet hits the wall.
     Author: ChuyangLiu
     */
-    void meetPlayerBulletWithWall(PlayerBulletSprite *player, WallSprite *wall);
+    void meetPlayerBulletWithWall(PlayerBulletSprite *playerBullet, WallSprite *wall);
 
     /*
     Called when the player bullet hits the wall.
     Author: ChuyangLiu
     */
-    void meetEnemyBulletWithWall(EnemyBulletSprite *enemy, WallSprite *wall);
+    void meetEnemyBulletWithWall(EnemyBulletSprite *enemyBullet, WallSprite *wall);
 
     /*
     Callback for schedule.

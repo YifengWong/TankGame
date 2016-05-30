@@ -1,6 +1,6 @@
 #pragma once
 
-class GameParam {
+class GameConfig {
 public:
     static const int PLAYER_MOVE_UNIT = 100;
     static const int ENEMY_MOVE_UNIT = 50;
@@ -46,7 +46,7 @@ public:
     static const int WALL_PHYSIC_GROUP = -3;
     static const int WALL_PHYSIC_CATEGORY_BM = 0x00000001;
     static const int WALL_PHYSIC_COLLISION_BM = 0x0000001F;
-    static const int WALL_PHYSIC_CONTACT_BM = 0x00000014;
+    static const int WALL_PHYSIC_CONTACT_BM = 0x0000001E;
     // Player physic groups and bitmasks
     static const int PLAYER_PHYSIC_GROUP = -4;
     static const int PLAYER_PHYSIC_CATEGORY_BM = 0x00000004;
@@ -61,10 +61,10 @@ public:
     static const int BULLET_PLAYER_PHYSIC_GROUP = -1;
     static const int BULLET_PLAYER_PHYSIC_CATEGORY_BM = 0x00000002;
     static const int BULLET_PLAYER_PHYSIC_COLLISION_BM = 0x0000011;
-    static const int BULLET_PLAYER_PHYSIC_CONTACT_BM = 0x00000010;
+    static const int BULLET_PLAYER_PHYSIC_CONTACT_BM = 0x00000011;
     // Enemy bullet physic groups and bitmasks
     static const int BULLET_ENEMY_PHYSIC_GROUP = -1;
     static const int BULLET_ENEMY_PHYSIC_CATEGORY_BM = 0x00000008;
     static const int BULLET_ENEMY_PHYSIC_COLLISION_BM = 0x0000005;
-    static const int BULLET_ENEMY_PHYSIC_CONTACT_BM = 0x00000004;
+    static const int BULLET_ENEMY_PHYSIC_CONTACT_BM = 0x00000005;
 };
