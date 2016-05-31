@@ -56,11 +56,11 @@ void EnemySprite::scheduleAI() {
                 if (GameScene::getPlayer() == nullptr) return;
                 this->fire(GameScene::getPlayer()->getPosition());
             } else {
-                this->fire(LayoutUtil::getPosition(LayoutUtil::PositionType::CENTER));
+                this->fire(LayoutUtil::getPosition(static_cast<LayoutUtil::PositionType>(rand() % 13)));
             }
         }
 
-        if (rand() % 100 < 50) {
+        if (rand() % 100 < 80) {
             Vec2 vec;
             if (rand() % 100 < 50) {
                 if (GameScene::getPlayer() == nullptr) return;
