@@ -48,12 +48,12 @@ void EnemySprite::fire(const cocos2d::Vec2 &target) {
 void EnemySprite::scheduleAI() {
     // The third param is not used
     schedule([&](float f) {
-        if (this == nullptr || layer == nullptr
-            || GameScene::getPlayer() == nullptr) return;
+        if (this == nullptr || layer == nullptr) return;
 
         // AI decision
         if (rand() % 100 < 30) {
             if (rand() % 100 < 50) {
+                if (GameScene::getPlayer() == nullptr) return;
                 this->fire(GameScene::getPlayer()->getPosition());
             } else {
                 this->fire(LayoutUtil::getPosition(LayoutUtil::PositionType::CENTER));
@@ -63,10 +63,11 @@ void EnemySprite::scheduleAI() {
         if (rand() % 100 < 50) {
             Vec2 vec;
             if (rand() % 100 < 50) {
+                if (GameScene::getPlayer() == nullptr) return;
                 vec = LayoutUtil::getUnitDirectionVector(this->getPosition(),
                                                          GameScene::getPlayer()->getPosition());
             } else {
-                auto pos = static_cast<LayoutUtil::PositionType>(rand() % 5);
+                auto pos = static_cast<LayoutUtil::PositionType>(rand() % 13);
                 vec = LayoutUtil::getUnitDirectionVector(this->getPosition(),
                                                          LayoutUtil::getPosition(pos));
             }
