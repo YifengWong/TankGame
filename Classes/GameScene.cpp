@@ -33,7 +33,7 @@ bool GameScene::init() {
     // Add sprites
     addBoundary();
     addPlayer();
-    addEnemey();
+    addEnemy();
 	//addBoss();
     addWall();
 
@@ -86,7 +86,7 @@ void GameScene::addPlayer() {
     addChild(player);
 }
 
-void GameScene::addEnemey() {
+void GameScene::addEnemy() {
     auto enemy1 = EnemySprite::create(this);
     enemy1->setPosition(LayoutUtil::getPosition(LayoutUtil::PositionType::RIGHT_BOTTOM));
     addChild(enemy1);
@@ -284,15 +284,23 @@ void GameScene::addContactListener() {
 
 void GameScene::meetPlayerWithEnemy(PlayerSprite *plyr, EnemySprite *enemy) {
     if (plyr) {
-        plyr->removeFromParent();
-        GameScene::player = nullptr;
+        plyr->decreaseHP(GameConfig::ENEMY_DAMAGE);
+        log("Player HP: %d", plyr->getHP());
+        if (plyr->isDead()) {
+            plyr->removeFromParent();
+            GameScene::player = nullptr;
+        }
     }
 }
 
 void GameScene::meetPlayerWithEnemyBullet(PlayerSprite *plyr, EnemyBulletSprite *enemyBullet) {
     if (plyr) {
-        plyr->removeFromParent();
-        GameScene::player = nullptr;
+        plyr->decreaseHP(GameConfig::BULLET_DAMAGE);
+        log("Player HP: %d", plyr->getHP());
+        if (plyr->isDead()) {
+            plyr->removeFromParent();
+            GameScene::player = nullptr;
+        }
     }
 
     if (enemyBullet) {

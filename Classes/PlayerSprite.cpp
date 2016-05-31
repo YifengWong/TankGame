@@ -22,6 +22,7 @@ PlayerSprite* PlayerSprite::create() {
         // Set player sprites
         player->setAnchorPoint(Vec2(0.5, 0.5));
         player->setPhysicsBody(physicBody);
+        player->setHP(GameConfig::PLAYER_INIT_HP);
 
         return player;
     }
@@ -83,4 +84,25 @@ void PlayerSprite::fire(Layer *layer, const cocos2d::Vec2 &target) {
     bullet->getPhysicsBody()->setVelocity(vec * GameConfig::PLAYER_BULLET_SPEED);
     // Add to layer
     layer->addChild(bullet);
+}
+
+bool PlayerSprite::isDead() {
+    return HP == 0;
+}
+
+void PlayerSprite::setHP(const int hp) {
+    HP = hp;
+}
+
+int PlayerSprite::getHP() {
+    return HP;
+}
+
+void PlayerSprite::decreaseHP(const int val) {
+    HP -= val;
+    if (HP < 0) HP = 0;
+}
+
+void PlayerSprite::increaseHP(const int val) {
+    HP += val;
 }

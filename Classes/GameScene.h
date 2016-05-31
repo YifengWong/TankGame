@@ -47,7 +47,7 @@ private:
     Add enemy.
     Author: ChuyangLiu
     */
-    void addEnemey();
+    void addEnemy();
 
     /*
     Add walls.

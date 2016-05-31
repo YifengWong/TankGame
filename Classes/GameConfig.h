@@ -8,6 +8,9 @@ public:
     static const int PLAYER_BULLET_NUM_LIMIT = 10;
     static const int ENEMY_BULLET_SPEED = 150;
     static const int BULLET_LAST_TIME = 2;
+    static const int PLAYER_INIT_HP = 1000;
+    static const int BULLET_DAMAGE = 100;
+    static const int ENEMY_DAMAGE = 500;
 
     // Debug switchers
     static const bool DRAW_WORLD_EDGE = true;
