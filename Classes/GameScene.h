@@ -77,13 +77,13 @@ private:
     Called when the player hits an enemy.
     Author: ChuyangLiu
     */
-    void meetPlayerWithEnemy(EnemySprite *enemy);
+    void meetPlayerWithEnemy(PlayerSprite *plyr, EnemySprite *enemy);
 
     /*
     Called when the player hits an enemy bullet.
     Author: ChuyangLiu
     */
-    void meetPlayerWithEnemyBullet(EnemyBulletSprite *enemyBullet);
+    void meetPlayerWithEnemyBullet(PlayerSprite *plyr, EnemyBulletSprite *enemyBullet);
 
     /*
     Called when the player hits an enemy bullet.
@@ -95,7 +95,7 @@ private:
     Called when the player hits the wall.
     Author: ChuyangLiu
     */
-    void meetPlayerWithWall(PlayerSprite *player, WallSprite *wall);
+    void meetPlayerWithWall(PlayerSprite *plyr, WallSprite *wall);
 
     /*
     Called when the player hits the wall.

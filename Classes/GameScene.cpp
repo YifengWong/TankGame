@@ -28,13 +28,13 @@ bool GameScene::init() {
         return false;
     }
 
-	addBackground();
+	//addBackground();
 
     // Add sprites
     addBoundary();
     addPlayer();
     addEnemey();
-	addBoss();
+	//addBoss();
     addWall();
 
     // Add event listeners
@@ -49,6 +49,15 @@ bool GameScene::init() {
 }
 
 void GameScene::update(float f) {
+}
+
+void GameScene::addBackground() {
+    auto visibleSize = Director::getInstance()->getVisibleSize();
+    auto bgsprite = Sprite::create("background.png");
+    bgsprite->setPosition(visibleSize / 2);
+    bgsprite->setScale(visibleSize.width / bgsprite->getContentSize().width, \
+                       visibleSize.height / bgsprite->getContentSize().height);
+    this->addChild(bgsprite, -1);
 }
 
 void GameScene::addBoundary() {
@@ -114,6 +123,9 @@ void GameScene::addWall() {
     wall4->setPosition(LayoutUtil::getPosition(LayoutUtil::PositionType::CENTER_DOWN));
     addChild(wall4);
 
+    auto wall5 = WallSprite::create(false);
+    wall5->setPosition(LayoutUtil::getPosition(LayoutUtil::PositionType::CENTER));
+    addChild(wall5);
 }
 
 void GameScene::addKeyboardListener() {
@@ -190,19 +202,23 @@ void GameScene::addContactListener() {
             // Player hits enemy
             if (body1->getTag() == GameConfig::PLAYER_TAG
                 && body2->getTag() == GameConfig::ENEMY_TAG) {
-                meetPlayerWithEnemy(dynamic_cast<EnemySprite*>(body2->getNode()));
+                meetPlayerWithEnemy(dynamic_cast<PlayerSprite*>(body1->getNode()),
+                                    dynamic_cast<EnemySprite*>(body2->getNode()));
             } else if (body1->getTag() == GameConfig::ENEMY_TAG
                        && body2->getTag() == GameConfig::PLAYER_TAG) {
-                meetPlayerWithEnemy(dynamic_cast<EnemySprite*>(body1->getNode()));
+                meetPlayerWithEnemy(dynamic_cast<PlayerSprite*>(body2->getNode()),
+                                    dynamic_cast<EnemySprite*>(body1->getNode()));
             }
 
             // Player hits enemy bullet
             if (body1->getTag() == GameConfig::PLAYER_TAG
                 && body2->getTag() == GameConfig::BULLET_ENEMY_TAG) {
-                meetPlayerWithEnemyBullet(dynamic_cast<EnemyBulletSprite*>(body2->getNode()));
+                meetPlayerWithEnemyBullet(dynamic_cast<PlayerSprite*>(body1->getNode()),
+                                          dynamic_cast<EnemyBulletSprite*>(body2->getNode()));
             } else if (body1->getTag() == GameConfig::BULLET_ENEMY_TAG
                        && body2->getTag() == GameConfig::PLAYER_TAG) {
-                meetPlayerWithEnemyBullet(dynamic_cast<EnemyBulletSprite*>(body1->getNode()));
+                meetPlayerWithEnemyBullet(dynamic_cast<PlayerSprite*>(body2->getNode()),
+                                          dynamic_cast<EnemyBulletSprite*>(body1->getNode()));
             }
 
             // Enemy hits player bullet
@@ -266,17 +282,17 @@ void GameScene::addContactListener() {
 }
 
 
-void GameScene::meetPlayerWithEnemy(EnemySprite *enemy) {
-    if (GameScene::player) {
-        //GameScene::player->removeFromParent();
-        //GameScene::player = nullptr;
+void GameScene::meetPlayerWithEnemy(PlayerSprite *plyr, EnemySprite *enemy) {
+    if (plyr) {
+        plyr->removeFromParent();
+        GameScene::player = nullptr;
     }
 }
 
-void GameScene::meetPlayerWithEnemyBullet(EnemyBulletSprite *enemyBullet) {
-    if (GameScene::player) {
-        //GameScene::player->removeFromParent();
-        //GameScene::player = nullptr;
+void GameScene::meetPlayerWithEnemyBullet(PlayerSprite *plyr, EnemyBulletSprite *enemyBullet) {
+    if (plyr) {
+        plyr->removeFromParent();
+        GameScene::player = nullptr;
     }
 
     if (enemyBullet) {
@@ -292,13 +308,13 @@ void GameScene::meetEnemyWithPlayerBullet(EnemySprite *enemy, PlayerBulletSprite
     }
 
     if (enemy) {
-        //enemy->removeFromParent();
+        enemy->removeFromParent();
     }
 }
 
-void GameScene::meetPlayerWithWall(PlayerSprite *player, WallSprite *wall) {
-    if (GameScene::player) {
-        GameScene::player->getPhysicsBody()->setVelocity(Vec2(0, 0));
+void GameScene::meetPlayerWithWall(PlayerSprite *plyr, WallSprite *wall) {
+    if (plyr) {
+        plyr->getPhysicsBody()->setVelocity(Vec2(0, 0));
     }
 }
 
@@ -326,11 +342,3 @@ void GameScene::meetEnemyBulletWithWall(EnemyBulletSprite *enemyBullet, WallSpri
     }
 }
 
-void GameScene::addBackground() {
-	auto visibleSize = Director::getInstance()->getVisibleSize();
-	auto bgsprite = Sprite::create("background.png");
-	bgsprite->setPosition(visibleSize / 2);
-	bgsprite->setScale(visibleSize.width / bgsprite->getContentSize().width, \
-		visibleSize.height / bgsprite->getContentSize().height);
-	this->addChild(bgsprite, -1);
-}
