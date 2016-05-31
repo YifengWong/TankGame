@@ -28,10 +28,13 @@ bool GameScene::init() {
         return false;
     }
 
+	addBackground();
+
     // Add sprites
     addBoundary();
     addPlayer();
     addEnemey();
+	addBoss();
     addWall();
 
     // Add event listeners
@@ -88,6 +91,12 @@ void GameScene::addEnemey() {
     addChild(enemy3);
 }
 
+void GameScene::addBoss() {
+	auto boss = BossSprite::create(this);
+	boss->setPosition(LayoutUtil::getPosition(LayoutUtil::PositionType::CENTER));
+	addChild(boss);
+}
+
 void GameScene::addWall() {
     auto wall1 = WallSprite::create(true);
     wall1->setPosition(LayoutUtil::getPosition(LayoutUtil::PositionType::CENTER_LEFT));
@@ -105,9 +114,6 @@ void GameScene::addWall() {
     wall4->setPosition(LayoutUtil::getPosition(LayoutUtil::PositionType::CENTER_DOWN));
     addChild(wall4);
 
-    auto wall5 = WallSprite::create(false);
-    wall5->setPosition(LayoutUtil::getPosition(LayoutUtil::PositionType::CENTER));
-    addChild(wall5);
 }
 
 void GameScene::addKeyboardListener() {
@@ -318,4 +324,13 @@ void GameScene::meetEnemyBulletWithWall(EnemyBulletSprite *enemyBullet, WallSpri
             enemyBullet->removeFromParent();
         }
     }
+}
+
+void GameScene::addBackground() {
+	auto visibleSize = Director::getInstance()->getVisibleSize();
+	auto bgsprite = Sprite::create("background.png");
+	bgsprite->setPosition(visibleSize / 2);
+	bgsprite->setScale(visibleSize.width / bgsprite->getContentSize().width, \
+		visibleSize.height / bgsprite->getContentSize().height);
+	this->addChild(bgsprite, -1);
 }
