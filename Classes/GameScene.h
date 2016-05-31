@@ -4,6 +4,7 @@
 #include "PlayerBulletSprite.h"
 #include "EnemyBulletSprite.h"
 #include "WallSprite.h"
+#include "BossSprite.h"
 
 /*
 Game Scene
@@ -119,4 +120,16 @@ private:
     Author: ChuyangLiu
     */
     void update(float f);
+
+	/*
+	Add the green background.
+	Author: YifengWong
+	*/
+	void addBackground();
+
+	/*
+	Add the boss.
+	Author: YifengWong
+	*/
+	void addBoss();
 };
