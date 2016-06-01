@@ -1,16 +1,18 @@
-#include "LayoutUtil.h"
+#include "GameUtil.h"
+#include "EnemyBossSprite.h"
+#include "EnemyNormalSprite.h"
 
 USING_NS_CC;
 
-Vec2 LayoutUtil::getOrigin() {
+Vec2 GameUtil::getOrigin() {
     return Director::getInstance()->getVisibleOrigin();
 }
 
-Size LayoutUtil::getVisibleSize() {
+Size GameUtil::getVisibleSize() {
     return Director::getInstance()->getVisibleSize();
 }
 
-bool LayoutUtil::isReachBoundary(const cocos2d::Sprite *sprite, const Direction &boundDirec) {
+bool GameUtil::isReachBoundary(const cocos2d::Sprite *sprite, const Direction &boundDirec) {
     if (sprite == nullptr) return true;
     int x = sprite->getPosition().x;
     int y = sprite->getPosition().y;
@@ -40,13 +42,21 @@ bool LayoutUtil::isReachBoundary(const cocos2d::Sprite *sprite, const Direction 
     return reach;
 }
 
-cocos2d::Vec2 LayoutUtil::getUnitDirectionVector(const cocos2d::Vec2 &from, const cocos2d::Vec2 &to) {
+cocos2d::Vec2 GameUtil::getUnitDirectionVector(const cocos2d::Vec2 &from, const cocos2d::Vec2 &to) {
     auto vec = to - from;
     vec.normalize();
     return vec;
 }
 
-Vec2 LayoutUtil::getPosition(const PositionType &type) {
+bool GameUtil::isNormalEnemy(EnemySpriteBase *enemy) {
+    return nullptr != dynamic_cast<EnemyNormalSprite*>(enemy);
+}
+
+bool GameUtil::isBossEnemy(EnemySpriteBase *enemy) {
+    return nullptr != dynamic_cast<EnemyBossSprite*>(enemy);
+}
+
+Vec2 GameUtil::getPosition(const PositionType &type) {
     auto origin = getOrigin();
     auto visibleSize = getVisibleSize();
     const int offset = 70;

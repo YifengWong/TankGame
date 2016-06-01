@@ -2,7 +2,7 @@
 #include "GameConfig.h"
 #include "EnemyNormalSprite.h"
 #include "EnemyBossSprite.h"
-#include "LayoutUtil.h"
+#include "GameUtil.h"
 
 USING_NS_CC;
 using namespace cocos2d::ui;
@@ -53,9 +53,9 @@ void GameScene::update(float f) {
 }
 
 void GameScene::addBackground() {
-    auto visibleSize = LayoutUtil::getVisibleSize();
+    auto visibleSize = GameUtil::getVisibleSize();
     auto bgsprite = Sprite::create("background.png");
-    bgsprite->setPosition(LayoutUtil::getPosition(LayoutUtil::PositionType::CENTER));
+    bgsprite->setPosition(GameUtil::getPosition(GameUtil::PositionType::CENTER));
     bgsprite->setScale(visibleSize.width / bgsprite->getContentSize().width, \
                        visibleSize.height / bgsprite->getContentSize().height);
     addChild(bgsprite);
@@ -64,7 +64,7 @@ void GameScene::addBackground() {
 void GameScene::addBoundary() {
     // Create physicsBody
     // Customize PhysicsMaterial to enable mirror reflection
-    auto physicBody = PhysicsBody::createEdgeBox(LayoutUtil::getVisibleSize(),
+    auto physicBody = PhysicsBody::createEdgeBox(GameUtil::getVisibleSize(),
                                                  PhysicsMaterial(0, 2, 0));
     physicBody->setDynamic(false);
     // Set bitmasks
@@ -75,7 +75,7 @@ void GameScene::addBoundary() {
     physicBody->setTag(GameConfig::WALL_TAG);
     // Create sprite
     auto boudary = Sprite::create();
-    boudary->setPosition(LayoutUtil::getPosition(LayoutUtil::PositionType::CENTER));
+    boudary->setPosition(GameUtil::getPosition(GameUtil::PositionType::CENTER));
     boudary->setPhysicsBody(physicBody);
     // Add to layer
     addChild(boudary);
@@ -83,43 +83,43 @@ void GameScene::addBoundary() {
 
 void GameScene::addPlayer() {
     player = PlayerSprite::create();
-    player->setPosition(LayoutUtil::getPosition(LayoutUtil::PositionType::LEFT_BOTTOM));
+    player->setPosition(GameUtil::getPosition(GameUtil::PositionType::LEFT_BOTTOM));
     addChild(player);
 }
 
 void GameScene::addEnemies() {
     auto enemy1 = EnemyNormalSprite::create(this);
-    enemy1->setPosition(LayoutUtil::getPosition(LayoutUtil::PositionType::RIGHT_BOTTOM));
+    enemy1->setPosition(GameUtil::getPosition(GameUtil::PositionType::RIGHT_BOTTOM));
     addChild(enemy1);
 
     auto enemy2 = EnemyNormalSprite::create(this);
-    enemy2->setPosition(LayoutUtil::getPosition(LayoutUtil::PositionType::LEFT_TOP));
+    enemy2->setPosition(GameUtil::getPosition(GameUtil::PositionType::LEFT_TOP));
     addChild(enemy2);
 
     auto boss = EnemyBossSprite::create(this);
-    boss->setPosition(LayoutUtil::getPosition(LayoutUtil::PositionType::RIGHT_TOP));
+    boss->setPosition(GameUtil::getPosition(GameUtil::PositionType::RIGHT_TOP));
     addChild(boss);
 }
 
 void GameScene::addWalls() {
     auto wall1 = WallSprite::create(true);
-    wall1->setPosition(LayoutUtil::getPosition(LayoutUtil::PositionType::CENTER_LEFT));
+    wall1->setPosition(GameUtil::getPosition(GameUtil::PositionType::CENTER_LEFT));
     addChild(wall1);
 
     auto wall2 = WallSprite::create(true);
-    wall2->setPosition(LayoutUtil::getPosition(LayoutUtil::PositionType::CENTER_TOP));
+    wall2->setPosition(GameUtil::getPosition(GameUtil::PositionType::CENTER_TOP));
     addChild(wall2);
 
     auto wall3 = WallSprite::create(true);
-    wall3->setPosition(LayoutUtil::getPosition(LayoutUtil::PositionType::CENTER_RIGHT));
+    wall3->setPosition(GameUtil::getPosition(GameUtil::PositionType::CENTER_RIGHT));
     addChild(wall3);
 
     auto wall4 = WallSprite::create(true);
-    wall4->setPosition(LayoutUtil::getPosition(LayoutUtil::PositionType::CENTER_DOWN));
+    wall4->setPosition(GameUtil::getPosition(GameUtil::PositionType::CENTER_DOWN));
     addChild(wall4);
 
     auto wall5 = WallSprite::create(false);
-    wall5->setPosition(LayoutUtil::getPosition(LayoutUtil::PositionType::CENTER));
+    wall5->setPosition(GameUtil::getPosition(GameUtil::PositionType::CENTER));
     addChild(wall5);
 }
 
@@ -279,9 +279,9 @@ void GameScene::addContactListener() {
 
 void GameScene::meetPlayerWithEnemy(PlayerSprite *plyr, EnemySpriteBase *enemy) {
     if (plyr) {
-        if (nullptr != dynamic_cast<EnemyNormalSprite*>(enemy)) {
+        if (GameUtil::isNormalEnemy(enemy)) {
             plyr->getHP()->decrease(GameConfig::ENEMY_NORMAL_COLLISION_DAMAGE);
-        } else if (nullptr != dynamic_cast<EnemyBossSprite*>(enemy)) {
+        } else if (GameUtil::isBossEnemy(enemy)) {
             plyr->getHP()->decrease(GameConfig::ENEMY_BOSS_COLLISION_DAMAGE);
         }
         log("Player HP: %d", plyr->getHP()->getValue());
@@ -332,7 +332,13 @@ void GameScene::meetPlayerWithWall(PlayerSprite *plyr, WallSprite *wall) {
 
 void GameScene::meetEnemyWithWall(EnemySpriteBase *enemy, WallSprite *wall) {
     if (enemy) {
-        enemy->getPhysicsBody()->setVelocity(Vec2(0, 0));
+        auto curVel = enemy->getPhysicsBody()->getVelocity();
+        curVel.normalize();
+        if (GameUtil::isNormalEnemy(enemy)) {
+            enemy->getPhysicsBody()->setVelocity(curVel * GameConfig::ENEMY_NORMAL_MOVE_SPEED);
+        } else if (GameUtil::isBossEnemy(enemy)) {
+            enemy->getPhysicsBody()->setVelocity(curVel * GameConfig::ENEMY_BOSS_MOVE_SPEED);
+        }
     }
 }
 

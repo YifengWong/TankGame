@@ -1,6 +1,6 @@
 #include "EnemyBossSprite.h"
 #include "EnemyBulletSprite.h"
-#include "LayoutUtil.h"
+#include "GameUtil.h"
 #include "GameConfig.h"
 #include "GameScene.h"
 
@@ -37,7 +37,7 @@ EnemyBossSprite* EnemyBossSprite::create(cocos2d::Layer *layer) {
 
 void EnemyBossSprite::fire(const cocos2d::Vec2 &target) {
 	// Create unit direction vector
-    auto vec = LayoutUtil::getUnitDirectionVector(getPosition(), target);
+    auto vec = GameUtil::getUnitDirectionVector(getPosition(), target);
 	// Add bullet
 	auto bullet = EnemyBulletSprite::create();
 	bullet->setPosition(getPosition());
@@ -54,7 +54,7 @@ void EnemyBossSprite::makeAIDecision() {
             if (GameScene::getPlayer() == nullptr) return;
             this->fire(GameScene::getPlayer()->getPosition());
         } else {
-            this->fire(LayoutUtil::getPosition(static_cast<LayoutUtil::PositionType>(rand() % 13)));
+            this->fire(GameUtil::getPosition(static_cast<GameUtil::PositionType>(rand() % 13)));
         }
     }
 
@@ -62,13 +62,13 @@ void EnemyBossSprite::makeAIDecision() {
         Vec2 vec;
         if (rand() % 100 < 50) {
             if (GameScene::getPlayer() == nullptr) return;
-            vec = LayoutUtil::getUnitDirectionVector(this->getPosition(),
+            vec = GameUtil::getUnitDirectionVector(this->getPosition(),
                                                      GameScene::getPlayer()->getPosition());
         } else {
-            auto pos = static_cast<LayoutUtil::PositionType>(rand() % 13);
-            vec = LayoutUtil::getUnitDirectionVector(this->getPosition(),
-                                                     LayoutUtil::getPosition(pos));
+            auto pos = static_cast<GameUtil::PositionType>(rand() % 13);
+            vec = GameUtil::getUnitDirectionVector(this->getPosition(),
+                                                     GameUtil::getPosition(pos));
         }
-        this->getPhysicsBody()->setVelocity(vec * GameConfig::ENEMY_BOSS_MOVE_UNIT);
+        this->getPhysicsBody()->setVelocity(vec * GameConfig::ENEMY_BOSS_MOVE_SPEED);
     }
 }

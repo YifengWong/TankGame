@@ -36,16 +36,16 @@ void PlayerSprite::setMoveVal(const Direction &direc) {
     if (physicBody == nullptr) return;
     switch (direc) {
         case LEFT:
-            physicBody->setVelocity(Vec2(-GameConfig::PLAYER_MOVE_UNIT, physicBody->getVelocity().y));
+            physicBody->setVelocity(Vec2(-GameConfig::PLAYER_MOVE_SPEED, physicBody->getVelocity().y));
             break;
         case UP:
-            physicBody->setVelocity(Vec2(physicBody->getVelocity().x, GameConfig::PLAYER_MOVE_UNIT));
+            physicBody->setVelocity(Vec2(physicBody->getVelocity().x, GameConfig::PLAYER_MOVE_SPEED));
             break;
         case RIGHT:
-            physicBody->setVelocity(Vec2(GameConfig::PLAYER_MOVE_UNIT, physicBody->getVelocity().y));
+            physicBody->setVelocity(Vec2(GameConfig::PLAYER_MOVE_SPEED, physicBody->getVelocity().y));
             break;
         case DOWN:
-            physicBody->setVelocity(Vec2(physicBody->getVelocity().x, -GameConfig::PLAYER_MOVE_UNIT));
+            physicBody->setVelocity(Vec2(physicBody->getVelocity().x, -GameConfig::PLAYER_MOVE_SPEED));
             break;
         default:
             break;
@@ -58,19 +58,19 @@ void PlayerSprite::resetMoveVal(const Direction &direc) {
     switch (direc) {
         case LEFT:
             if (physicBody->getVelocity().x == 0) break;
-            physicBody->setVelocity(physicBody->getVelocity() + Vec2(GameConfig::PLAYER_MOVE_UNIT, 0));
+            physicBody->setVelocity(physicBody->getVelocity() + Vec2(GameConfig::PLAYER_MOVE_SPEED, 0));
             break;
         case UP:
             if (physicBody->getVelocity().y == 0) break;
-            physicBody->setVelocity(physicBody->getVelocity() + Vec2(0, -GameConfig::PLAYER_MOVE_UNIT));
+            physicBody->setVelocity(physicBody->getVelocity() + Vec2(0, -GameConfig::PLAYER_MOVE_SPEED));
             break;
         case RIGHT:
             if (physicBody->getVelocity().x == 0) break;
-            physicBody->setVelocity(physicBody->getVelocity() + Vec2(-GameConfig::PLAYER_MOVE_UNIT, 0));
+            physicBody->setVelocity(physicBody->getVelocity() + Vec2(-GameConfig::PLAYER_MOVE_SPEED, 0));
             break;
         case DOWN:
             if (physicBody->getVelocity().y == 0) break;
-            physicBody->setVelocity(physicBody->getVelocity() + Vec2(0, GameConfig::PLAYER_MOVE_UNIT));
+            physicBody->setVelocity(physicBody->getVelocity() + Vec2(0, GameConfig::PLAYER_MOVE_SPEED));
             break;
         default:
             break;
@@ -78,7 +78,7 @@ void PlayerSprite::resetMoveVal(const Direction &direc) {
 }
 
 void PlayerSprite::fire(Layer *layer, const cocos2d::Vec2 &target) {
-    auto vec = LayoutUtil::getUnitDirectionVector(getPosition(), target);
+    auto vec = GameUtil::getUnitDirectionVector(getPosition(), target);
     // Add bullet
     auto bullet = PlayerBulletSprite::create();
     bullet->setPosition(getPosition());

@@ -10,21 +10,21 @@ public:
     static const int ENEMY_DECISION_INTERVAL = 1;
 
     // Player config
-    static const int PLAYER_MOVE_UNIT = 100;
+    static const int PLAYER_MOVE_SPEED = 100;
     static const int PLAYER_BULLET_SPEED = 150;
     static const int PLAYER_BULLET_NUM_LIMIT = 5;
     static const int PLAYER_INIT_HP = 1000;
     static const int PLAYER_MAX_HP = 1000;
 
     // Normal enemy config
-    static const int ENEMY_NORMAL_MOVE_UNIT = 50;
+    static const int ENEMY_NORMAL_MOVE_SPEED = 50;
     static const int ENEMY_NORMAL_BULLET_SPEED = 150;
     static const int ENEMY_NORMAL_COLLISION_DAMAGE = 500;
     static const int ENEMY_NORMAL_MAX_HP = 1000;
     static const int ENEMY_NORMAL_INIT_HP = 1000;
 
     // Boss enemy config
-    static const int ENEMY_BOSS_MOVE_UNIT = 100;
+    static const int ENEMY_BOSS_MOVE_SPEED = 100;
     static const int ENEMY_BOSS_BULLET_SPEED = 200;
     static const int ENEMY_BOSS_COLLISION_DAMAGE = 1000;
     static const int ENEMY_BOSS_MAX_HP = 2000;

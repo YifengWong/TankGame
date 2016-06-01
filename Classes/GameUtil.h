@@ -1,5 +1,7 @@
 #pragma once
 
+class EnemySpriteBase;
+
 /*
 Move direction declaration.
 Author: ChuyangLiu
@@ -14,7 +16,7 @@ enum Direction {
 /*
 Utilities for layout operation.
 */
-class LayoutUtil {
+class GameUtil {
 public:
     /*
     Return origin position of the game window.
@@ -66,4 +68,16 @@ public:
     Author: ChuyangLiu
     */
     static cocos2d::Vec2 getPosition(const PositionType &type);
+
+    /*
+    Check if the enemy is a normal enemy
+    Author: ChuyangLiu
+    */
+    static bool isNormalEnemy(EnemySpriteBase *enemy);
+
+    /*
+    Check if the enemy is a boss enemy
+    Author: ChuyangLiu
+    */
+    static bool isBossEnemy(EnemySpriteBase *enemy);
 };

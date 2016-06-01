@@ -1,7 +1,7 @@
 #include "HomeScene.h"
 #include "GameScene.h"
 #include "ui/CocosGUI.h"
-#include "LayoutUtil.h"
+#include "GameUtil.h"
 
 USING_NS_CC;
 using namespace cocos2d::ui;
@@ -29,7 +29,7 @@ void HomeScene::addStartBtn() {
     auto startBtn = Button::create();
     startBtn->setTitleText("Start");
     startBtn->setTitleFontSize(30);
-    startBtn->setPosition(LayoutUtil::getPosition(LayoutUtil::PositionType::CENTER));
+    startBtn->setPosition(GameUtil::getPosition(GameUtil::PositionType::CENTER));
     startBtn->addClickEventListener([](Ref* pSender) {
         Director::getInstance()->replaceScene(GameScene::createScene());
     });
