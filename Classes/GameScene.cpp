@@ -282,8 +282,8 @@ void GameScene::addContactListener() {
 
 void GameScene::meetPlayerWithEnemy(PlayerSprite *plyr, EnemySpriteBase *enemy) {
     if (plyr) {
-        plyr->decreaseHP(GameConfig::ENEMY_DAMAGE);
-        log("Player HP: %d", plyr->getHP());
+        plyr->getHP()->decrease(GameConfig::ENEMY_DAMAGE);
+        log("Player HP: %d", plyr->getHP()->getValue());
         if (plyr->isDead()) {
             plyr->removeFromParent();
             GameScene::player = nullptr;
@@ -293,8 +293,8 @@ void GameScene::meetPlayerWithEnemy(PlayerSprite *plyr, EnemySpriteBase *enemy) 
 
 void GameScene::meetPlayerWithEnemyBullet(PlayerSprite *plyr, EnemyBulletSprite *enemyBullet) {
     if (plyr) {
-        plyr->decreaseHP(GameConfig::BULLET_DAMAGE);
-        log("Player HP: %d", plyr->getHP());
+        plyr->getHP()->decrease(GameConfig::BULLET_DAMAGE);
+        log("Player HP: %d", plyr->getHP()->getValue());
         if (plyr->isDead()) {
             plyr->removeFromParent();
             GameScene::player = nullptr;

@@ -1,6 +1,7 @@
 #pragma once
 
 #include "LayoutUtil.h"
+#include "HPValue.h"
 
 /*
 A player sprite
@@ -41,22 +42,10 @@ public:
     Return the hp value.
     Author: ChuyangLiu
     */
-    int getHP();
-
-    /*
-    Decrease the player's HP by @param val.
-    Author: ChuyangLiu
-    */
-    void decreaseHP(const int val);
-
-    /*
-    Increase the player's HP by @param val.
-    Author: ChuyangLiu
-    */
-    void increaseHP(const int val);
+    HPValue* getHP();
 
 private:
-    int HP;
+    HPValue hp;
 
     /*
     Inaccessible default constructor from outside the class.

@@ -12,7 +12,7 @@ BossSprite* BossSprite::create(cocos2d::Layer *layer) {
 		enemy->autorelease();
 
 		// Create physics body
-		auto physicBody = PhysicsBody::createBox(enemy->getContentSize(), PhysicsMaterial(0, 2, 0));
+		auto physicBody = PhysicsBody::createBox(enemy->getContentSize());
 		// Set group and bitmasks
 		physicBody->setGroup(GameConfig::ENEMY_PHYSIC_GROUP);
 		physicBody->setCategoryBitmask(GameConfig::ENEMY_PHYSIC_CATEGORY_BM);
