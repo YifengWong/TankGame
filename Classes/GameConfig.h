@@ -11,6 +11,7 @@ public:
     static const int PLAYER_INIT_HP = 1000;
     static const int BULLET_DAMAGE = 100;
     static const int ENEMY_DAMAGE = 500;
+    static const int AI_DECISION_INTERVAL = 1;
 
     // Debug switchers
     static const bool DRAW_WORLD_EDGE = true;

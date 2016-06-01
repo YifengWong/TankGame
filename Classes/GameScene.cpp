@@ -1,5 +1,7 @@
 #include "GameScene.h"
 #include "GameConfig.h"
+#include "EnemySprite.h"
+#include "BossSprite.h"
 
 USING_NS_CC;
 using namespace cocos2d::ui;
@@ -34,7 +36,7 @@ bool GameScene::init() {
     addBoundary();
     addPlayer();
     addEnemy();
-	//addBoss();
+	addBoss();
     addWall();
 
     // Add event listeners
@@ -94,15 +96,11 @@ void GameScene::addEnemy() {
     auto enemy2 = EnemySprite::create(this);
     enemy2->setPosition(LayoutUtil::getPosition(LayoutUtil::PositionType::LEFT_TOP));
     addChild(enemy2);
-
-    auto enemy3 = EnemySprite::create(this);
-    enemy3->setPosition(LayoutUtil::getPosition(LayoutUtil::PositionType::RIGHT_TOP));
-    addChild(enemy3);
 }
 
 void GameScene::addBoss() {
 	auto boss = BossSprite::create(this);
-	boss->setPosition(LayoutUtil::getPosition(LayoutUtil::PositionType::CENTER));
+	boss->setPosition(LayoutUtil::getPosition(LayoutUtil::PositionType::RIGHT_TOP));
 	addChild(boss);
 }
 
@@ -203,11 +201,11 @@ void GameScene::addContactListener() {
             if (body1->getTag() == GameConfig::PLAYER_TAG
                 && body2->getTag() == GameConfig::ENEMY_TAG) {
                 meetPlayerWithEnemy(dynamic_cast<PlayerSprite*>(body1->getNode()),
-                                    dynamic_cast<EnemySprite*>(body2->getNode()));
+                                    dynamic_cast<EnemySpriteBase*>(body2->getNode()));
             } else if (body1->getTag() == GameConfig::ENEMY_TAG
                        && body2->getTag() == GameConfig::PLAYER_TAG) {
                 meetPlayerWithEnemy(dynamic_cast<PlayerSprite*>(body2->getNode()),
-                                    dynamic_cast<EnemySprite*>(body1->getNode()));
+                                    dynamic_cast<EnemySpriteBase*>(body1->getNode()));
             }
 
             // Player hits enemy bullet
@@ -224,11 +222,11 @@ void GameScene::addContactListener() {
             // Enemy hits player bullet
             if (body1->getTag() == GameConfig::ENEMY_TAG
                 && body2->getTag() == GameConfig::BULLET_PLAYER_TAG) {
-                meetEnemyWithPlayerBullet(dynamic_cast<EnemySprite*>(body1->getNode()),
+                meetEnemyWithPlayerBullet(dynamic_cast<EnemySpriteBase*>(body1->getNode()),
                                           dynamic_cast<PlayerBulletSprite*>(body2->getNode()));
             } else if (body1->getTag() == GameConfig::BULLET_PLAYER_TAG
                        && body2->getTag() == GameConfig::ENEMY_TAG) {
-                meetEnemyWithPlayerBullet(dynamic_cast<EnemySprite*>(body2->getNode()),
+                meetEnemyWithPlayerBullet(dynamic_cast<EnemySpriteBase*>(body2->getNode()),
                                           dynamic_cast<PlayerBulletSprite*>(body1->getNode()));
             }
 
@@ -246,11 +244,11 @@ void GameScene::addContactListener() {
             // Enemy hits the wall
             if (body1->getTag() == GameConfig::ENEMY_TAG
                 && body2->getTag() == GameConfig::WALL_TAG) {
-                meetEnemyWithWall(dynamic_cast<EnemySprite*>(body1->getNode()),
+                meetEnemyWithWall(dynamic_cast<EnemySpriteBase*>(body1->getNode()),
                                   dynamic_cast<WallSprite*>(body2->getNode()));
             } else if (body1->getTag() == GameConfig::WALL_TAG
                        && body2->getTag() == GameConfig::ENEMY_TAG) {
-                meetEnemyWithWall(dynamic_cast<EnemySprite*>(body2->getNode()),
+                meetEnemyWithWall(dynamic_cast<EnemySpriteBase*>(body2->getNode()),
                                   dynamic_cast<WallSprite*>(body1->getNode()));
             }
 
@@ -282,7 +280,7 @@ void GameScene::addContactListener() {
 }
 
 
-void GameScene::meetPlayerWithEnemy(PlayerSprite *plyr, EnemySprite *enemy) {
+void GameScene::meetPlayerWithEnemy(PlayerSprite *plyr, EnemySpriteBase *enemy) {
     if (plyr) {
         plyr->decreaseHP(GameConfig::ENEMY_DAMAGE);
         log("Player HP: %d", plyr->getHP());
@@ -309,7 +307,7 @@ void GameScene::meetPlayerWithEnemyBullet(PlayerSprite *plyr, EnemyBulletSprite 
     }
 }
 
-void GameScene::meetEnemyWithPlayerBullet(EnemySprite *enemy, PlayerBulletSprite *playerBullet) {
+void GameScene::meetEnemyWithPlayerBullet(EnemySpriteBase *enemy, PlayerBulletSprite *playerBullet) {
     if (playerBullet) {
         playerBullet->removeFromParent();
         playerBullet = nullptr;
@@ -326,7 +324,7 @@ void GameScene::meetPlayerWithWall(PlayerSprite *plyr, WallSprite *wall) {
     }
 }
 
-void GameScene::meetEnemyWithWall(EnemySprite *enemy, WallSprite *wall) {
+void GameScene::meetEnemyWithWall(EnemySpriteBase *enemy, WallSprite *wall) {
     if (enemy) {
         enemy->getPhysicsBody()->setVelocity(Vec2(0, 0));
     }

@@ -1,11 +1,11 @@
 #pragma once
 
-#include "PlayerSprite.h"
+#include "EnemySpriteBase.h"
 
 /*
-An enemey sprite
+An enemy sprite
 */
-class EnemySprite : public cocos2d::Sprite {
+class EnemySprite : public EnemySpriteBase {
 public:
     /*
     Create an enemy sprite.
@@ -14,7 +14,6 @@ public:
     static EnemySprite* create(cocos2d::Layer *layer = nullptr);
 
 private:
-    cocos2d::Layer *layer = nullptr;
 
     /*
     Inaccessible default constructor from outside the class.
@@ -24,20 +23,14 @@ private:
     EnemySprite() {}
 
     /*
-    Set the layer of the enemy.
-    Author: ChuyangLiu
-    */
-    void setLayer(cocos2d::Layer *layer_);
-
-    /*
-    Schedule the enemy AI.
-    Author: ChuyangLiu
-    */
-    void scheduleAI();
-
-    /*
     Enemy fire at the target.
     Author: ChuyangLiu
     */
-    void fire(const cocos2d::Vec2 &target);
+    virtual void fire(const cocos2d::Vec2 &target);
+
+    /*
+    Make an AI decision.
+    Author: ChuyangLiu
+    */
+    virtual void makeAIDecision();
 };

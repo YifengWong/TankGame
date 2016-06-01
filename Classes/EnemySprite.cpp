@@ -25,7 +25,7 @@ EnemySprite* EnemySprite::create(cocos2d::Layer *layer) {
         enemy->setAnchorPoint(Vec2(0.5, 0.5));
         enemy->setPhysicsBody(physicBody);
         enemy->setLayer(layer);
-        enemy->scheduleAI();
+        enemy->runAI();
 
         return enemy;
     }
@@ -35,48 +35,39 @@ EnemySprite* EnemySprite::create(cocos2d::Layer *layer) {
 
 void EnemySprite::fire(const cocos2d::Vec2 &target) {
     // Create unit direction vector
-    auto directionVec = target - getPosition();
-    directionVec.normalize();
+    auto vec = LayoutUtil::getUnitDirectionVector(getPosition(), target);
     // Add bullet
     auto bullet = EnemyBulletSprite::create();
     bullet->setPosition(getPosition());
-    bullet->getPhysicsBody()->setVelocity(directionVec * GameConfig::ENEMY_BULLET_SPEED);
+    bullet->getPhysicsBody()->setVelocity(vec * GameConfig::ENEMY_BULLET_SPEED);
     // Add to layer
-    layer->addChild(bullet);
+    getLayer()->addChild(bullet);
 }
 
-void EnemySprite::scheduleAI() {
-    // The third param is not used
-    schedule([&](float f) {
-        if (this == nullptr || layer == nullptr) return;
+void EnemySprite::makeAIDecision() {
+    if (this == nullptr || getLayer() == nullptr) return;
 
-        // AI decision
-        if (rand() % 100 < 30) {
-            if (rand() % 100 < 50) {
-                if (GameScene::getPlayer() == nullptr) return;
-                this->fire(GameScene::getPlayer()->getPosition());
-            } else {
-                this->fire(LayoutUtil::getPosition(static_cast<LayoutUtil::PositionType>(rand() % 13)));
-            }
+    if (rand() % 100 < 30) {
+        if (rand() % 100 < 50) {
+            if (GameScene::getPlayer() == nullptr) return;
+            this->fire(GameScene::getPlayer()->getPosition());
+        } else {
+            this->fire(LayoutUtil::getPosition(static_cast<LayoutUtil::PositionType>(rand() % 13)));
         }
+    }
 
-        if (rand() % 100 < 80) {
-            Vec2 vec;
-            if (rand() % 100 < 50) {
-                if (GameScene::getPlayer() == nullptr) return;
-                vec = LayoutUtil::getUnitDirectionVector(this->getPosition(),
-                                                         GameScene::getPlayer()->getPosition());
-            } else {
-                auto pos = static_cast<LayoutUtil::PositionType>(rand() % 13);
-                vec = LayoutUtil::getUnitDirectionVector(this->getPosition(),
-                                                         LayoutUtil::getPosition(pos));
-            }
-            this->getPhysicsBody()->setVelocity(vec * GameConfig::ENEMY_MOVE_UNIT);
+    if (rand() % 100 < 80) {
+        Vec2 vec;
+        if (rand() % 100 < 50) {
+            if (GameScene::getPlayer() == nullptr) return;
+            vec = LayoutUtil::getUnitDirectionVector(this->getPosition(),
+                                                     GameScene::getPlayer()->getPosition());
+        } else {
+            auto pos = static_cast<LayoutUtil::PositionType>(rand() % 13);
+            vec = LayoutUtil::getUnitDirectionVector(this->getPosition(),
+                                                     LayoutUtil::getPosition(pos));
         }
-
-    }, 1, "EnemyAISchedule");
+        this->getPhysicsBody()->setVelocity(vec * GameConfig::ENEMY_MOVE_UNIT);
+    }
 }
 
-void EnemySprite::setLayer(cocos2d::Layer *layer_) {
-    layer = layer_;
-}

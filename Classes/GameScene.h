@@ -1,10 +1,10 @@
 #pragma once
 
-#include "EnemySprite.h"
 #include "PlayerBulletSprite.h"
 #include "EnemyBulletSprite.h"
 #include "WallSprite.h"
-#include "BossSprite.h"
+#include "PlayerSprite.h"
+#include "EnemySpriteBase.h"
 
 /*
 Game Scene
@@ -77,7 +77,7 @@ private:
     Called when the player hits an enemy.
     Author: ChuyangLiu
     */
-    void meetPlayerWithEnemy(PlayerSprite *plyr, EnemySprite *enemy);
+    void meetPlayerWithEnemy(PlayerSprite *plyr, EnemySpriteBase *enemy);
 
     /*
     Called when the player hits an enemy bullet.
@@ -89,7 +89,7 @@ private:
     Called when the player hits an enemy bullet.
     Author: ChuyangLiu
     */
-    void meetEnemyWithPlayerBullet(EnemySprite *enemy, PlayerBulletSprite *playerBullet);
+    void meetEnemyWithPlayerBullet(EnemySpriteBase *enemy, PlayerBulletSprite *playerBullet);
 
     /*
     Called when the player hits the wall.
@@ -101,7 +101,7 @@ private:
     Called when the player hits the wall.
     Author: ChuyangLiu
     */
-    void meetEnemyWithWall(EnemySprite *enemy, WallSprite *wall);
+    void meetEnemyWithWall(EnemySpriteBase *enemy, WallSprite *wall);
 
     /*
     Called when the player bullet hits the wall.
