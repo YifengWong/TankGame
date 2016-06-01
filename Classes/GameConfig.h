@@ -4,7 +4,7 @@ class GameConfig {
 public:
     // Bullet common config
     static const int BULLET_DAMAGE = 100;
-    static const int BULLET_LAST_TIME = 2;
+    static const int BULLET_LAST_TIME = 3;
 
     // Enemy common config
     static const int ENEMY_DECISION_INTERVAL = 1;
@@ -19,14 +19,14 @@ public:
     // Normal enemy config
     static const int ENEMY_NORMAL_MOVE_SPEED = 50;
     static const int ENEMY_NORMAL_BULLET_SPEED = 150;
-    static const int ENEMY_NORMAL_COLLISION_DAMAGE = 500;
+    static const int ENEMY_NORMAL_COLLISION_DAMAGE = 300;
     static const int ENEMY_NORMAL_MAX_HP = 1000;
     static const int ENEMY_NORMAL_INIT_HP = 1000;
 
     // Boss enemy config
     static const int ENEMY_BOSS_MOVE_SPEED = 100;
     static const int ENEMY_BOSS_BULLET_SPEED = 200;
-    static const int ENEMY_BOSS_COLLISION_DAMAGE = 1000;
+    static const int ENEMY_BOSS_COLLISION_DAMAGE = 500;
     static const int ENEMY_BOSS_MAX_HP = 2000;
     static const int ENEMY_BOSS_INIT_HP = 2000;
 
