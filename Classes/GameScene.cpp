@@ -2,6 +2,7 @@
 #include "GameConfig.h"
 #include "EnemyNormalSprite.h"
 #include "EnemyBossSprite.h"
+#include "LayoutUtil.h"
 
 USING_NS_CC;
 using namespace cocos2d::ui;
@@ -30,14 +31,12 @@ bool GameScene::init() {
         return false;
     }
 
-	//addBackground();
-
     // Add sprites
+    addBackground();
     addBoundary();
     addPlayer();
-    addEnemy();
-	addBoss();
-    addWall();
+    addEnemies();
+    addWalls();
 
     // Add event listeners
     addKeyboardListener();
@@ -54,12 +53,12 @@ void GameScene::update(float f) {
 }
 
 void GameScene::addBackground() {
-    auto visibleSize = Director::getInstance()->getVisibleSize();
+    auto visibleSize = LayoutUtil::getVisibleSize();
     auto bgsprite = Sprite::create("background.png");
-    bgsprite->setPosition(visibleSize / 2);
+    bgsprite->setPosition(LayoutUtil::getPosition(LayoutUtil::PositionType::CENTER));
     bgsprite->setScale(visibleSize.width / bgsprite->getContentSize().width, \
                        visibleSize.height / bgsprite->getContentSize().height);
-    this->addChild(bgsprite, -1);
+    addChild(bgsprite);
 }
 
 void GameScene::addBoundary() {
@@ -88,7 +87,7 @@ void GameScene::addPlayer() {
     addChild(player);
 }
 
-void GameScene::addEnemy() {
+void GameScene::addEnemies() {
     auto enemy1 = EnemyNormalSprite::create(this);
     enemy1->setPosition(LayoutUtil::getPosition(LayoutUtil::PositionType::RIGHT_BOTTOM));
     addChild(enemy1);
@@ -96,15 +95,13 @@ void GameScene::addEnemy() {
     auto enemy2 = EnemyNormalSprite::create(this);
     enemy2->setPosition(LayoutUtil::getPosition(LayoutUtil::PositionType::LEFT_TOP));
     addChild(enemy2);
+
+    auto boss = EnemyBossSprite::create(this);
+    boss->setPosition(LayoutUtil::getPosition(LayoutUtil::PositionType::RIGHT_TOP));
+    addChild(boss);
 }
 
-void GameScene::addBoss() {
-	auto boss = EnemyBossSprite::create(this);
-	boss->setPosition(LayoutUtil::getPosition(LayoutUtil::PositionType::RIGHT_TOP));
-	addChild(boss);
-}
-
-void GameScene::addWall() {
+void GameScene::addWalls() {
     auto wall1 = WallSprite::create(true);
     wall1->setPosition(LayoutUtil::getPosition(LayoutUtil::PositionType::CENTER_LEFT));
     addChild(wall1);

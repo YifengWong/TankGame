@@ -1,6 +1,5 @@
 #pragma once
 
-
 /*
 Class for sprite's HP
 */

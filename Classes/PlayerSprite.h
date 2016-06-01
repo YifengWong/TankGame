@@ -1,7 +1,7 @@
 #pragma once
 
-#include "LayoutUtil.h"
 #include "HPValue.h"
+#include "LayoutUtil.h"
 
 /*
 A player sprite

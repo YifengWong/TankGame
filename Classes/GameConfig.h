@@ -31,7 +31,7 @@ public:
     static const int ENEMY_BOSS_INIT_HP = 2000;
 
     // Debug switchers
-    static const bool DRAW_WORLD_EDGE = true;
+    static const bool DRAW_WORLD_EDGE = false;
 
     /*
     Five types of the sprite:

@@ -32,87 +32,33 @@ private:
     GameScene() {}
 
     /*
-    Add boundary physics body.
-    Author: ChuyangLiu
+    Add sprites.
+    Author: ChuyangLiu & YifengWong
     */
+    void addBackground();
     void addBoundary();
-
-    /*
-    Add player.
-    Author: ChuyangLiu
-    */
     void addPlayer();
+    void addEnemies();
+    void addWalls();
 
     /*
-    Add enemy.
-    Author: ChuyangLiu
-    */
-    void addEnemy();
-
-    /*
-    Add walls.
-    Author: ChuyangLiu
-    */
-    void addWall();
-
-    /*
-    Add keyboard event listener.
+    Add event listeners.
     Author: ChuyangLiu
     */
     void addKeyboardListener();
-
-    /*
-    Add mouse event listener.
-    Author: ChuyangLiu
-    */
     void addMouseListener();
-
-    /*
-    Add physics body contact event listener.
-    Author: ChuyangLiu
-    */
     void addContactListener();
 
     /*
-    Called when the player hits an enemy.
+    Meet events
     Author: ChuyangLiu
     */
     void meetPlayerWithEnemy(PlayerSprite *plyr, EnemySpriteBase *enemy);
-
-    /*
-    Called when the player hits an enemy bullet.
-    Author: ChuyangLiu
-    */
     void meetPlayerWithEnemyBullet(PlayerSprite *plyr, EnemyBulletSprite *enemyBullet);
-
-    /*
-    Called when the player hits an enemy bullet.
-    Author: ChuyangLiu
-    */
     void meetEnemyWithPlayerBullet(EnemySpriteBase *enemy, PlayerBulletSprite *playerBullet);
-
-    /*
-    Called when the player hits the wall.
-    Author: ChuyangLiu
-    */
     void meetPlayerWithWall(PlayerSprite *plyr, WallSprite *wall);
-
-    /*
-    Called when the player hits the wall.
-    Author: ChuyangLiu
-    */
     void meetEnemyWithWall(EnemySpriteBase *enemy, WallSprite *wall);
-
-    /*
-    Called when the player bullet hits the wall.
-    Author: ChuyangLiu
-    */
     void meetPlayerBulletWithWall(PlayerBulletSprite *playerBullet, WallSprite *wall);
-
-    /*
-    Called when the player bullet hits the wall.
-    Author: ChuyangLiu
-    */
     void meetEnemyBulletWithWall(EnemyBulletSprite *enemyBullet, WallSprite *wall);
 
     /*
@@ -120,16 +66,4 @@ private:
     Author: ChuyangLiu
     */
     void update(float f);
-
-	/*
-	Add the green background.
-	Author: YifengWong
-	*/
-	void addBackground();
-
-	/*
-	Add the boss.
-	Author: YifengWong
-	*/
-	void addBoss();
 };
