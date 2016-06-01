@@ -1,9 +1,11 @@
 #pragma once
 
+#include "BulletSpriteBase.h"
+
 /*
 An enemy bullet sprite
 */
-class EnemyBulletSprite : public cocos2d::Sprite {
+class EnemyBulletSprite : public BulletSpriteBase {
 public:
     /*
     Create a bullet for enemy.
@@ -12,7 +14,6 @@ public:
     static EnemyBulletSprite* create();
 
 private:
-
     /*
     Inaccessible default constructor from outside the class.
     Use create() to create the instance from outside the class.
@@ -21,9 +22,9 @@ private:
     EnemyBulletSprite() {}
 
     /*
-    Create a schedule to disappear the bullet after some time.
+    onRemove() event called in removeFromParent()
     Author: ChuyangLiu
     */
-    void scheduleAutoDisappear();
+    virtual void onRemove();
 
 ;};

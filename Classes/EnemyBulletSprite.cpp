@@ -28,11 +28,6 @@ EnemyBulletSprite* EnemyBulletSprite::create() {
     return nullptr;
 }
 
-void EnemyBulletSprite::scheduleAutoDisappear() {
-    // The third param is not used
-    scheduleOnce([&](float f) {
-        if (this) {
-            this->removeFromParent();
-        }
-    }, GameConfig::BULLET_LAST_TIME, "BulletSchedule");
+void EnemyBulletSprite::onRemove() {
+    // Do nothing
 }

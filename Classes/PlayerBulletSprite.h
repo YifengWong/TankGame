@@ -1,22 +1,17 @@
 #pragma once
 
+#include "BulletSpriteBase.h"
+
 /*
 A player bullet sprite
 */
-class PlayerBulletSprite : public cocos2d::Sprite {
+class PlayerBulletSprite : public BulletSpriteBase {
 public:
     /*
     Create a bullet for player.
     Author: ChuyangLiu
     */
     static PlayerBulletSprite* create();
-
-    /*
-    Remove the sprite from the parent
-    Override Node::removeFromParent()
-    Author: ChuyangLiu
-    */
-    void removeFromParent();
 
     /*
     Return the bullet count.
@@ -35,9 +30,8 @@ private:
     PlayerBulletSprite() {}
 
     /*
-    Create a schedule to disappear the bullet after some time.
+    onRemove() event called in removeFromParent()
     Author: ChuyangLiu
     */
-    void scheduleAutoDisappear();
-
+    virtual void onRemove();
 ;};

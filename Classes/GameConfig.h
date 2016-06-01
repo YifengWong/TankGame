@@ -4,7 +4,7 @@ class GameConfig {
 public:
     // Bullet common config
     static const int BULLET_DAMAGE = 100;
-    static const int BULLET_LAST_TIME = 3;
+    static const int BULLET_LAST_TIME = 2;
 
     // Enemy common config
     static const int ENEMY_DECISION_INTERVAL = 1;

@@ -89,16 +89,16 @@ void GameScene::addPlayer() {
 
 void GameScene::addEnemies() {
     auto enemyNormal = EnemyNormalSprite::create(this);
-    enemyNormal->setPosition(GameUtil::getPosition(GameUtil::PositionType::RIGHT_TOP));
+    enemyNormal->setPosition(GameUtil::getPosition(GameUtil::PositionType::LEFT_TOP));
     addChild(enemyNormal);
 
     auto enemyBoss = EnemyBossSprite::create(this);
-    enemyBoss->setPosition(GameUtil::getPosition(GameUtil::PositionType::LEFT_TOP));
+    enemyBoss->setPosition(GameUtil::getPosition(GameUtil::PositionType::RIGHT_TOP));
     addChild(enemyBoss);
 
-    enemyBoss = EnemyBossSprite::create(this);
-    enemyBoss->setPosition(GameUtil::getPosition(GameUtil::PositionType::RIGHT_BOTTOM));
-    addChild(enemyBoss);
+    enemyNormal = EnemyNormalSprite::create(this);
+    enemyNormal->setPosition(GameUtil::getPosition(GameUtil::PositionType::RIGHT_BOTTOM));
+    addChild(enemyNormal);
 }
 
 void GameScene::addWalls() {
@@ -320,14 +320,12 @@ void GameScene::meetPlayerWithEnemyBullet(PlayerSprite *plyr, EnemyBulletSprite 
 
     if (enemyBullet) {
         enemyBullet->removeFromParent();
-        enemyBullet = nullptr;
     }
 }
 
 void GameScene::meetEnemyWithPlayerBullet(EnemySpriteBase *enemy, PlayerBulletSprite *playerBullet) {
     if (playerBullet) {
         playerBullet->removeFromParent();
-        playerBullet = nullptr;
     }
 
     if (enemy) {
@@ -335,7 +333,6 @@ void GameScene::meetEnemyWithPlayerBullet(EnemySpriteBase *enemy, PlayerBulletSp
         log("Enemy HP: %d", enemy->getHP()->getValue());
         if (enemy->isDead()) {
             enemy->removeFromParent();
-            enemy = nullptr;
         }
     }
 }

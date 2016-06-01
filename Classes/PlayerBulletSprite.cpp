@@ -31,20 +31,10 @@ PlayerBulletSprite* PlayerBulletSprite::create() {
     return nullptr;
 }
 
-void PlayerBulletSprite::scheduleAutoDisappear() {
-    // The third param is not used
-    scheduleOnce([&](float f) {
-        if (this) {
-            this->removeFromParent();
-        }
-    }, GameConfig::BULLET_LAST_TIME, "BulletSchedule");
-}
-
-void PlayerBulletSprite::removeFromParent() {
+void PlayerBulletSprite::onRemove() {
     if (bulletCnt > 0) {
         --bulletCnt;
     }
-    Node::removeFromParent();
 }
 
 unsigned PlayerBulletSprite::getBulletCount() {
