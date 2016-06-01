@@ -3,15 +3,15 @@
 #include "EnemySpriteBase.h"
 
 /*
-An enemy sprite
+A normal enemy sprite
 */
-class EnemySprite : public EnemySpriteBase {
+class EnemyNormalSprite : public EnemySpriteBase {
 public:
     /*
     Create an enemy sprite.
     Author: ChuyangLiu
     */
-    static EnemySprite* create(cocos2d::Layer *layer = nullptr);
+    static EnemyNormalSprite* create(cocos2d::Layer *layer = nullptr);
 
 private:
 
@@ -20,7 +20,7 @@ private:
     Use create() to create the instance from outside the class.
     Author: ChuyangLiu
     */
-    EnemySprite() {}
+    EnemyNormalSprite() {}
 
     /*
     Enemy fire at the target.

@@ -12,5 +12,13 @@ cocos2d::Layer* EnemySpriteBase::getLayer() {
 void EnemySpriteBase::runAI() {
     schedule([&](float f) {
         makeAIDecision();
-    }, GameConfig::AI_DECISION_INTERVAL, "EnemyAISchedule");
+    }, GameConfig::ENEMY_DECISION_INTERVAL, "EnemyAISchedule");
+}
+
+bool EnemySpriteBase::isDead() {
+    return hp.isZero();
+}
+
+HPValue* EnemySpriteBase::getHP() {
+    return &hp;
 }

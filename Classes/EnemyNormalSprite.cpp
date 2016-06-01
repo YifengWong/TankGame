@@ -1,4 +1,4 @@
-#include "EnemySprite.h"
+#include "EnemyNormalSprite.h"
 #include "EnemyBulletSprite.h"
 #include "LayoutUtil.h"
 #include "GameConfig.h"
@@ -6,8 +6,8 @@
 
 USING_NS_CC;
 
-EnemySprite* EnemySprite::create(cocos2d::Layer *layer) {
-    EnemySprite *enemy = new (std::nothrow) EnemySprite();
+EnemyNormalSprite* EnemyNormalSprite::create(cocos2d::Layer *layer) {
+    EnemyNormalSprite *enemy = new (std::nothrow) EnemyNormalSprite();
     if (enemy && enemy->initWithFile("enemy.png")) {
         enemy->autorelease();
 
@@ -26,6 +26,8 @@ EnemySprite* EnemySprite::create(cocos2d::Layer *layer) {
         enemy->setPhysicsBody(physicBody);
         enemy->setLayer(layer);
         enemy->runAI();
+        enemy->getHP()->setMax(GameConfig::ENEMY_NORMAL_MAX_HP);
+        enemy->getHP()->setValue(GameConfig::ENEMY_NORMAL_INIT_HP);
 
         return enemy;
     }
@@ -33,18 +35,18 @@ EnemySprite* EnemySprite::create(cocos2d::Layer *layer) {
     return nullptr;
 }
 
-void EnemySprite::fire(const cocos2d::Vec2 &target) {
+void EnemyNormalSprite::fire(const cocos2d::Vec2 &target) {
     // Create unit direction vector
     auto vec = LayoutUtil::getUnitDirectionVector(getPosition(), target);
     // Add bullet
     auto bullet = EnemyBulletSprite::create();
     bullet->setPosition(getPosition());
-    bullet->getPhysicsBody()->setVelocity(vec * GameConfig::ENEMY_BULLET_SPEED);
+    bullet->getPhysicsBody()->setVelocity(vec * GameConfig::ENEMY_NORMAL_BULLET_SPEED);
     // Add to layer
     getLayer()->addChild(bullet);
 }
 
-void EnemySprite::makeAIDecision() {
+void EnemyNormalSprite::makeAIDecision() {
     if (this == nullptr || getLayer() == nullptr) return;
 
     if (rand() % 100 < 30) {
@@ -67,7 +69,7 @@ void EnemySprite::makeAIDecision() {
             vec = LayoutUtil::getUnitDirectionVector(this->getPosition(),
                                                      LayoutUtil::getPosition(pos));
         }
-        this->getPhysicsBody()->setVelocity(vec * GameConfig::ENEMY_MOVE_UNIT);
+        this->getPhysicsBody()->setVelocity(vec * GameConfig::ENEMY_NORMAL_MOVE_UNIT);
     }
 }
 

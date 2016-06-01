@@ -1,4 +1,4 @@
-#include "BossSprite.h"
+#include "EnemyBossSprite.h"
 #include "EnemyBulletSprite.h"
 #include "LayoutUtil.h"
 #include "GameConfig.h"
@@ -6,8 +6,8 @@
 
 USING_NS_CC;
 
-BossSprite* BossSprite::create(cocos2d::Layer *layer) {
-	BossSprite *enemy = new (std::nothrow) BossSprite();
+EnemyBossSprite* EnemyBossSprite::create(cocos2d::Layer *layer) {
+	EnemyBossSprite *enemy = new (std::nothrow) EnemyBossSprite();
 	if (enemy && enemy->initWithFile("boss.png")) {
 		enemy->autorelease();
 
@@ -26,6 +26,8 @@ BossSprite* BossSprite::create(cocos2d::Layer *layer) {
 		enemy->setPhysicsBody(physicBody);
 		enemy->setLayer(layer);
 		enemy->runAI();
+        enemy->getHP()->setMax(GameConfig::ENEMY_BOSS_MAX_HP);
+        enemy->getHP()->setValue(GameConfig::ENEMY_BOSS_INIT_HP);
 
 		return enemy;
 	}
@@ -33,18 +35,18 @@ BossSprite* BossSprite::create(cocos2d::Layer *layer) {
 	return nullptr;
 }
 
-void BossSprite::fire(const cocos2d::Vec2 &target) {
+void EnemyBossSprite::fire(const cocos2d::Vec2 &target) {
 	// Create unit direction vector
     auto vec = LayoutUtil::getUnitDirectionVector(getPosition(), target);
 	// Add bullet
 	auto bullet = EnemyBulletSprite::create();
 	bullet->setPosition(getPosition());
-	bullet->getPhysicsBody()->setVelocity(vec * GameConfig::ENEMY_BULLET_SPEED * 1.5);
+	bullet->getPhysicsBody()->setVelocity(vec * GameConfig::ENEMY_BOSS_BULLET_SPEED);
 	// Add to layer
 	getLayer()->addChild(bullet);
 }
 
-void BossSprite::makeAIDecision() {
+void EnemyBossSprite::makeAIDecision() {
     if (this == nullptr || getLayer() == nullptr) return;
 
     if (rand() % 100 < 30) {
@@ -67,6 +69,6 @@ void BossSprite::makeAIDecision() {
             vec = LayoutUtil::getUnitDirectionVector(this->getPosition(),
                                                      LayoutUtil::getPosition(pos));
         }
-        this->getPhysicsBody()->setVelocity(vec * GameConfig::ENEMY_MOVE_UNIT);
+        this->getPhysicsBody()->setVelocity(vec * GameConfig::ENEMY_BOSS_MOVE_UNIT);
     }
 }

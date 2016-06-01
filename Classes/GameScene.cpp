@@ -1,7 +1,7 @@
 #include "GameScene.h"
 #include "GameConfig.h"
-#include "EnemySprite.h"
-#include "BossSprite.h"
+#include "EnemyNormalSprite.h"
+#include "EnemyBossSprite.h"
 
 USING_NS_CC;
 using namespace cocos2d::ui;
@@ -89,17 +89,17 @@ void GameScene::addPlayer() {
 }
 
 void GameScene::addEnemy() {
-    auto enemy1 = EnemySprite::create(this);
+    auto enemy1 = EnemyNormalSprite::create(this);
     enemy1->setPosition(LayoutUtil::getPosition(LayoutUtil::PositionType::RIGHT_BOTTOM));
     addChild(enemy1);
 
-    auto enemy2 = EnemySprite::create(this);
+    auto enemy2 = EnemyNormalSprite::create(this);
     enemy2->setPosition(LayoutUtil::getPosition(LayoutUtil::PositionType::LEFT_TOP));
     addChild(enemy2);
 }
 
 void GameScene::addBoss() {
-	auto boss = BossSprite::create(this);
+	auto boss = EnemyBossSprite::create(this);
 	boss->setPosition(LayoutUtil::getPosition(LayoutUtil::PositionType::RIGHT_TOP));
 	addChild(boss);
 }
@@ -282,7 +282,11 @@ void GameScene::addContactListener() {
 
 void GameScene::meetPlayerWithEnemy(PlayerSprite *plyr, EnemySpriteBase *enemy) {
     if (plyr) {
-        plyr->getHP()->decrease(GameConfig::ENEMY_DAMAGE);
+        if (nullptr != dynamic_cast<EnemyNormalSprite*>(enemy)) {
+            plyr->getHP()->decrease(GameConfig::ENEMY_NORMAL_COLLISION_DAMAGE);
+        } else if (nullptr != dynamic_cast<EnemyBossSprite*>(enemy)) {
+            plyr->getHP()->decrease(GameConfig::ENEMY_BOSS_COLLISION_DAMAGE);
+        }
         log("Player HP: %d", plyr->getHP()->getValue());
         if (plyr->isDead()) {
             plyr->removeFromParent();
@@ -314,7 +318,12 @@ void GameScene::meetEnemyWithPlayerBullet(EnemySpriteBase *enemy, PlayerBulletSp
     }
 
     if (enemy) {
-        enemy->removeFromParent();
+        enemy->getHP()->decrease(GameConfig::BULLET_DAMAGE);
+        log("Enemy HP: %d", enemy->getHP()->getValue());
+        if (enemy->isDead()) {
+            enemy->removeFromParent();
+            enemy = nullptr;
+        }
     }
 }
 

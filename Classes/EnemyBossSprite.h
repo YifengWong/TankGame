@@ -5,13 +5,13 @@
 /*
 A boss sprite
 */
-class BossSprite : public EnemySpriteBase {
+class EnemyBossSprite : public EnemySpriteBase {
 public:
 	/*
 	Create an enemy sprite.
 	Author: YifengWong & ChuyangLiu
 	*/
-	static BossSprite* create(cocos2d::Layer *layer = nullptr);
+	static EnemyBossSprite* create(cocos2d::Layer *layer = nullptr);
 
 private:
 	/*
@@ -19,7 +19,7 @@ private:
 	Use create() to create the instance from outside the class.
 	Author: YifengWong
 	*/
-	BossSprite() {}
+	EnemyBossSprite() {}
 
     /*
     Enemy fire at the target.
