@@ -88,39 +88,55 @@ void GameScene::addPlayer() {
 }
 
 void GameScene::addEnemies() {
-    auto enemy1 = EnemyNormalSprite::create(this);
-    enemy1->setPosition(GameUtil::getPosition(GameUtil::PositionType::RIGHT_BOTTOM));
-    addChild(enemy1);
+    auto enemyNormal = EnemyNormalSprite::create(this);
+    enemyNormal->setPosition(GameUtil::getPosition(GameUtil::PositionType::RIGHT_TOP));
+    addChild(enemyNormal);
 
-    auto enemy2 = EnemyNormalSprite::create(this);
-    enemy2->setPosition(GameUtil::getPosition(GameUtil::PositionType::LEFT_TOP));
-    addChild(enemy2);
+    auto enemyBoss = EnemyBossSprite::create(this);
+    enemyBoss->setPosition(GameUtil::getPosition(GameUtil::PositionType::LEFT_TOP));
+    addChild(enemyBoss);
 
-    auto boss = EnemyBossSprite::create(this);
-    boss->setPosition(GameUtil::getPosition(GameUtil::PositionType::RIGHT_TOP));
-    addChild(boss);
+    enemyBoss = EnemyBossSprite::create(this);
+    enemyBoss->setPosition(GameUtil::getPosition(GameUtil::PositionType::RIGHT_BOTTOM));
+    addChild(enemyBoss);
 }
 
 void GameScene::addWalls() {
-    auto wall1 = WallSprite::create(true);
-    wall1->setPosition(GameUtil::getPosition(GameUtil::PositionType::CENTER_LEFT));
-    addChild(wall1);
+    auto wall = WallSprite::create(true);
+    wall->setPosition(GameUtil::getPosition(GameUtil::PositionType::CENTER_LEFT));
+    addChild(wall);
 
-    auto wall2 = WallSprite::create(true);
-    wall2->setPosition(GameUtil::getPosition(GameUtil::PositionType::CENTER_TOP));
-    addChild(wall2);
+    wall = WallSprite::create(true);
+    wall->setPosition(GameUtil::getPosition(GameUtil::PositionType::CENTER_TOP));
+    addChild(wall);
 
-    auto wall3 = WallSprite::create(true);
-    wall3->setPosition(GameUtil::getPosition(GameUtil::PositionType::CENTER_RIGHT));
-    addChild(wall3);
+    wall = WallSprite::create(true);
+    wall->setPosition(GameUtil::getPosition(GameUtil::PositionType::CENTER_RIGHT));
+    addChild(wall);
 
-    auto wall4 = WallSprite::create(true);
-    wall4->setPosition(GameUtil::getPosition(GameUtil::PositionType::CENTER_DOWN));
-    addChild(wall4);
+    wall = WallSprite::create(true);
+    wall->setPosition(GameUtil::getPosition(GameUtil::PositionType::CENTER_DOWN));
+    addChild(wall);
 
-    auto wall5 = WallSprite::create(false);
-    wall5->setPosition(GameUtil::getPosition(GameUtil::PositionType::CENTER));
-    addChild(wall5);
+    wall = WallSprite::create(false);
+    wall->setPosition(GameUtil::getPosition(GameUtil::PositionType::CENTER));
+    addChild(wall);
+
+    wall = WallSprite::create(false);
+    wall->setPosition(GameUtil::getPosition(GameUtil::PositionType::EDGE_CENTER_BOTTOM));
+    addChild(wall);
+
+    wall = WallSprite::create(false);
+    wall->setPosition(GameUtil::getPosition(GameUtil::PositionType::EDGE_CENTER_LEFT));
+    addChild(wall);
+
+    wall = WallSprite::create(false);
+    wall->setPosition(GameUtil::getPosition(GameUtil::PositionType::EDGE_CENTER_RIGHT));
+    addChild(wall);
+
+    wall = WallSprite::create(false);
+    wall->setPosition(GameUtil::getPosition(GameUtil::PositionType::EDGE_CENTER_TOP));
+    addChild(wall);
 }
 
 void GameScene::addKeyboardListener() {

@@ -53,10 +53,4 @@ private:
     Author: ChuyangLiu
     */
     PlayerSprite() {}
-
-    /*
-    Set the hp value.
-    Author: ChuyangLiu
-    */
-    void setHP(const int hp);
 };

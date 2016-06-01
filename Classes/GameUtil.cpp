@@ -109,10 +109,30 @@ Vec2 GameUtil::getPosition(const PositionType &type) {
             return Vec2(origin.x,
                         origin.y);
             break;
+        case EDGE_CENTER_LEFT:
+            return Vec2(origin.x,
+                        origin.y + visibleSize.height / 2);
+            break;
+        case EDGE_CENTER_TOP:
+            return Vec2(origin.x + visibleSize.width / 2,
+                        origin.y + visibleSize.height);
+            break;
+        case EDGE_CENTER_RIGHT:
+            return Vec2(origin.x + visibleSize.width,
+                        origin.y + visibleSize.height / 2);
+            break;
+        case EDGE_CENTER_BOTTOM:
+            return Vec2(origin.x + visibleSize.width / 2,
+                        origin.y);
+            break;
         case CENTER:
         default:
             return Vec2(origin.x + visibleSize.width / 2,
                         origin.y + visibleSize.height / 2);
             break;
     }
+}
+
+int GameUtil::getPositionTypeCount() {
+    return 17;
 }

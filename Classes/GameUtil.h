@@ -59,7 +59,11 @@ public:
         CORNER_LEFT_TOP,
         CORNER_RIGHT_TOP,
         CORNER_RIGHT_BOTTOM,
-        CORNER_LEFT_BOTTOM
+        CORNER_LEFT_BOTTOM,
+        EDGE_CENTER_LEFT,
+        EDGE_CENTER_TOP,
+        EDGE_CENTER_RIGHT,
+        EDGE_CENTER_BOTTOM
     };
 
     /*
@@ -68,6 +72,7 @@ public:
     Author: ChuyangLiu
     */
     static cocos2d::Vec2 getPosition(const PositionType &type);
+    static int getPositionTypeCount();
 
     /*
     Check if the enemy is a normal enemy
