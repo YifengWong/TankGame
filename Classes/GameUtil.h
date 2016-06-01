@@ -66,6 +66,15 @@ public:
         EDGE_CENTER_BOTTOM
     };
 
+	/*
+	Define the VS players type to help creating.
+    Author: YifengWong
+	*/
+	enum VSPlayerType {
+		PLAYER_1,
+		PLAYER_2
+	};
+
     /*
     Return one position specified by @param type
     position of the game window.
