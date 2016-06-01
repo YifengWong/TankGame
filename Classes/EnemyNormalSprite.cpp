@@ -2,7 +2,7 @@
 #include "EnemyBulletSprite.h"
 #include "GameUtil.h"
 #include "GameConfig.h"
-#include "GameScene.h"
+#include "GameScene1Player.h"
 
 USING_NS_CC;
 
@@ -51,8 +51,8 @@ void EnemyNormalSprite::makeAIDecision() {
 
     if (rand() % 100 < 30) {
         if (rand() % 100 < 50) {
-            if (GameScene::getPlayer() == nullptr) return;
-            this->fire(GameScene::getPlayer()->getPosition());
+            if (GameScene1Player::getPlayer() == nullptr) return;
+            this->fire(GameScene1Player::getPlayer()->getPosition());
         } else {
             this->fire(GameUtil::getPosition(static_cast<GameUtil::PositionType>(
                 rand() % GameUtil::getPositionTypeCount())));
@@ -62,9 +62,9 @@ void EnemyNormalSprite::makeAIDecision() {
     if (rand() % 100 < 80) {
         Vec2 vec;
         if (rand() % 100 < 50) {
-            if (GameScene::getPlayer() == nullptr) return;
+            if (GameScene1Player::getPlayer() == nullptr) return;
             vec = GameUtil::getUnitDirectionVector(this->getPosition(),
-                                                     GameScene::getPlayer()->getPosition());
+                                                     GameScene1Player::getPlayer()->getPosition());
         } else {
             auto pos = static_cast<GameUtil::PositionType>(rand() % GameUtil::getPositionTypeCount());
             vec = GameUtil::getUnitDirectionVector(this->getPosition(),

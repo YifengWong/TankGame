@@ -1,6 +1,6 @@
 #include "HomeScene.h"
-#include "VSGameScene.h"
-#include "GameScene.h"
+#include "GameScene2Player.h"
+#include "GameScene1Player.h"
 #include "ui/CocosGUI.h"
 #include "GameUtil.h"
 
@@ -32,7 +32,7 @@ void HomeScene::addStartBtn() {
     startBtn->setTitleFontSize(30);
     startBtn->setPosition(GameUtil::getPosition(GameUtil::PositionType::CENTER));
     startBtn->addClickEventListener([](Ref* pSender) {
-        Director::getInstance()->replaceScene(GameScene::createScene());
+        Director::getInstance()->replaceScene(GameScene1Player::createScene());
     });
     addChild(startBtn, 0);
 
@@ -41,7 +41,7 @@ void HomeScene::addStartBtn() {
 	startVSBtn->setTitleFontSize(30);
 	startVSBtn->setPosition(GameUtil::getPosition(GameUtil::PositionType::CENTER) + Vec2(0, -100));
 	startVSBtn->addClickEventListener([](Ref* pSender) {
-		Director::getInstance()->replaceScene(VSGameScene::createScene());
+		Director::getInstance()->replaceScene(GameScene2Player::createScene());
 	});
 	addChild(startVSBtn, 0);
 }

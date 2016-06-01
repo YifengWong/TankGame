@@ -1,7 +1,7 @@
 #include "BulletSpriteBase.h"
 #include "GameConfig.h"
 
-void BulletSpriteBase::scheduleAutoDisappear() {
+void BulletSpriteBase::scheduleAutoRemove() {
     // The third param is not used
     scheduleOnce([&](float f) {
         if (this) {

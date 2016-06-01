@@ -3,35 +3,35 @@
 #include "PlayerBulletSprite.h"
 #include "EnemyBulletSprite.h"
 #include "WallSprite.h"
-#include "VSPlayerSprite.h"
+#include "PlayerDualSprite.h"
 #include "EnemySpriteBase.h"
 
 /*
-Game Scene
+Game Scene for two players
 */
-class VSGameScene : public cocos2d::Layer {
+class GameScene2Player : public cocos2d::Layer {
 public:
 	static cocos2d::Scene* createScene();
 	virtual bool init();
-	CREATE_FUNC(VSGameScene);
+	CREATE_FUNC(GameScene2Player);
 
 	/*
 	Return the player sprite.
 	Author: ChuyangLiu
 	*/
-	static VSPlayerSprite* getPlayer_1();
-	static VSPlayerSprite* getPlayer_2();
+	static PlayerDualSprite* getPlayer_1();
+	static PlayerDualSprite* getPlayer_2();
 
 private:
-	static VSPlayerSprite *player_1;
-	static VSPlayerSprite *player_2;
+	static PlayerDualSprite *player_1;
+	static PlayerDualSprite *player_2;
 
 	/*
 	Inaccessible default constructor from outside the class.
 	Use createScene() to create the instance from outside the class.
 	Author: ChuyangLiu
 	*/
-	VSGameScene() {}
+	GameScene2Player() {}
 
 	/*
 	Add sprites.
@@ -55,10 +55,10 @@ private:
 	Meet events
 	Author: ChuyangLiu
 	*/
-	void meetPlayerWithEnemy(VSPlayerSprite *plyr, EnemySpriteBase *enemy);
-	void meetPlayerWithEnemyBullet(VSPlayerSprite *plyr, EnemyBulletSprite *enemyBullet);
+	void meetPlayerWithEnemy(PlayerDualSprite *plyr, EnemySpriteBase *enemy);
+	void meetPlayerWithEnemyBullet(PlayerDualSprite *plyr, EnemyBulletSprite *enemyBullet);
 	void meetEnemyWithPlayerBullet(EnemySpriteBase *enemy, PlayerBulletSprite *playerBullet);
-	void meetPlayerWithWall(VSPlayerSprite *plyr, WallSprite *wall);
+	void meetPlayerWithWall(PlayerDualSprite *plyr, WallSprite *wall);
 	void meetEnemyWithWall(EnemySpriteBase *enemy, WallSprite *wall);
 	void meetPlayerBulletWithWall(PlayerBulletSprite *playerBullet, WallSprite *wall);
 	void meetEnemyBulletWithWall(EnemyBulletSprite *enemyBullet, WallSprite *wall);

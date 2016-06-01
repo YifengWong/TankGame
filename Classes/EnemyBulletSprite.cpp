@@ -20,7 +20,7 @@ EnemyBulletSprite* EnemyBulletSprite::create() {
         // Set bullet sprites
         bullet->setAnchorPoint(Vec2(0.5, 0.5));
         bullet->setPhysicsBody(physicBody);
-        bullet->scheduleAutoDisappear();
+        bullet->scheduleAutoRemove();
 
         return bullet;
     }

@@ -1,56 +1,41 @@
 #pragma once
 
-#include "HPValue.h"
-#include "GameUtil.h"
+#include "PlayerSpriteBase.h"
 
 /*
-A player sprite
+A player sprite for single player model
 */
-class PlayerSprite : public cocos2d::Sprite {
+class PlayerSingleSprite : public PlayerSpriteBase {
 public:
     /*
     Create a player sprite.
     Author: ChuyangLiu
     */
-    static PlayerSprite* create();
+    static PlayerSingleSprite* create();
 
     /*
     Set the move value of the player towards the direction.
     Author: ChuyangLiu
     */
-    void setMoveVal(const Direction &direc);
+    virtual void setMoveVal(const Direction &direc) override;
 
     /*
     Reset the move value of the player towards the direction.
     Author: ChuyangLiu
     */
-    void resetMoveVal(const Direction &direc);
+    virtual void resetMoveVal(const Direction &direc) override;
 
     /*
     Player fire at the target.
     Author: ChuyangLiu
     */
-    void fire(cocos2d::Layer *layer, const cocos2d::Vec2 &target);
-
-    /*
-    Check if the player is dead.
-    Author: ChuyangLiu
-    */
-    bool isDead();
-
-    /*
-    Return the hp value.
-    Author: ChuyangLiu
-    */
-    HPValue* getHP();
+    virtual void fire(cocos2d::Layer *layer, const cocos2d::Vec2 *target = nullptr) override;
 
 private:
-    HPValue hp;
-
     /*
     Inaccessible default constructor from outside the class.
     Use create() to create the instance from outside the class.
     Author: ChuyangLiu
     */
-    PlayerSprite() {}
+    PlayerSingleSprite() {}
 };

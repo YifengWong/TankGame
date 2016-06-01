@@ -1,11 +1,11 @@
 #pragma once
 
-#include "HPValue.h"
+#include "AliveSpriteBase.h"
 
 /*
 Base class for an enemy sprite
 */
-class EnemySpriteBase : public cocos2d::Sprite {
+class EnemySpriteBase : public AliveSpriteBase {
 public:
 
     /*
@@ -19,18 +19,6 @@ public:
     Author: ChuyangLiu
     */
     virtual void makeAIDecision() = 0;
-
-    /*
-    Check if the enemy is dead.
-    Author: ChuyangLiu
-    */
-    bool isDead();
-
-    /*
-    Return the hp value.
-    Author: ChuyangLiu
-    */
-    HPValue* getHP();
 
 protected:
     /*
@@ -54,7 +42,4 @@ protected:
 private:
     // The layer of the enemy
     cocos2d::Layer *layer = nullptr;
-
-    // The HP of the enemy
-    HPValue hp;
 };

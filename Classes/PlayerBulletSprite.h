@@ -33,5 +33,5 @@ private:
     onRemove() event called in removeFromParent()
     Author: ChuyangLiu
     */
-    virtual void onRemove();
+    virtual void onRemove() override;
 ;};

@@ -26,11 +26,11 @@ private:
     Enemy fire at the target.
     Author: ChuyangLiu
     */
-    virtual void fire(const cocos2d::Vec2 &target);
+    virtual void fire(const cocos2d::Vec2 &target) override;
 
     /*
     Make an AI decision.
     Author: ChuyangLiu
     */
-    virtual void makeAIDecision();
+    virtual void makeAIDecision() override;
 };

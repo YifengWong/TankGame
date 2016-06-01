@@ -1,16 +1,16 @@
-#include "VSPlayerSprite.h"
+#include "PlayerDualSprite.h"
 #include "GameConfig.h"
 #include "PlayerBulletSprite.h"
 #include "EnemyBulletSprite.h"
 
 USING_NS_CC;
 
-VSPlayerSprite* VSPlayerSprite::create(GameUtil::VSPlayerType type) {
-	VSPlayerSprite *player = new (std::nothrow) VSPlayerSprite();
+PlayerDualSprite* PlayerDualSprite::create(PlayerDualSprite::VSPlayerType type) {
+	PlayerDualSprite *player = new (std::nothrow) PlayerDualSprite();
 	player->dir = Direction::UP;
 	player->type = type;
 	if (player) {
-		if (type == GameUtil::PLAYER_1 && player->initWithFile("player.png")) {
+		if (type == PlayerDualSprite::PLAYER_1 && player->initWithFile("player.png")) {
 			player->autorelease();
 
 			// Create physics body
@@ -29,7 +29,7 @@ VSPlayerSprite* VSPlayerSprite::create(GameUtil::VSPlayerType type) {
 			player->getHP()->setMax(GameConfig::PLAYER_MAX_HP);
 			player->getHP()->setValue(GameConfig::PLAYER_INIT_HP);
 
-		} else if (type == GameUtil::PLAYER_2 && player->initWithFile("enemy.png")) {
+		} else if (type == PlayerDualSprite::PLAYER_2 && player->initWithFile("enemy.png")) {
 			player->autorelease();
 
 			// Create physics body
@@ -56,7 +56,7 @@ VSPlayerSprite* VSPlayerSprite::create(GameUtil::VSPlayerType type) {
 	return nullptr;
 }
 
-void VSPlayerSprite::setMoveVal(const Direction &direc) {
+void PlayerDualSprite::setMoveVal(const Direction &direc) {
 	auto physicBody = getPhysicsBody();
 	if (physicBody == nullptr) return;
 
@@ -83,7 +83,7 @@ void VSPlayerSprite::setMoveVal(const Direction &direc) {
 	}
 }
 
-void VSPlayerSprite::resetMoveVal(const Direction &direc) {
+void PlayerDualSprite::resetMoveVal(const Direction &direc) {
 	auto physicBody = getPhysicsBody();
 	if (physicBody == nullptr) return;
 	switch (direc) {
@@ -108,9 +108,9 @@ void VSPlayerSprite::resetMoveVal(const Direction &direc) {
 	}
 }
 
-void VSPlayerSprite::fire(Layer *layer) {
+void PlayerDualSprite::fire(Layer *layer, const cocos2d::Vec2 *target) {
 	Sprite* bullet;
-	if (type == GameUtil::PLAYER_1) bullet = PlayerBulletSprite::create();
+	if (type == PlayerDualSprite::PLAYER_1) bullet = PlayerBulletSprite::create();
 	else bullet = EnemyBulletSprite::create();
 
 	Vec2 vec;
@@ -124,12 +124,4 @@ void VSPlayerSprite::fire(Layer *layer) {
 	bullet->getPhysicsBody()->setVelocity(vec * GameConfig::PLAYER_BULLET_SPEED);
 	// Add to layer
 	layer->addChild(bullet);
-}
-
-bool VSPlayerSprite::isDead() {
-	return hp.isZero();
-}
-
-HPValue* VSPlayerSprite::getHP() {
-	return &hp;
 }

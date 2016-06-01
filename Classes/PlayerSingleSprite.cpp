@@ -1,11 +1,11 @@
-#include "PlayerSprite.h"
+#include "PlayerSingleSprite.h"
 #include "GameConfig.h"
 #include "PlayerBulletSprite.h"
 
 USING_NS_CC;
 
-PlayerSprite* PlayerSprite::create() {
-    PlayerSprite *player = new (std::nothrow) PlayerSprite();
+PlayerSingleSprite* PlayerSingleSprite::create() {
+    PlayerSingleSprite *player = new (std::nothrow) PlayerSingleSprite();
     if (player && player->initWithFile("player.png")) {
         player->autorelease();
 
@@ -31,7 +31,7 @@ PlayerSprite* PlayerSprite::create() {
     return nullptr;
 }
 
-void PlayerSprite::setMoveVal(const Direction &direc) {
+void PlayerSingleSprite::setMoveVal(const Direction &direc) {
     auto physicBody = getPhysicsBody();
     if (physicBody == nullptr) return;
     switch (direc) {
@@ -52,7 +52,7 @@ void PlayerSprite::setMoveVal(const Direction &direc) {
     }
 }
 
-void PlayerSprite::resetMoveVal(const Direction &direc) {
+void PlayerSingleSprite::resetMoveVal(const Direction &direc) {
     auto physicBody = getPhysicsBody();
     if (physicBody == nullptr) return;
     switch (direc) {
@@ -77,20 +77,13 @@ void PlayerSprite::resetMoveVal(const Direction &direc) {
     }
 }
 
-void PlayerSprite::fire(Layer *layer, const cocos2d::Vec2 &target) {
-    auto vec = GameUtil::getUnitDirectionVector(getPosition(), target);
+void PlayerSingleSprite::fire(Layer *layer, const cocos2d::Vec2 *target) {
+    if (!target) return;
+    auto vec = GameUtil::getUnitDirectionVector(getPosition(), *target);
     // Add bullet
     auto bullet = PlayerBulletSprite::create();
     bullet->setPosition(getPosition());
     bullet->getPhysicsBody()->setVelocity(vec * GameConfig::PLAYER_BULLET_SPEED);
     // Add to layer
     layer->addChild(bullet);
-}
-
-bool PlayerSprite::isDead() {
-    return hp.isZero();
-}
-
-HPValue* PlayerSprite::getHP() {
-    return &hp;
 }

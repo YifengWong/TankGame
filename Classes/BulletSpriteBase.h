@@ -12,10 +12,10 @@ public:
 
 protected:
     /*
-    Create a schedule to disappear the bullet after some time.
+    Create a schedule to remove the bullet after some time.
     Author: ChuyangLiu
     */
-    void scheduleAutoDisappear();
+    void scheduleAutoRemove();
 
     /*
     onRemove() event called in removeFromParent()

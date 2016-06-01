@@ -14,11 +14,3 @@ void EnemySpriteBase::runAI() {
         makeAIDecision();
     }, GameConfig::ENEMY_DECISION_INTERVAL, "EnemyAISchedule");
 }
-
-bool EnemySpriteBase::isDead() {
-    return hp.isZero();
-}
-
-HPValue* EnemySpriteBase::getHP() {
-    return &hp;
-}

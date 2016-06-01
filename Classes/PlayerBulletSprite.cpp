@@ -22,7 +22,7 @@ PlayerBulletSprite* PlayerBulletSprite::create() {
         // Set bullet sprites
         bullet->setAnchorPoint(Vec2(0.5, 0.5));
         bullet->setPhysicsBody(physicBody);
-        bullet->scheduleAutoDisappear();
+        bullet->scheduleAutoRemove();
         ++PlayerBulletSprite::bulletCnt;
 
         return bullet;
