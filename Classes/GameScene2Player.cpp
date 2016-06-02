@@ -10,13 +10,6 @@ using namespace cocos2d::ui;
 PlayerDualSprite* GameScene2Player::player_1 = nullptr;
 PlayerDualSprite* GameScene2Player::player_2 = nullptr;
 
-PlayerDualSprite* GameScene2Player::getPlayer_1() {
-	return player_1;
-}
-PlayerDualSprite* GameScene2Player::getPlayer_2() {
-	return player_2;
-}
-
 Scene* GameScene2Player::createScene() {
 	// Create a scene with a physics world
 	auto scene = Scene::createWithPhysics();
@@ -93,10 +86,6 @@ void GameScene2Player::addPlayer() {
 	addChild(player_2);
 }
 
-void GameScene2Player::addEnemies() {
-	//May be for get more points?
-}
-
 void GameScene2Player::addWalls() {
 	auto wall = WallSprite::create(true);
 	wall->setPosition(GameUtil::getPosition(GameUtil::PositionType::CENTER_LEFT));
@@ -171,6 +160,9 @@ void GameScene2Player::addKeyboardListener() {
 			case cocos2d::EventKeyboard::KeyCode::KEY_ENTER:
 				player_2->fire(this);
 				break;
+			case cocos2d::EventKeyboard::KeyCode::KEY_HOME:
+				GameUtil::returnToHome();
+				break;
 			default:
 				break;
 			}
@@ -178,7 +170,7 @@ void GameScene2Player::addKeyboardListener() {
 	};
 
 	keyboardListener->onKeyReleased = [&](EventKeyboard::KeyCode code, Event* event) {
-		if (player_1) {
+		if (player_1 && player_2) {
 			switch (code) {
 			case cocos2d::EventKeyboard::KeyCode::KEY_A:
 				player_1->resetMoveVal(Direction::LEFT);
@@ -213,22 +205,6 @@ void GameScene2Player::addKeyboardListener() {
 	_eventDispatcher->addEventListenerWithSceneGraphPriority(keyboardListener, this);
 }
 
-void GameScene2Player::addMouseListener() {
-	auto mouseListener = EventListenerMouse::create();
-
-	mouseListener->onMouseUp = [&](EventMouse *event) {
-		// getLocationInView() returns openGL coordinate,
-		// not screen coordiante, maybe this is a bug.
-		if (player_1 && event->getMouseButton() == MouseButton::Left
-			&& PlayerBulletSprite::getBulletCount() < GameConfig::PLAYER_BULLET_NUM_LIMIT) {
-			Vec2 target = event->getLocationInView();
-			//player_1->fire(this, target);
-		}
-	};
-
-	_eventDispatcher->addEventListenerWithSceneGraphPriority(mouseListener, this);
-}
-
 void GameScene2Player::addContactListener() {
 	auto contactListener = EventListenerPhysicsContact::create();
 
@@ -240,11 +216,11 @@ void GameScene2Player::addContactListener() {
 			if (body1->getTag() == GameConfig::PLAYER_TAG
 				&& body2->getTag() == GameConfig::ENEMY_TAG) {
 				meetPlayerWithEnemy(dynamic_cast<PlayerDualSprite*>(body1->getNode()),
-					dynamic_cast<EnemySpriteBase*>(body2->getNode()));
+					dynamic_cast<PlayerDualSprite*>(body2->getNode()));
 			} else if (body1->getTag() == GameConfig::ENEMY_TAG
 				&& body2->getTag() == GameConfig::PLAYER_TAG) {
 				meetPlayerWithEnemy(dynamic_cast<PlayerDualSprite*>(body2->getNode()),
-					dynamic_cast<EnemySpriteBase*>(body1->getNode()));
+					dynamic_cast<PlayerDualSprite*>(body1->getNode()));
 			}
 
 			// Player hits enemy bullet
@@ -261,11 +237,11 @@ void GameScene2Player::addContactListener() {
 			// Enemy hits player bullet
 			if (body1->getTag() == GameConfig::ENEMY_TAG
 				&& body2->getTag() == GameConfig::BULLET_PLAYER_TAG) {
-				meetEnemyWithPlayerBullet(dynamic_cast<EnemySpriteBase*>(body1->getNode()),
+				meetEnemyWithPlayerBullet(dynamic_cast<PlayerDualSprite*>(body1->getNode()),
 					dynamic_cast<PlayerBulletSprite*>(body2->getNode()));
 			} else if (body1->getTag() == GameConfig::BULLET_PLAYER_TAG
 				&& body2->getTag() == GameConfig::ENEMY_TAG) {
-				meetEnemyWithPlayerBullet(dynamic_cast<EnemySpriteBase*>(body2->getNode()),
+				meetEnemyWithPlayerBullet(dynamic_cast<PlayerDualSprite*>(body2->getNode()),
 					dynamic_cast<PlayerBulletSprite*>(body1->getNode()));
 			}
 
@@ -283,11 +259,11 @@ void GameScene2Player::addContactListener() {
 			// Enemy hits the wall
 			if (body1->getTag() == GameConfig::ENEMY_TAG
 				&& body2->getTag() == GameConfig::WALL_TAG) {
-				meetEnemyWithWall(dynamic_cast<EnemySpriteBase*>(body1->getNode()),
+				meetEnemyWithWall(dynamic_cast<PlayerDualSprite*>(body1->getNode()),
 					dynamic_cast<WallSprite*>(body2->getNode()));
 			} else if (body1->getTag() == GameConfig::WALL_TAG
 				&& body2->getTag() == GameConfig::ENEMY_TAG) {
-				meetEnemyWithWall(dynamic_cast<EnemySpriteBase*>(body2->getNode()),
+				meetEnemyWithWall(dynamic_cast<PlayerDualSprite*>(body2->getNode()),
 					dynamic_cast<WallSprite*>(body1->getNode()));
 			}
 
@@ -319,17 +295,20 @@ void GameScene2Player::addContactListener() {
 }
 
 
-void GameScene2Player::meetPlayerWithEnemy(PlayerDualSprite *plyr, EnemySpriteBase *enemy) {
-	if (plyr) {
-		if (GameUtil::isNormalEnemy(enemy)) {
-			plyr->decreaseHP(GameConfig::ENEMY_NORMAL_COLLISION_DAMAGE);
-		} else if (GameUtil::isBossEnemy(enemy)) {
-			plyr->decreaseHP(GameConfig::ENEMY_BOSS_COLLISION_DAMAGE);
-		}
-		log("Player HP: %d", plyr->getHP()->getValue());
+void GameScene2Player::meetPlayerWithEnemy(PlayerDualSprite *plyr, PlayerDualSprite *enemy) {
+	if (plyr && enemy) {
+		plyr->decreaseHP(GameConfig::ENEMY_NORMAL_COLLISION_DAMAGE);
+		enemy->decreaseHP(GameConfig::ENEMY_NORMAL_COLLISION_DAMAGE);
+
+		log("Player1 HP: %d", plyr->getHP()->getValue());
+		log("Player2 HP: %d", enemy->getHP()->getValue());
 		if (plyr->isDead()) {
 			plyr->removeFromParent();
 			GameScene2Player::player_1 = nullptr;
+		}
+		if (enemy->isDead()) {
+			enemy->removeFromParent();
+			GameScene2Player::player_2 = nullptr;
 		}
 	}
 }
@@ -350,7 +329,7 @@ void GameScene2Player::meetPlayerWithEnemyBullet(PlayerDualSprite *plyr, EnemyBu
 	}
 }
 
-void GameScene2Player::meetEnemyWithPlayerBullet(EnemySpriteBase *enemy, PlayerBulletSprite *playerBullet) {
+void GameScene2Player::meetEnemyWithPlayerBullet(PlayerDualSprite *enemy, PlayerBulletSprite *playerBullet) {
 	if (playerBullet) {
 		playerBullet->removeFromParent();
 		playerBullet = nullptr;
@@ -372,7 +351,7 @@ void GameScene2Player::meetPlayerWithWall(PlayerDualSprite *plyr, WallSprite *wa
 	}
 }
 
-void GameScene2Player::meetEnemyWithWall(EnemySpriteBase *enemy, WallSprite *wall) {
+void GameScene2Player::meetEnemyWithWall(PlayerDualSprite *enemy, WallSprite *wall) {
 	if (enemy) {
 		enemy->getPhysicsBody()->setVelocity(Vec2(0, 0));
 	}
