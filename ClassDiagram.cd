@@ -22,7 +22,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="EnemyBossSprite">
-    <Position X="7.25" Y="6" Width="1.75" />
+    <Position X="7.25" Y="6.25" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAABABAAAAAAgA=</HashCode>
       <FileName>C:\ChuyangLiu\WorkingSpace\CType\VisualStudio\TankGame\Classes\EnemyBossSprite.h</FileName>
@@ -36,14 +36,14 @@
     </TypeIdentifier>
   </Class>
   <Class Name="EnemyNormalSprite">
-    <Position X="5" Y="6" Width="1.75" />
+    <Position X="5" Y="6.25" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAABAAAAAAAAAAAAAEAAAAAAAAABABAAAAAAAA=</HashCode>
       <FileName>C:\ChuyangLiu\WorkingSpace\CType\VisualStudio\TankGame\Classes\EnemyNormalSprite.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="EnemySpriteBase">
-    <Position X="6.25" Y="3" Width="1.75" />
+    <Position X="6.25" Y="3.25" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAEAAAAAIAAABAAABAQAQAA=</HashCode>
       <FileName>C:\ChuyangLiu\WorkingSpace\CType\VisualStudio\TankGame\Classes\EnemySpriteBase.h</FileName>
@@ -70,7 +70,7 @@
       <FileName>C:\ChuyangLiu\WorkingSpace\CType\VisualStudio\TankGame\Classes\GameUtil.h</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="HomeScene" Collapsed="true">
+  <Class Name="HomeScene">
     <Position X="5.5" Y="9.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAIAAAAAAAAAAAAAAAAAAAAAAABAAIAEBAAAAAAAAA=</HashCode>
@@ -106,7 +106,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="PlayerSpriteBase">
-    <Position X="1.5" Y="3" Width="1.5" />
+    <Position X="1.5" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAgA=</HashCode>
       <FileName>C:\ChuyangLiu\WorkingSpace\CType\VisualStudio\TankGame\Classes\PlayerSpriteBase.h</FileName>
@@ -127,14 +127,14 @@
     </TypeIdentifier>
   </Class>
   <Class Name="PlayerSingleSprite">
-    <Position X="0.5" Y="5.75" Width="1.75" />
+    <Position X="0.5" Y="6" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAIEAAAAAAAAAAAAAAAAAAAAAAAAAABABAAAAAAgA=</HashCode>
       <FileName>C:\ChuyangLiu\WorkingSpace\CType\VisualStudio\TankGame\Classes\PlayerSingleSprite.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="PlayerDualSprite">
-    <Position X="2.75" Y="5.75" Width="1.75" />
+    <Position X="2.75" Y="6" Width="1.75" />
     <NestedTypes>
       <Enum Name="PlayerDualSprite::VSPlayerType" Collapsed="true">
         <TypeIdentifier>
@@ -150,7 +150,7 @@
   <Class Name="AliveSpriteBase">
     <Position X="4" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAABAAAAAAAABAAEAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAARAAABAAAABAAEAAAAA=</HashCode>
       <FileName>C:\ChuyangLiu\WorkingSpace\CType\VisualStudio\TankGame\Classes\AliveSpriteBase.h</FileName>
     </TypeIdentifier>
   </Class>
