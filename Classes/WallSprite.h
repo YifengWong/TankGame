@@ -21,7 +21,7 @@ public:
     Return the breakable field.
     Author: ChuyangLiu
     */
-    bool isBreakable();
+    bool isBreakable() const;
 
 private:
     bool breakable;

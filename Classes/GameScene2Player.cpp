@@ -322,9 +322,9 @@ void GameScene2Player::addContactListener() {
 void GameScene2Player::meetPlayerWithEnemy(PlayerDualSprite *plyr, EnemySpriteBase *enemy) {
 	if (plyr) {
 		if (GameUtil::isNormalEnemy(enemy)) {
-			plyr->getHP()->decrease(GameConfig::ENEMY_NORMAL_COLLISION_DAMAGE);
+			plyr->decreaseHP(GameConfig::ENEMY_NORMAL_COLLISION_DAMAGE);
 		} else if (GameUtil::isBossEnemy(enemy)) {
-			plyr->getHP()->decrease(GameConfig::ENEMY_BOSS_COLLISION_DAMAGE);
+			plyr->decreaseHP(GameConfig::ENEMY_BOSS_COLLISION_DAMAGE);
 		}
 		log("Player HP: %d", plyr->getHP()->getValue());
 		if (plyr->isDead()) {
@@ -336,7 +336,7 @@ void GameScene2Player::meetPlayerWithEnemy(PlayerDualSprite *plyr, EnemySpriteBa
 
 void GameScene2Player::meetPlayerWithEnemyBullet(PlayerDualSprite *plyr, EnemyBulletSprite *enemyBullet) {
 	if (plyr) {
-		plyr->getHP()->decrease(GameConfig::BULLET_DAMAGE);
+		plyr->decreaseHP(GameConfig::BULLET_DAMAGE);
 		log("Player HP: %d", plyr->getHP()->getValue());
 		if (plyr->isDead()) {
 			plyr->removeFromParent();
@@ -357,7 +357,7 @@ void GameScene2Player::meetEnemyWithPlayerBullet(EnemySpriteBase *enemy, PlayerB
 	}
 
 	if (enemy) {
-		enemy->getHP()->decrease(GameConfig::BULLET_DAMAGE);
+		enemy->decreaseHP(GameConfig::BULLET_DAMAGE);
 		log("Enemy HP: %d", enemy->getHP()->getValue());
 		if (enemy->isDead()) {
 			enemy->removeFromParent();

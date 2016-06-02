@@ -26,8 +26,7 @@ EnemyBossSprite* EnemyBossSprite::create(cocos2d::Layer *layer) {
 		enemy->setPhysicsBody(physicBody);
 		enemy->setLayer(layer);
 		enemy->runAI();
-        enemy->getHP()->setMax(GameConfig::ENEMY_BOSS_MAX_HP);
-        enemy->getHP()->setValue(GameConfig::ENEMY_BOSS_INIT_HP);
+        enemy->setHP(HPValue(GameConfig::ENEMY_BOSS_MAX_HP, GameConfig::ENEMY_BOSS_INIT_HP));
 
 		return enemy;
 	}

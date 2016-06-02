@@ -22,8 +22,7 @@ PlayerSingleSprite* PlayerSingleSprite::create() {
         // Set player sprites
         player->setAnchorPoint(Vec2(0.5, 0.5));
         player->setPhysicsBody(physicBody);
-        player->getHP()->setMax(GameConfig::PLAYER_MAX_HP);
-        player->getHP()->setValue(GameConfig::PLAYER_INIT_HP);
+        player->setHP(HPValue(GameConfig::PLAYER_MAX_HP, GameConfig::PLAYER_INIT_HP));
 
         return player;
     }

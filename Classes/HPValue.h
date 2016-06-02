@@ -13,13 +13,13 @@ public:
 
     void setValue(const int v);
 
-    int getValue();
+    int getValue() const;
 
     void setMax(const int m);
 
-    int getMax();
+    int getMax() const;
 
-    bool isZero();
+    bool isZero() const;
 
 private:
     int max;

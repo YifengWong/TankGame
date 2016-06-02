@@ -26,8 +26,7 @@ EnemyNormalSprite* EnemyNormalSprite::create(cocos2d::Layer *layer) {
         enemy->setPhysicsBody(physicBody);
         enemy->setLayer(layer);
         enemy->runAI();
-        enemy->getHP()->setMax(GameConfig::ENEMY_NORMAL_MAX_HP);
-        enemy->getHP()->setValue(GameConfig::ENEMY_NORMAL_INIT_HP);
+        enemy->setHP(HPValue(GameConfig::ENEMY_NORMAL_MAX_HP, GameConfig::ENEMY_NORMAL_INIT_HP));
 
         return enemy;
     }

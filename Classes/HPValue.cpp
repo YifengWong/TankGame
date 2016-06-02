@@ -26,7 +26,7 @@ void HPValue::setValue(const int v) {
     }
 }
 
-int HPValue::getValue() {
+int HPValue::getValue() const {
     return value;
 }
 
@@ -34,10 +34,10 @@ void HPValue::setMax(const int m) {
     max = m;
 }
 
-int HPValue::getMax() {
+int HPValue::getMax() const {
     return max;
 }
 
-bool HPValue::isZero() {
+bool HPValue::isZero() const {
     return value == 0;
 }

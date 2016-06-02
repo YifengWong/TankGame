@@ -37,6 +37,6 @@ void WallSprite::setBreakable(const bool &b) {
     breakable = b;
 }
 
-bool WallSprite::isBreakable() {
+bool WallSprite::isBreakable() const {
     return breakable;
 }

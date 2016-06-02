@@ -8,19 +8,31 @@ public:
     Check if the sprite is dead.
     Author: ChuyangLiu
     */
-    bool isDead();
+    bool isDead() const;
 
     /*
     Return the hp value.
     Author: ChuyangLiu
     */
-    HPValue* getHP();
+    const HPValue* getHP() const;
 
     /*
     Set the hp value.
     Author: ChuyangLiu
     */
     void setHP(const HPValue &hp_);
+
+    /*
+    Increase the hp value.
+    Author: ChuyangLiu
+    */
+    void increaseHP(const int v);
+
+    /*
+    Decrease the hp value.
+    Author: ChuyangLiu
+    */
+    void decreaseHP(const int v);
 
 private:
     HPValue hp;
