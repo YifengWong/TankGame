@@ -15,17 +15,12 @@ public:
 	virtual bool init();
 	CREATE_FUNC(GameScene2Player);
 
-	/*
-	Return the player sprite.
-	Author: ChuyangLiu
-	*/
-	static PlayerDualSprite* getPlayer_1();
-	static PlayerDualSprite* getPlayer_2();
 
-private:
 	static PlayerDualSprite *player_1;
 	static PlayerDualSprite *player_2;
 
+private:
+	
 	/*
 	Inaccessible default constructor from outside the class.
 	Use createScene() to create the instance from outside the class.
@@ -40,7 +35,6 @@ private:
 	void addBackground();
 	void addBoundary();
 	void addPlayer();
-	void addEnemies();
 	void addWalls();
 
 	/*
@@ -48,18 +42,17 @@ private:
 	Author: ChuyangLiu
 	*/
 	void addKeyboardListener();
-	void addMouseListener();
 	void addContactListener();
 
 	/*
 	Meet events
 	Author: ChuyangLiu
 	*/
-	void meetPlayerWithEnemy(PlayerDualSprite *plyr, EnemySpriteBase *enemy);
+	void meetPlayerWithEnemy(PlayerDualSprite *plyr, PlayerDualSprite *enemy);
 	void meetPlayerWithEnemyBullet(PlayerDualSprite *plyr, EnemyBulletSprite *enemyBullet);
-	void meetEnemyWithPlayerBullet(EnemySpriteBase *enemy, PlayerBulletSprite *playerBullet);
+	void meetEnemyWithPlayerBullet(PlayerDualSprite *enemy, PlayerBulletSprite *playerBullet);
 	void meetPlayerWithWall(PlayerDualSprite *plyr, WallSprite *wall);
-	void meetEnemyWithWall(EnemySpriteBase *enemy, WallSprite *wall);
+	void meetEnemyWithWall(PlayerDualSprite *enemy, WallSprite *wall);
 	void meetBulletWithWall(PlayerBulletSprite *playerBullet, WallSprite *wall);
 	void meetEnemyBulletWithWall(EnemyBulletSprite *enemyBullet, WallSprite *wall);
 
