@@ -12,7 +12,7 @@ EnemyBossSprite* EnemyBossSprite::create(cocos2d::Layer *layer) {
 		enemy->autorelease();
 
 		// Create physics body
-		auto physicBody = PhysicsBody::createBox(enemy->getContentSize());
+		auto physicBody = PhysicsBody::createCircle(enemy->getContentSize().width / 2.0);
 		// Set group and bitmasks
 		physicBody->setGroup(GameConfig::ENEMY_PHYSIC_GROUP);
 		physicBody->setCategoryBitmask(GameConfig::ENEMY_PHYSIC_CATEGORY_BM);
@@ -27,6 +27,7 @@ EnemyBossSprite* EnemyBossSprite::create(cocos2d::Layer *layer) {
 		enemy->setLayer(layer);
 		enemy->runAI();
         enemy->setHP(HPValue(GameConfig::ENEMY_BOSS_MAX_HP, GameConfig::ENEMY_BOSS_INIT_HP));
+        enemy->runAction(RepeatForever::create(RotateBy::create(0.4, 90)));
 
 		return enemy;
 	}
