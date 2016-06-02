@@ -14,6 +14,7 @@ void GameUtil::returnToHome() {
     GameScene1Player::player = nullptr;
     GameScene2Player::player_1 = nullptr;
 	GameScene2Player::player_2 = nullptr;
+    Director::getInstance()->getEventDispatcher()->removeAllEventListeners();
     Director::getInstance()->replaceScene(HomeScene::createScene());
 }
 

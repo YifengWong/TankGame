@@ -53,8 +53,7 @@ private:
 	void meetEnemyWithPlayerBullet(PlayerDualSprite *enemy, PlayerBulletSprite *playerBullet);
 	void meetPlayerWithWall(PlayerDualSprite *plyr, WallSprite *wall);
 	void meetEnemyWithWall(PlayerDualSprite *enemy, WallSprite *wall);
-	void meetBulletWithWall(PlayerBulletSprite *playerBullet, WallSprite *wall);
-	void meetEnemyBulletWithWall(EnemyBulletSprite *enemyBullet, WallSprite *wall);
+	void meetBulletWithWall(BulletSpriteBase *bullet, WallSprite *wall);
 
 	/*
 	Callback for schedule.

@@ -128,36 +128,45 @@ void GameScene2Player::addKeyboardListener() {
 	auto keyboardListener = EventListenerKeyboard::create();
 
 	keyboardListener->onKeyPressed = [&](EventKeyboard::KeyCode code, Event* event) {
-		if (player_1 && player_2) {
-			switch (code) {
+		switch (code) {
 			case cocos2d::EventKeyboard::KeyCode::KEY_A:
+                if (!player_1) return;
 				player_1->setMoveVal(Direction::LEFT);
 				break;
 			case cocos2d::EventKeyboard::KeyCode::KEY_D:
+                if (!player_1) return;
 				player_1->setMoveVal(Direction::RIGHT);
 				break;
 			case cocos2d::EventKeyboard::KeyCode::KEY_W:
+                if (!player_1) return;
 				player_1->setMoveVal(Direction::UP);
 				break;
 			case cocos2d::EventKeyboard::KeyCode::KEY_S:
+                if (!player_1) return;
 				player_1->setMoveVal(Direction::DOWN);
 				break;
 			case cocos2d::EventKeyboard::KeyCode::KEY_LEFT_ARROW:
+                if (!player_2) return;
 				player_2->setMoveVal(Direction::LEFT);
 				break;
 			case cocos2d::EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
+                if (!player_2) return;
 				player_2->setMoveVal(Direction::RIGHT);
 				break;
 			case cocos2d::EventKeyboard::KeyCode::KEY_UP_ARROW:
+                if (!player_2) return;
 				player_2->setMoveVal(Direction::UP);
 				break;
 			case cocos2d::EventKeyboard::KeyCode::KEY_DOWN_ARROW:
+                if (!player_2) return;
 				player_2->setMoveVal(Direction::DOWN);
 				break;
 			case cocos2d::EventKeyboard::KeyCode::KEY_SPACE:
+                if (!player_2) return;
 				player_1->fire(this);
 				break;
 			case cocos2d::EventKeyboard::KeyCode::KEY_ENTER:
+                if (!player_2) return;
 				player_2->fire(this);
 				break;
 			case cocos2d::EventKeyboard::KeyCode::KEY_HOME:
@@ -165,7 +174,6 @@ void GameScene2Player::addKeyboardListener() {
 				break;
 			default:
 				break;
-			}
 		}
 	};
 
@@ -270,22 +278,22 @@ void GameScene2Player::addContactListener() {
 			// Player bullet hits the wall
 			if (body1->getTag() == GameConfig::BULLET_PLAYER_TAG
 				&& body2->getTag() == GameConfig::WALL_TAG) {
-				meetBulletWithWall(dynamic_cast<PlayerBulletSprite*>(body1->getNode()),
+				meetBulletWithWall(dynamic_cast<BulletSpriteBase*>(body1->getNode()),
 					dynamic_cast<WallSprite*>(body2->getNode()));
 			} else if (body1->getTag() == GameConfig::WALL_TAG
 				&& body2->getTag() == GameConfig::BULLET_PLAYER_TAG) {
-				meetBulletWithWall(dynamic_cast<PlayerBulletSprite*>(body2->getNode()),
+				meetBulletWithWall(dynamic_cast<BulletSpriteBase*>(body2->getNode()),
 					dynamic_cast<WallSprite*>(body1->getNode()));
 			}
 
 			// Enemy bullet hits the wall
 			if (body1->getTag() == GameConfig::BULLET_ENEMY_TAG
 				&& body2->getTag() == GameConfig::WALL_TAG) {
-				meetEnemyBulletWithWall(dynamic_cast<EnemyBulletSprite*>(body1->getNode()),
+                meetBulletWithWall(dynamic_cast<BulletSpriteBase*>(body1->getNode()),
 					dynamic_cast<WallSprite*>(body2->getNode()));
 			} else if (body1->getTag() == GameConfig::WALL_TAG
 				&& body2->getTag() == GameConfig::BULLET_ENEMY_TAG) {
-				meetEnemyBulletWithWall(dynamic_cast<EnemyBulletSprite*>(body2->getNode()),
+                meetBulletWithWall(dynamic_cast<BulletSpriteBase*>(body2->getNode()),
 					dynamic_cast<WallSprite*>(body1->getNode()));
 			}
 		}
@@ -326,6 +334,7 @@ void GameScene2Player::meetPlayerWithEnemyBullet(PlayerDualSprite *plyr, EnemyBu
 	if (enemyBullet) {
 		enemyBullet->removeFromParent();
 		enemyBullet = nullptr;
+        GameUtil::playEffect(GameUtil::MusicEffectType::BULLET_HIT);
 	}
 }
 
@@ -333,6 +342,7 @@ void GameScene2Player::meetEnemyWithPlayerBullet(PlayerDualSprite *enemy, Player
 	if (playerBullet) {
 		playerBullet->removeFromParent();
 		playerBullet = nullptr;
+        GameUtil::playEffect(GameUtil::MusicEffectType::BULLET_HIT);
 	}
 
 	if (enemy) {
@@ -357,21 +367,12 @@ void GameScene2Player::meetEnemyWithWall(PlayerDualSprite *enemy, WallSprite *wa
 	}
 }
 
-void GameScene2Player::meetBulletWithWall(PlayerBulletSprite *playerBullet, WallSprite *wall) {
+void GameScene2Player::meetBulletWithWall(BulletSpriteBase *bullet, WallSprite *wall) {
 	if (wall && wall->isBreakable()) {
 		wall->removeFromParent();
-		if (playerBullet) {
-			playerBullet->removeFromParent();
+		if (bullet) {
+            bullet->removeFromParent();
+            GameUtil::playEffect(GameUtil::MusicEffectType::BULLET_HIT);
 		}
 	}
 }
-
-void GameScene2Player::meetEnemyBulletWithWall(EnemyBulletSprite *enemyBullet, WallSprite *wall) {
-	if (wall && wall->isBreakable()) {
-		wall->removeFromParent();
-		if (enemyBullet) {
-			enemyBullet->removeFromParent();
-		}
-	}
-}
-
