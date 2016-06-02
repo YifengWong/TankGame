@@ -17,9 +17,9 @@ private:
     HomeScene() {}
 
     /*
-    Add start button to the layer.
+    Add start buttons to the layer.
     Author: ChuyangLiu
     */
-    void addStartBtn();
+    void addStartBtns();
 };
 

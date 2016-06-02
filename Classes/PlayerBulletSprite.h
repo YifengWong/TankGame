@@ -19,6 +19,12 @@ public:
     */
     static unsigned getBulletCount();
 
+    /*
+    Set the bullet count to zero.
+    Author: ChuyangLiu
+    */
+    static void clearBulletCount();
+
 private:
     static unsigned bulletCnt;
 

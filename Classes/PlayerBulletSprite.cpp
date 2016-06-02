@@ -41,3 +41,7 @@ void PlayerBulletSprite::onRemove() {
 unsigned PlayerBulletSprite::getBulletCount() {
     return bulletCnt;
 }
+
+void PlayerBulletSprite::clearBulletCount() {
+    bulletCnt = 0;
+}

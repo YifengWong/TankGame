@@ -19,27 +19,27 @@ bool HomeScene::init() {
         return false;
     }
 
-    addStartBtn();
+    addStartBtns();
 
     // TODO Home scene design
 
     return true;
 }
 
-void HomeScene::addStartBtn() {
+void HomeScene::addStartBtns() {
     auto startBtn = Button::create();
-    startBtn->setTitleText("Start");
+    startBtn->setTitleText("1 Player");
     startBtn->setTitleFontSize(30);
-    startBtn->setPosition(GameUtil::getPosition(GameUtil::PositionType::CENTER));
+    startBtn->setPosition(GameUtil::getPosition(GameUtil::PositionType::CENTER) + Vec2(0, 30));
     startBtn->addClickEventListener([](Ref* pSender) {
         Director::getInstance()->replaceScene(GameScene1Player::createScene());
     });
     addChild(startBtn, 0);
 
 	auto startVSBtn = Button::create();
-	startVSBtn->setTitleText("StartVS");
+	startVSBtn->setTitleText("2 Player");
 	startVSBtn->setTitleFontSize(30);
-	startVSBtn->setPosition(GameUtil::getPosition(GameUtil::PositionType::CENTER) + Vec2(0, -100));
+	startVSBtn->setPosition(GameUtil::getPosition(GameUtil::PositionType::CENTER) + Vec2(0, -30));
 	startVSBtn->addClickEventListener([](Ref* pSender) {
 		Director::getInstance()->replaceScene(GameScene2Player::createScene());
 	});
