@@ -3,15 +3,12 @@
 #include "EnemyNormalSprite.h"
 #include "EnemyBossSprite.h"
 #include "GameUtil.h"
+#include "HomeScene.h"
 
 USING_NS_CC;
 using namespace cocos2d::ui;
 
 PlayerSingleSprite* GameScene1Player::player = nullptr;
-
-PlayerSingleSprite* GameScene1Player::getPlayer() {
-    return player;
-}
 
 Scene* GameScene1Player::createScene() {
     // Create a scene with a physics world
@@ -143,23 +140,28 @@ void GameScene1Player::addKeyboardListener() {
     auto keyboardListener = EventListenerKeyboard::create();
 
     keyboardListener->onKeyPressed = [&](EventKeyboard::KeyCode code, Event* event) {
-        if (player) {
-            switch (code) {
-                case cocos2d::EventKeyboard::KeyCode::KEY_A:
-                    player->setMoveVal(Direction::LEFT);
-                    break;
-                case cocos2d::EventKeyboard::KeyCode::KEY_D:
-                    player->setMoveVal(Direction::RIGHT);
-                    break;
-                case cocos2d::EventKeyboard::KeyCode::KEY_W:
-                    player->setMoveVal(Direction::UP);
-                    break;
-                case cocos2d::EventKeyboard::KeyCode::KEY_S:
-                    player->setMoveVal(Direction::DOWN);
-                    break;
-                default:
-                    break;
-            }
+        switch (code) {
+            case cocos2d::EventKeyboard::KeyCode::KEY_A:
+                if (!GameScene1Player::player) return;
+                player->setMoveVal(Direction::LEFT);
+                break;
+            case cocos2d::EventKeyboard::KeyCode::KEY_D:
+                if (!GameScene1Player::player) return;
+                player->setMoveVal(Direction::RIGHT);
+                break;
+            case cocos2d::EventKeyboard::KeyCode::KEY_W:
+                if (!GameScene1Player::player) return;
+                player->setMoveVal(Direction::UP);
+                break;
+            case cocos2d::EventKeyboard::KeyCode::KEY_S:
+                if (!GameScene1Player::player) return;
+                player->setMoveVal(Direction::DOWN);
+                break;
+            case cocos2d::EventKeyboard::KeyCode::KEY_HOME:
+                GameUtil::returnToHome();
+                break;
+            default:
+                break;
         }
     };
 

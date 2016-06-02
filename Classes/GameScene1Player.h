@@ -15,15 +15,9 @@ public:
     virtual bool init();
     CREATE_FUNC(GameScene1Player);
 
-    /*
-    Return the player sprite.
-    Author: ChuyangLiu
-    */
-    static PlayerSingleSprite* GameScene1Player::getPlayer();
-
-private:
+    // The player of the scene
     static PlayerSingleSprite *player;
-
+private:
     /*
     Inaccessible default constructor from outside the class.
     Use createScene() to create the instance from outside the class.

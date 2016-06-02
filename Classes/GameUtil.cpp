@@ -3,9 +3,18 @@
 #include "EnemyNormalSprite.h"
 #include "SimpleAudioEngine.h"
 #include "GameConfig.h"
+#include "GameScene1Player.h"
+#include "GameScene2Player.h"
+#include "HomeScene.h"
 
 USING_NS_CC;
 using namespace CocosDenshion;
+
+void GameUtil::returnToHome() {
+    GameScene1Player::player = nullptr;
+    //GameScene2Player::player = nullptr;
+    Director::getInstance()->replaceScene(HomeScene::createScene());
+}
 
 Vec2 GameUtil::getOrigin() {
     return Director::getInstance()->getVisibleOrigin();

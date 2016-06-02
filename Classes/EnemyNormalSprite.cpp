@@ -50,8 +50,8 @@ void EnemyNormalSprite::makeAIDecision() {
 
     if (rand() % 100 < 30) {
         if (rand() % 100 < 50) {
-            if (GameScene1Player::getPlayer() == nullptr) return;
-            this->fire(GameScene1Player::getPlayer()->getPosition());
+            if (GameScene1Player::player == nullptr) return;
+            this->fire(GameScene1Player::player->getPosition());
         } else {
             this->fire(GameUtil::getPosition(static_cast<GameUtil::PositionType>(
                 rand() % GameUtil::getPositionTypeCount())));
@@ -61,9 +61,9 @@ void EnemyNormalSprite::makeAIDecision() {
     if (rand() % 100 < 80) {
         Vec2 vec;
         if (rand() % 100 < 50) {
-            if (GameScene1Player::getPlayer() == nullptr) return;
+            if (GameScene1Player::player == nullptr) return;
             vec = GameUtil::getUnitDirectionVector(this->getPosition(),
-                                                     GameScene1Player::getPlayer()->getPosition());
+                                                     GameScene1Player::player->getPosition());
         } else {
             auto pos = static_cast<GameUtil::PositionType>(rand() % GameUtil::getPositionTypeCount());
             vec = GameUtil::getUnitDirectionVector(this->getPosition(),

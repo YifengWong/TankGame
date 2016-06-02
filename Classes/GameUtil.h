@@ -19,6 +19,12 @@ Game utilities
 class GameUtil {
 public:
     /*
+    Return to home scene.
+    Author: ChuyangLiu
+    */
+    static void returnToHome();
+
+    /*
     Return origin position of the game window.
     Author: ChuyangLiu
     */
