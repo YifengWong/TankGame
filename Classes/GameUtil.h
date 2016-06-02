@@ -107,6 +107,15 @@ public:
     static void playBgMusic(const MusicBgType &bgType);
 
     /*
+    Add particle effect
+    Author: ChuyangLiu
+    */
+    enum ParticleType {
+        EXPLODE
+    };
+    static void addParticles(cocos2d::Layer *layer, const cocos2d::Vec2 &pos, const ParticleType &type);
+
+    /*
     Check if the enemy is a normal enemy
     Author: ChuyangLiu
     */

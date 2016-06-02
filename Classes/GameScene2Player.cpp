@@ -311,10 +311,12 @@ void GameScene2Player::meetPlayerWithEnemy(PlayerDualSprite *plyr, PlayerDualSpr
 		log("Player1 HP: %d", plyr->getHP()->getValue());
 		log("Player2 HP: %d", enemy->getHP()->getValue());
 		if (plyr->isDead()) {
+            GameUtil::addParticles(this, plyr->getPosition(), GameUtil::ParticleType::EXPLODE);
 			plyr->removeFromParent();
 			GameScene2Player::player_1 = nullptr;
 		}
 		if (enemy->isDead()) {
+            GameUtil::addParticles(this, enemy->getPosition(), GameUtil::ParticleType::EXPLODE);
 			enemy->removeFromParent();
 			GameScene2Player::player_2 = nullptr;
 		}
@@ -326,6 +328,7 @@ void GameScene2Player::meetPlayerWithEnemyBullet(PlayerDualSprite *plyr, EnemyBu
 		plyr->decreaseHP(GameConfig::BULLET_DAMAGE);
 		log("Player HP: %d", plyr->getHP()->getValue());
 		if (plyr->isDead()) {
+            GameUtil::addParticles(this, plyr->getPosition(), GameUtil::ParticleType::EXPLODE);
 			plyr->removeFromParent();
 			GameScene2Player::player_1 = nullptr;
 		}
@@ -349,6 +352,7 @@ void GameScene2Player::meetEnemyWithPlayerBullet(PlayerDualSprite *enemy, Player
 		enemy->decreaseHP(GameConfig::BULLET_DAMAGE);
 		log("Enemy HP: %d", enemy->getHP()->getValue());
 		if (enemy->isDead()) {
+            GameUtil::addParticles(this, enemy->getPosition(), GameUtil::ParticleType::EXPLODE);
 			enemy->removeFromParent();
 			enemy = nullptr;
 		}

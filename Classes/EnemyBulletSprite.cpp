@@ -1,5 +1,6 @@
 #include "EnemyBulletSprite.h"
 #include "GameConfig.h"
+#include "GameUtil.h"
 
 USING_NS_CC;
 
@@ -29,5 +30,4 @@ EnemyBulletSprite* EnemyBulletSprite::create() {
 }
 
 void EnemyBulletSprite::onRemove() {
-    // Do nothing
 }

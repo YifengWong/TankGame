@@ -179,3 +179,18 @@ void GameUtil::playBgMusic(const MusicBgType &bgType) {
             break;
     }
 }
+
+void GameUtil::addParticles(cocos2d::Layer *layer, const cocos2d::Vec2 &pos, const ParticleType &type) {
+    if (!layer) return;
+    ParticleSystemQuad *ps;
+    switch (type) {
+        case EXPLODE:
+            ps = ParticleSystemQuad::create("explode.plist");
+            break;
+        default:
+            return;
+            break;
+    }
+    ps->setPosition(pos);
+    layer->addChild(ps);
+}

@@ -1,5 +1,6 @@
 #include "PlayerBulletSprite.h"
 #include "GameConfig.h"
+#include "GameUtil.h"
 
 USING_NS_CC;
 
