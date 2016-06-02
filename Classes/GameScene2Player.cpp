@@ -294,11 +294,11 @@ void GameScene2Player::addContactListener() {
 			// Player bullet hits the wall
 			if (body1->getTag() == GameConfig::BULLET_PLAYER_TAG
 				&& body2->getTag() == GameConfig::WALL_TAG) {
-				meetPlayerBulletWithWall(dynamic_cast<PlayerBulletSprite*>(body1->getNode()),
+				meetBulletWithWall(dynamic_cast<PlayerBulletSprite*>(body1->getNode()),
 					dynamic_cast<WallSprite*>(body2->getNode()));
 			} else if (body1->getTag() == GameConfig::WALL_TAG
 				&& body2->getTag() == GameConfig::BULLET_PLAYER_TAG) {
-				meetPlayerBulletWithWall(dynamic_cast<PlayerBulletSprite*>(body2->getNode()),
+				meetBulletWithWall(dynamic_cast<PlayerBulletSprite*>(body2->getNode()),
 					dynamic_cast<WallSprite*>(body1->getNode()));
 			}
 
@@ -378,7 +378,7 @@ void GameScene2Player::meetEnemyWithWall(EnemySpriteBase *enemy, WallSprite *wal
 	}
 }
 
-void GameScene2Player::meetPlayerBulletWithWall(PlayerBulletSprite *playerBullet, WallSprite *wall) {
+void GameScene2Player::meetBulletWithWall(PlayerBulletSprite *playerBullet, WallSprite *wall) {
 	if (wall && wall->isBreakable()) {
 		wall->removeFromParent();
 		if (playerBullet) {

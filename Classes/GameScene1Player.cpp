@@ -268,23 +268,23 @@ void GameScene1Player::addContactListener() {
             // Player bullet hits the wall
             if (body1->getTag() == GameConfig::BULLET_PLAYER_TAG
                 && body2->getTag() == GameConfig::WALL_TAG) {
-                meetPlayerBulletWithWall(dynamic_cast<PlayerBulletSprite*>(body1->getNode()),
-                                         dynamic_cast<WallSprite*>(body2->getNode()));
+                meetBulletWithWall(dynamic_cast<BulletSpriteBase*>(body1->getNode()),
+                                   dynamic_cast<WallSprite*>(body2->getNode()));
             } else if (body1->getTag() == GameConfig::WALL_TAG
                        && body2->getTag() == GameConfig::BULLET_PLAYER_TAG) {
-                meetPlayerBulletWithWall(dynamic_cast<PlayerBulletSprite*>(body2->getNode()),
-                                         dynamic_cast<WallSprite*>(body1->getNode()));
+                meetBulletWithWall(dynamic_cast<BulletSpriteBase*>(body2->getNode()),
+                                   dynamic_cast<WallSprite*>(body1->getNode()));
             }
 
             // Enemy bullet hits the wall
             if (body1->getTag() == GameConfig::BULLET_ENEMY_TAG
                 && body2->getTag() == GameConfig::WALL_TAG) {
-                meetEnemyBulletWithWall(dynamic_cast<EnemyBulletSprite*>(body1->getNode()),
-                                        dynamic_cast<WallSprite*>(body2->getNode()));
+                meetBulletWithWall(dynamic_cast<BulletSpriteBase*>(body1->getNode()),
+                                   dynamic_cast<WallSprite*>(body2->getNode()));
             } else if (body1->getTag() == GameConfig::WALL_TAG
                        && body2->getTag() == GameConfig::BULLET_ENEMY_TAG) {
-                meetEnemyBulletWithWall(dynamic_cast<EnemyBulletSprite*>(body2->getNode()),
-                                        dynamic_cast<WallSprite*>(body1->getNode()));
+                meetBulletWithWall(dynamic_cast<BulletSpriteBase*>(body2->getNode()),
+                                   dynamic_cast<WallSprite*>(body1->getNode()));
             }
         }
     };
@@ -320,12 +320,14 @@ void GameScene1Player::meetPlayerWithEnemyBullet(PlayerSingleSprite *plyr, Enemy
 
     if (enemyBullet) {
         enemyBullet->removeFromParent();
+        GameUtil::playEffect(GameUtil::MusicEffectType::BULLET_HIT);
     }
 }
 
 void GameScene1Player::meetEnemyWithPlayerBullet(EnemySpriteBase *enemy, PlayerBulletSprite *playerBullet) {
     if (playerBullet) {
         playerBullet->removeFromParent();
+        GameUtil::playEffect(GameUtil::MusicEffectType::BULLET_HIT);
     }
 
     if (enemy) {
@@ -355,20 +357,12 @@ void GameScene1Player::meetEnemyWithWall(EnemySpriteBase *enemy, WallSprite *wal
     }
 }
 
-void GameScene1Player::meetPlayerBulletWithWall(PlayerBulletSprite *playerBullet, WallSprite *wall) {
+void GameScene1Player::meetBulletWithWall(BulletSpriteBase *bullet, WallSprite *wall) {
     if (wall && wall->isBreakable()) {
         wall->removeFromParent();
-        if (playerBullet) {
-            playerBullet->removeFromParent();
-        }
-    }
-}
-
-void GameScene1Player::meetEnemyBulletWithWall(EnemyBulletSprite *enemyBullet, WallSprite *wall) {
-    if (wall && wall->isBreakable()) {
-        wall->removeFromParent();
-        if (enemyBullet) {
-            enemyBullet->removeFromParent();
+        if (bullet) {
+            bullet->removeFromParent();
+            GameUtil::playEffect(GameUtil::MusicEffectType::BULLET_HIT);
         }
     }
 }

@@ -14,7 +14,7 @@ enum Direction {
 };
 
 /*
-Utilities for layout operation.
+Game utilities
 */
 class GameUtil {
 public:
@@ -73,6 +73,32 @@ public:
     */
     static cocos2d::Vec2 getPosition(const PositionType &type);
     static int getPositionTypeCount();
+
+    /*
+    Preload game music.
+    Author: ChuyangLiu
+    */
+    static void preloadMusic();
+
+    /*
+    Play effect music 
+    @param effectType the effect music type
+    Author: ChuyangLiu
+    */
+    enum MusicEffectType {
+        BULLET_HIT
+    };
+    static void playEffect(const MusicEffectType &effectType);
+
+    /*
+    Play background music
+    @param bgType the background music type
+    Author: ChuyangLiu
+    */
+    enum MusicBgType {
+        HOME_PAGE
+    };
+    static void playBgMusic(const MusicBgType &bgType);
 
     /*
     Check if the enemy is a normal enemy

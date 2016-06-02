@@ -1,8 +1,11 @@
 #include "GameUtil.h"
 #include "EnemyBossSprite.h"
 #include "EnemyNormalSprite.h"
+#include "SimpleAudioEngine.h"
+#include "GameConfig.h"
 
 USING_NS_CC;
+using namespace CocosDenshion;
 
 Vec2 GameUtil::getOrigin() {
     return Director::getInstance()->getVisibleOrigin();
@@ -135,4 +138,33 @@ Vec2 GameUtil::getPosition(const PositionType &type) {
 
 int GameUtil::getPositionTypeCount() {
     return 17;
+}
+
+void GameUtil::preloadMusic() {
+    //SimpleAudioEngine::getInstance()->preloadBackgroundMusic("music/xxx");
+    SimpleAudioEngine::getInstance()->setBackgroundMusicVolume(GameConfig::MUSIC_BG_VOLUME);
+    SimpleAudioEngine::getInstance()->preloadEffect("music/bullet_hit.wav");
+    SimpleAudioEngine::getInstance()->setEffectsVolume(GameConfig::MUSIC_EFFECT_VOLUME);
+}
+
+void GameUtil::playEffect(const MusicEffectType &effectType) {
+    if (GameConfig::MUTE) return;
+    switch (effectType) {
+        case BULLET_HIT:
+            SimpleAudioEngine::getInstance()->playEffect("music/bullet_hit.wav");
+            break;
+        default:
+            break;
+    }
+}
+
+void GameUtil::playBgMusic(const MusicBgType &bgType) {
+    if (GameConfig::MUTE) return;
+    switch (bgType) {
+        case HOME_PAGE:
+            //SimpleAudioEngine::getInstance()->playBackgroundMusic("music/xxx");
+            break;
+        default:
+            break;
+    }
 }

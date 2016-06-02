@@ -60,7 +60,7 @@ private:
 	void meetEnemyWithPlayerBullet(EnemySpriteBase *enemy, PlayerBulletSprite *playerBullet);
 	void meetPlayerWithWall(PlayerDualSprite *plyr, WallSprite *wall);
 	void meetEnemyWithWall(EnemySpriteBase *enemy, WallSprite *wall);
-	void meetPlayerBulletWithWall(PlayerBulletSprite *playerBullet, WallSprite *wall);
+	void meetBulletWithWall(PlayerBulletSprite *playerBullet, WallSprite *wall);
 	void meetEnemyBulletWithWall(EnemyBulletSprite *enemyBullet, WallSprite *wall);
 
 	/*

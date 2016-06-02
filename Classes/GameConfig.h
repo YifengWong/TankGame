@@ -3,35 +3,41 @@
 class GameConfig {
 public:
     // Bullet common config
-    static const int BULLET_DAMAGE = 100;
-    static const int BULLET_LAST_TIME = 2;
+    static int BULLET_DAMAGE;
+    static int BULLET_LAST_TIME;
 
     // Enemy common config
-    static const int ENEMY_DECISION_INTERVAL = 1;
+    static int ENEMY_DECISION_INTERVAL;
 
     // Player config
-    static const int PLAYER_MOVE_SPEED = 100;
-    static const int PLAYER_BULLET_SPEED = 150;
-    static const int PLAYER_BULLET_NUM_LIMIT = 5;
-    static const int PLAYER_INIT_HP = 1000;
-    static const int PLAYER_MAX_HP = 1000;
+    static int PLAYER_MOVE_SPEED;
+    static int PLAYER_BULLET_SPEED;
+    static unsigned PLAYER_BULLET_NUM_LIMIT;
+    static int PLAYER_INIT_HP;
+    static int PLAYER_MAX_HP;
 
     // Normal enemy config
-    static const int ENEMY_NORMAL_MOVE_SPEED = 50;
-    static const int ENEMY_NORMAL_BULLET_SPEED = 150;
-    static const int ENEMY_NORMAL_COLLISION_DAMAGE = 300;
-    static const int ENEMY_NORMAL_MAX_HP = 1000;
-    static const int ENEMY_NORMAL_INIT_HP = 1000;
+    static int ENEMY_NORMAL_MOVE_SPEED;
+    static int ENEMY_NORMAL_BULLET_SPEED;
+    static int ENEMY_NORMAL_COLLISION_DAMAGE;
+    static int ENEMY_NORMAL_MAX_HP;
+    static int ENEMY_NORMAL_INIT_HP;
 
     // Boss enemy config
-    static const int ENEMY_BOSS_MOVE_SPEED = 100;
-    static const int ENEMY_BOSS_BULLET_SPEED = 200;
-    static const int ENEMY_BOSS_COLLISION_DAMAGE = 500;
-    static const int ENEMY_BOSS_MAX_HP = 2000;
-    static const int ENEMY_BOSS_INIT_HP = 2000;
+    static int ENEMY_BOSS_MOVE_SPEED;
+    static int ENEMY_BOSS_BULLET_SPEED;
+    static int ENEMY_BOSS_COLLISION_DAMAGE;
+    static int ENEMY_BOSS_MAX_HP;
+    static int ENEMY_BOSS_INIT_HP;
+
+    // Music
+    static bool MUTE;
+    static float MUSIC_BG_VOLUME;
+    static float MUSIC_EFFECT_VOLUME;
 
     // Debug switchers
     static const bool DRAW_WORLD_EDGE = false;
+
 
     /*
     Five types of the sprite:
