@@ -2,8 +2,11 @@
 
 #include "HPValue.h"
 
-class AliveSpriteBase : public cocos2d::Sprite{
+class AliveSpriteBase : public cocos2d::Sprite {
 public:
+    AliveSpriteBase();
+    virtual ~AliveSpriteBase();
+
     /*
     Check if the sprite is dead.
     Author: ChuyangLiu

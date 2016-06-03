@@ -6,6 +6,12 @@
 
 USING_NS_CC;
 
+EnemyBossSprite::EnemyBossSprite() {
+}
+
+EnemyBossSprite::~EnemyBossSprite() {
+}
+
 EnemyBossSprite* EnemyBossSprite::create(GameScene1Player *scene) {
 	EnemyBossSprite *enemy = new (std::nothrow) EnemyBossSprite();
 	if (enemy && enemy->initWithFile("boss.png")) {

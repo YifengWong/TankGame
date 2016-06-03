@@ -3,6 +3,12 @@
 
 USING_NS_CC;
 
+WallSprite::WallSprite() {
+}
+
+WallSprite::~WallSprite() {
+}
+
 WallSprite* WallSprite::create(const bool &breakable) {
     WallSprite *wall = new (std::nothrow) WallSprite();
     if (wall) {

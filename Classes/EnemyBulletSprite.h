@@ -7,6 +7,8 @@ An enemy bullet sprite
 */
 class EnemyBulletSprite : public BulletSpriteBase {
 public:
+    virtual ~EnemyBulletSprite();
+
     /*
     Create a bullet for enemy.
     Author: ChuyangLiu
@@ -19,7 +21,7 @@ private:
     Use create() to create the instance from outside the class.
     Author: ChuyangLiu
     */
-    EnemyBulletSprite() {}
+    EnemyBulletSprite();
 
     /*
     onRemove() event called in removeFromParent()

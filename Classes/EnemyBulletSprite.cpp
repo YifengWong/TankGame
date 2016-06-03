@@ -4,6 +4,12 @@
 
 USING_NS_CC;
 
+EnemyBulletSprite::EnemyBulletSprite() {
+}
+
+EnemyBulletSprite::~EnemyBulletSprite() {
+}
+
 EnemyBulletSprite* EnemyBulletSprite::create() {
     EnemyBulletSprite *bullet = new (std::nothrow) EnemyBulletSprite();
     if (bullet && bullet->initWithFile("bullet_enemy.png")) {

@@ -9,6 +9,8 @@ Base class for an enemy sprite
 */
 class EnemySpriteBase : public AliveSpriteBase {
 public:
+    EnemySpriteBase();
+    virtual ~EnemySpriteBase();
 
     /*
     Enemy fire at the target.

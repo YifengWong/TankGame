@@ -6,6 +6,12 @@ USING_NS_CC;
 
 unsigned PlayerBulletSprite::bulletCnt = 0;
 
+PlayerBulletSprite::PlayerBulletSprite() {
+}
+
+PlayerBulletSprite::~PlayerBulletSprite() {
+}
+
 PlayerBulletSprite* PlayerBulletSprite::create() {
     PlayerBulletSprite *bullet = new (std::nothrow) PlayerBulletSprite();
     if (bullet && bullet->initWithFile("bullet_player.png")) {

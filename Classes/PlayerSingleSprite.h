@@ -7,6 +7,8 @@ A player sprite for single player model
 */
 class PlayerSingleSprite : public PlayerSpriteBase {
 public:
+    virtual ~PlayerSingleSprite();
+
     /*
     Create a player sprite.
     Author: ChuyangLiu
@@ -37,5 +39,5 @@ private:
     Use create() to create the instance from outside the class.
     Author: ChuyangLiu
     */
-    PlayerSingleSprite() {}
+    PlayerSingleSprite();
 };

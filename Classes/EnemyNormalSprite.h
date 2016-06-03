@@ -7,6 +7,8 @@ A normal enemy sprite
 */
 class EnemyNormalSprite : public EnemySpriteBase {
 public:
+    virtual ~EnemyNormalSprite();
+
     /*
     Create an enemy sprite.
     Author: ChuyangLiu
@@ -20,7 +22,7 @@ private:
     Use create() to create the instance from outside the class.
     Author: ChuyangLiu
     */
-    EnemyNormalSprite() {}
+    EnemyNormalSprite();
 
     /*
     Enemy fire at the target.

@@ -7,6 +7,8 @@ A player sprite for dual model
 */
 class PlayerDualSprite : public PlayerSpriteBase {
 public:
+    virtual ~PlayerDualSprite();
+
     /*
     Define the VS players type to help creating.
     Author: YifengWong
@@ -49,5 +51,5 @@ private:
 	Use create() to create the instance from outside the class.
 	Author: YifengWong
 	*/
-	PlayerDualSprite() {}
+    PlayerDualSprite();
 };

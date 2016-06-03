@@ -1,5 +1,11 @@
 #include "AliveSpriteBase.h"
 
+AliveSpriteBase::AliveSpriteBase() {
+}
+
+AliveSpriteBase::~AliveSpriteBase() {
+}
+
 bool AliveSpriteBase::isDead() const {
     return hp.isZero();
 }

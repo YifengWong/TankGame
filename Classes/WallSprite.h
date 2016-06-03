@@ -5,6 +5,8 @@ A wall sprite
 */
 class WallSprite : public cocos2d::Sprite {
 public:
+    ~WallSprite();
+
     /*
     Create a wall sprite.
     Author: ChuyangLiu
@@ -31,5 +33,5 @@ private:
     Use create() to create the instance from outside the class.
     Author: ChuyangLiu
     */
-    WallSprite() {}
+    WallSprite();
 };

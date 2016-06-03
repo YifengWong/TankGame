@@ -7,6 +7,8 @@ A player bullet sprite
 */
 class PlayerBulletSprite : public BulletSpriteBase {
 public:
+    virtual ~PlayerBulletSprite();
+
     /*
     Create a bullet for player.
     Author: ChuyangLiu
@@ -33,7 +35,7 @@ private:
     Use create() to create the instance from outside the class.
     Author: ChuyangLiu
     */
-    PlayerBulletSprite() {}
+    PlayerBulletSprite();
 
     /*
     onRemove() event called in removeFromParent()

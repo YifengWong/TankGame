@@ -2,6 +2,12 @@
 #include "GameConfig.h"
 #include "GameScene1Player.h"
 
+EnemySpriteBase::EnemySpriteBase() {
+}
+
+EnemySpriteBase::~EnemySpriteBase() {
+}
+
 void EnemySpriteBase::setGameScene(GameScene1Player *gameScene_) {
     gameScene = gameScene_;
 }

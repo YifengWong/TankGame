@@ -5,6 +5,12 @@
 
 USING_NS_CC;
 
+PlayerDualSprite::PlayerDualSprite() {
+}
+
+PlayerDualSprite::~PlayerDualSprite() {
+}
+
 PlayerDualSprite* PlayerDualSprite::create(PlayerDualSprite::VSPlayerType type) {
 	PlayerDualSprite *player = new (std::nothrow) PlayerDualSprite();
 	player->dir = Direction::UP;

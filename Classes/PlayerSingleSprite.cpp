@@ -4,6 +4,12 @@
 
 USING_NS_CC;
 
+PlayerSingleSprite::PlayerSingleSprite() {
+}
+
+PlayerSingleSprite::~PlayerSingleSprite() {
+}
+
 PlayerSingleSprite* PlayerSingleSprite::create() {
     PlayerSingleSprite *player = new (std::nothrow) PlayerSingleSprite();
     if (player && player->initWithFile("player.png")) {

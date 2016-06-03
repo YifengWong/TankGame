@@ -7,6 +7,8 @@ A boss sprite
 */
 class EnemyBossSprite : public EnemySpriteBase {
 public:
+    virtual ~EnemyBossSprite();
+
 	/*
 	Create an enemy sprite.
 	Author: YifengWong & ChuyangLiu
@@ -19,7 +21,7 @@ private:
 	Use create() to create the instance from outside the class.
 	Author: YifengWong
 	*/
-	EnemyBossSprite() {}
+    EnemyBossSprite();
 
     /*
     Enemy fire at the target.

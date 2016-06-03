@@ -2,6 +2,9 @@
 
 class BulletSpriteBase : public cocos2d::Sprite {
 public:
+    BulletSpriteBase();
+    virtual ~BulletSpriteBase();
+
     /*
     Remove the sprite from the parent
     Override Node::removeFromParent()

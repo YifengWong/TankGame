@@ -6,6 +6,12 @@
 
 USING_NS_CC;
 
+EnemyNormalSprite::EnemyNormalSprite() {
+}
+
+EnemyNormalSprite::~EnemyNormalSprite() {
+}
+
 EnemyNormalSprite* EnemyNormalSprite::create(GameScene1Player *scene) {
     EnemyNormalSprite *enemy = new (std::nothrow) EnemyNormalSprite();
     if (enemy && enemy->initWithFile("enemy.png")) {

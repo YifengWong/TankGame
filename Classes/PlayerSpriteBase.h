@@ -6,6 +6,9 @@
 
 class PlayerSpriteBase : public AliveSpriteBase {
 public:
+    PlayerSpriteBase();
+    virtual ~PlayerSpriteBase();
+
     /*
     Set the move value of the player towards the direction.
     Author: ChuyangLiu
