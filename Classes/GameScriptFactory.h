@@ -1,5 +1,7 @@
 #pragma once
 
+#include <string>
+
 /*
 A class that parse the game script
 This is a singleton class
@@ -12,7 +14,15 @@ public:
     */
     static GameScriptFactory* getInstance();
 
+    /*
+    Preload game scripts
+    Author: ChuyangLiu
+    */
+    void preloadScript();
+
 private:
+    // Filename of the checkpoint script
+    static std::string CHECKPOINT_FN;
 
     /*
     Constructor

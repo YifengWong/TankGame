@@ -73,6 +73,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
     register_all_packages();
 
     GameUtil::preloadMusic();
+    GameScriptFactory::getInstance()->preloadScript();
 
     // create a scene. it's an autorelease object
     auto scene = HomeScene::createScene();
