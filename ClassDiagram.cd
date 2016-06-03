@@ -45,19 +45,19 @@
   <Class Name="EnemySpriteBase">
     <Position X="6.25" Y="3.25" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAEAAAAAIAAABAAABAQAQAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAACAAAgAEAAAAAIAAABAAAAACAAAA=</HashCode>
       <FileName>C:\ChuyangLiu\WorkingSpace\CType\VisualStudio\TankGame\Classes\EnemySpriteBase.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="GameConfig" Collapsed="true">
     <Position X="10.25" Y="9.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>gB4DAAEABDBACAEhAAAMoASEAJGiAgARgAAYojEAAgY=</HashCode>
+      <HashCode>gh4DAAEABDBACAEhAAAMoASEAJWiAgARgAAYojEAAgY=</HashCode>
       <FileName>C:\ChuyangLiu\WorkingSpace\CType\VisualStudio\TankGame\Classes\GameConfig.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="GameUtil">
-    <Position X="8" Y="9.75" Width="2" />
+    <Position X="7.75" Y="9.75" Width="2.25" />
     <NestedTypes>
       <Enum Name="GameUtil::PositionType" Collapsed="true">
         <TypeIdentifier>
@@ -74,9 +74,14 @@
           <NewMemberFileName>C:\ChuyangLiu\WorkingSpace\CType\VisualStudio\TankGame\Classes\GameUtil.h</NewMemberFileName>
         </TypeIdentifier>
       </Enum>
+      <Enum Name="GameUtil::ParticleType" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>C:\ChuyangLiu\WorkingSpace\CType\VisualStudio\TankGame\Classes\GameUtil.h</NewMemberFileName>
+        </TypeIdentifier>
+      </Enum>
     </NestedTypes>
     <TypeIdentifier>
-      <HashCode>AAIAIABIAAIAhEAAAAAAAAAAAAAgIAAAAAAARAAAAAA=</HashCode>
+      <HashCode>AAIAIABJAAIAhEAAAAAAAAAAAAAgIAAAAAAARAAAAAA=</HashCode>
       <FileName>C:\ChuyangLiu\WorkingSpace\CType\VisualStudio\TankGame\Classes\GameUtil.h</FileName>
     </TypeIdentifier>
   </Class>
@@ -97,7 +102,7 @@
   <Class Name="PlayerBulletSprite">
     <Position X="9.75" Y="3.75" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAQMAAAAAAAAAAAAAAAAAAAFAAAAAAAA=</HashCode>
+      <HashCode>AAAABAAAAAAAAQMAAAAAAAAAAAAAAAAAAAFAAAAAAAA=</HashCode>
       <FileName>C:\ChuyangLiu\WorkingSpace\CType\VisualStudio\TankGame\Classes\PlayerBulletSprite.h</FileName>
     </TypeIdentifier>
   </Class>
@@ -125,7 +130,7 @@
   <Class Name="GameScene1Player">
     <Position X="0.5" Y="9.75" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>BAAJIAAQAEAgAAAAAAAwAAAAABCgCAYBARAAAAAMAAA=</HashCode>
+      <HashCode>BAAJIAAQAEAgAQAAAAAwAAAAABCgCAYBARAAAAAMAAA=</HashCode>
       <FileName>C:\ChuyangLiu\WorkingSpace\CType\VisualStudio\TankGame\Classes\GameScene1Player.h</FileName>
     </TypeIdentifier>
   </Class>

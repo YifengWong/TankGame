@@ -15,9 +15,15 @@ public:
     virtual bool init();
     CREATE_FUNC(GameScene1Player);
 
-    // The player of the scene
-    static PlayerSingleSprite *player;
+    /*
+    Return the player sprite
+    Author: ChuyangLiu
+    */
+    const PlayerSingleSprite* getPlayer() const;
+
 private:
+    PlayerSingleSprite *player = nullptr;
+
     /*
     Inaccessible default constructor from outside the class.
     Use createScene() to create the instance from outside the class.

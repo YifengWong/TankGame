@@ -2,6 +2,8 @@
 
 #include "AliveSpriteBase.h"
 
+class GameScene1Player;
+
 /*
 Base class for an enemy sprite
 */
@@ -25,13 +27,13 @@ protected:
     Set the layer of the enemy.
     Author: ChuyangLiu
     */
-    void setLayer(cocos2d::Layer *layer_);
+    void setGameScene(GameScene1Player *gameScene_);
 
     /*
     Return the layer of the enemy.
     Author: ChuyangLiu
     */
-    cocos2d::Layer* getLayer();
+    GameScene1Player* getGameScene();
 
     /*
     Run the enemy AI.
@@ -40,6 +42,6 @@ protected:
     void runAI();
 
 private:
-    // The layer of the enemy
-    cocos2d::Layer *layer = nullptr;
+    // The GameScene layer of the enemy
+    GameScene1Player *gameScene = nullptr;
 };

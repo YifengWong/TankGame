@@ -11,7 +11,7 @@ public:
     Create an enemy sprite.
     Author: ChuyangLiu
     */
-    static EnemyNormalSprite* create(cocos2d::Layer *layer = nullptr);
+    static EnemyNormalSprite* create(GameScene1Player *scene = nullptr);
 
 private:
 

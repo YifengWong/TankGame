@@ -7,9 +7,6 @@
 USING_NS_CC;
 using namespace cocos2d::ui;
 
-PlayerDualSprite* GameScene2Player::player_1 = nullptr;
-PlayerDualSprite* GameScene2Player::player_2 = nullptr;
-
 Scene* GameScene2Player::createScene() {
 	// Create a scene with a physics world
 	auto scene = Scene::createWithPhysics();

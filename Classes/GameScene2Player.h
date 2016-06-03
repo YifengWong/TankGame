@@ -15,12 +15,10 @@ public:
 	virtual bool init();
 	CREATE_FUNC(GameScene2Player);
 
-
-	static PlayerDualSprite *player_1;
-	static PlayerDualSprite *player_2;
-
 private:
-	
+    PlayerDualSprite *player_1 = nullptr;
+    PlayerDualSprite *player_2 = nullptr;
+
 	/*
 	Inaccessible default constructor from outside the class.
 	Use createScene() to create the instance from outside the class.

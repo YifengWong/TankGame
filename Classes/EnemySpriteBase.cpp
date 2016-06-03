@@ -1,12 +1,13 @@
 #include "EnemySpriteBase.h"
 #include "GameConfig.h"
+#include "GameScene1Player.h"
 
-void EnemySpriteBase::setLayer(cocos2d::Layer *layer_) {
-    layer = layer_;
+void EnemySpriteBase::setGameScene(GameScene1Player *gameScene_) {
+    gameScene = gameScene_;
 }
 
-cocos2d::Layer* EnemySpriteBase::getLayer() {
-    return layer;
+GameScene1Player* EnemySpriteBase::getGameScene() {
+    return gameScene;
 }
 
 void EnemySpriteBase::runAI() {

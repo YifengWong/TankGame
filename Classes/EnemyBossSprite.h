@@ -11,7 +11,7 @@ public:
 	Create an enemy sprite.
 	Author: YifengWong & ChuyangLiu
 	*/
-	static EnemyBossSprite* create(cocos2d::Layer *layer = nullptr);
+	static EnemyBossSprite* create(GameScene1Player *scene = nullptr);
 
 private:
 	/*

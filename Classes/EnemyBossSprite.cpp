@@ -6,7 +6,7 @@
 
 USING_NS_CC;
 
-EnemyBossSprite* EnemyBossSprite::create(cocos2d::Layer *layer) {
+EnemyBossSprite* EnemyBossSprite::create(GameScene1Player *scene) {
 	EnemyBossSprite *enemy = new (std::nothrow) EnemyBossSprite();
 	if (enemy && enemy->initWithFile("boss.png")) {
 		enemy->autorelease();
@@ -24,7 +24,7 @@ EnemyBossSprite* EnemyBossSprite::create(cocos2d::Layer *layer) {
 		// Set player sprites
 		enemy->setAnchorPoint(Vec2(0.5, 0.5));
 		enemy->setPhysicsBody(physicBody);
-		enemy->setLayer(layer);
+		enemy->setGameScene(scene);
 		enemy->runAI();
         enemy->setHP(HPValue(GameConfig::ENEMY_BOSS_MAX_HP, GameConfig::ENEMY_BOSS_INIT_HP));
         enemy->runAction(RepeatForever::create(RotateBy::create(0.4f, 90.0f)));
@@ -43,16 +43,16 @@ void EnemyBossSprite::fire(const cocos2d::Vec2 &target) {
 	bullet->setPosition(getPosition());
 	bullet->getPhysicsBody()->setVelocity(vec * GameConfig::ENEMY_BOSS_BULLET_SPEED);
 	// Add to layer
-	getLayer()->addChild(bullet);
+	getGameScene()->addChild(bullet);
 }
 
 void EnemyBossSprite::makeAIDecision() {
-    if (this == nullptr || getLayer() == nullptr) return;
+    if (this == nullptr || getGameScene() == nullptr) return;
 
     if (rand() % 100 < 30) {
         if (rand() % 100 < 50) {
-            if (GameScene1Player::player == nullptr) return;
-            this->fire(GameScene1Player::player->getPosition());
+            if (getGameScene()->getPlayer() == nullptr) return;
+            this->fire(getGameScene()->getPlayer()->getPosition());
         } else {
             this->fire(GameUtil::getPosition(static_cast<GameUtil::PositionType>(
                 rand() % GameUtil::getPositionTypeCount())));
@@ -62,9 +62,9 @@ void EnemyBossSprite::makeAIDecision() {
     if (rand() % 100 < 80) {
         Vec2 vec;
         if (rand() % 100 < 50) {
-            if (GameScene1Player::player == nullptr) return;
+            if (getGameScene()->getPlayer() == nullptr) return;
             vec = GameUtil::getUnitDirectionVector(this->getPosition(),
-                                                     GameScene1Player::player->getPosition());
+                                                   getGameScene()->getPlayer()->getPosition());
         } else {
             auto pos = static_cast<GameUtil::PositionType>(rand() % GameUtil::getPositionTypeCount());
             vec = GameUtil::getUnitDirectionVector(this->getPosition(),

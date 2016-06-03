@@ -11,9 +11,6 @@ USING_NS_CC;
 using namespace CocosDenshion;
 
 void GameUtil::returnToHome() {
-    GameScene1Player::player = nullptr;
-    GameScene2Player::player_1 = nullptr;
-	GameScene2Player::player_2 = nullptr;
     PlayerBulletSprite::clearBulletCount();
     Director::getInstance()->getEventDispatcher()->removeAllEventListeners();
     Director::getInstance()->replaceScene(HomeScene::createScene());
