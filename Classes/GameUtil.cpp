@@ -74,7 +74,7 @@ bool GameUtil::isBossEnemy(EnemySpriteBase *enemy) {
 Vec2 GameUtil::getPosition(const PositionType &type) {
     auto origin = getOrigin();
     auto visibleSize = getVisibleSize();
-    const int offset = 70;
+    const double offset = 0.5 * 0.2 * (visibleSize.width - origin.x + visibleSize.height - origin.y);
     switch (type) {
         case LEFT_TOP:
             return Vec2(origin.x + offset,
@@ -150,6 +150,16 @@ Vec2 GameUtil::getPosition(const PositionType &type) {
 
 int GameUtil::getPositionTypeCount() {
     return 17;
+}
+
+Vec2 GameUtil::getPosition(const int &row, const int &column) {
+    auto origin = getOrigin();
+    auto visibleSize = getVisibleSize();
+    double gridWidth = (visibleSize.width - origin.x) / GameConfig::WINDOW_COLUMN_NUM;
+    double gridHeight = (visibleSize.height) / GameConfig::WINDOW_ROW_NUM;
+    double x = origin.x + (column + 0.5) * gridWidth;
+    double y = origin.y + (GameConfig::WINDOW_ROW_NUM - row - 1 + 0.5) * gridHeight;
+    return Vec2(x, y);
 }
 
 void GameUtil::preloadMusic() {

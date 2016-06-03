@@ -28,20 +28,30 @@ bool GameScene1Player::init() {
         return false;
     }
 
+    // Test function GameUtil::getPostion(const int x, const int y)
+    for (int i = 0; i < GameConfig::WINDOW_ROW_NUM; ++i) {
+        for (int j = 0; j < GameConfig::WINDOW_COLUMN_NUM; ++j) {
+            auto pos = GameUtil::getPosition(i, j);
+            auto tmp = EnemyNormalSprite::create();
+            tmp->setPosition(pos);
+            addChild(tmp);
+        }
+    }
+
     // Add sprites
-    addBackground();
-    addBoundary();
-    addPlayer();
-    addEnemies();
-    addWalls();
+    //addBackground();
+    //addBoundary();
+    //addPlayer();
+    //addEnemies();
+    //addWalls();
 
-    // Add event listeners
-    addKeyboardListener();
-    addContactListener();
-    addMouseListener();
+    //// Add event listeners
+    //addKeyboardListener();
+    //addContactListener();
+    //addMouseListener();
 
-    // Set schedule
-    schedule(schedule_selector(GameScene1Player::update));
+    //// Set schedule
+    //schedule(schedule_selector(GameScene1Player::update));
 
     return true;
 }

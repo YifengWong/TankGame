@@ -27,7 +27,7 @@ EnemyBossSprite* EnemyBossSprite::create(cocos2d::Layer *layer) {
 		enemy->setLayer(layer);
 		enemy->runAI();
         enemy->setHP(HPValue(GameConfig::ENEMY_BOSS_MAX_HP, GameConfig::ENEMY_BOSS_INIT_HP));
-        enemy->runAction(RepeatForever::create(RotateBy::create(0.4, 90)));
+        enemy->runAction(RepeatForever::create(RotateBy::create(0.4f, 90.0f)));
 
 		return enemy;
 	}

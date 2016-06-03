@@ -73,12 +73,17 @@ public:
     };
 
     /*
-    Return one position specified by @param type
-    position of the game window.
+    Return one predefined position specified by @param type
     Author: ChuyangLiu
     */
     static cocos2d::Vec2 getPosition(const PositionType &type);
     static int getPositionTypeCount();
+
+    /*
+    Return one position at @param row and @param column of the window
+    Author: ChuyangLiu
+    */
+    static cocos2d::Vec2 getPosition(const int &row, const int &column);
 
     /*
     Preload game music.

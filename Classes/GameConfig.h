@@ -2,6 +2,10 @@
 
 class GameConfig {
 public:
+    // Window size
+    static unsigned WINDOW_ROW_NUM;
+    static unsigned WINDOW_COLUMN_NUM;
+
     // Bullet common config
     static int BULLET_DAMAGE;
     static int BULLET_LAST_TIME;
@@ -51,6 +55,7 @@ public:
     Object:                  Collide:   Trigger collision event:
     [Bullet, Bullet]         false      X
     [Bullet, Wall]           true       true
+    [Wall,   Wall]           false      X
     [Player, Player]         false      X
     [Player, PlayerBullet]   false      X
     [Player, EnemyBullet]    true       true

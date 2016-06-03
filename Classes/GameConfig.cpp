@@ -1,5 +1,9 @@
 #include "GameConfig.h"
 
+// Window size
+unsigned GameConfig::WINDOW_ROW_NUM = 10;
+unsigned GameConfig::WINDOW_COLUMN_NUM = 15;
+
 // Bullet common config
 int GameConfig::BULLET_DAMAGE = 100;
 int GameConfig::BULLET_LAST_TIME = 2;  // Seconds
