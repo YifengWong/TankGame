@@ -44,7 +44,6 @@ private:
     cocos2d::ui::Button *nextBtn = nullptr;
     cocos2d::ui::Button *winBtn = nullptr;
 
-
     /*
     Inaccessible default constructor from outside the class.
     Use createScene() to create the instance from outside the class.
