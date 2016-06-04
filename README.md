@@ -41,18 +41,18 @@ The script is constructed as  a json array:
 	                "type": 1,
 	                "enemy_row": 10,
 	                "enemy_col": 10
-	            },
+	            }
 	        ],
 	        "walls": [
 	        ]
 	    }
 	]
 	
-The game map is partitioned as 16*26 matrix. Each "*_row" and "*_col" json attribute describes the position of the sprite.
+The game map is partitioned as 16\*26 matrix. Each "*_row" and "*_col" json attribute describes the position of the sprite.
 
 The above script create 2 checkpoints with different enemies and walls in it. The "type" attrbute describes the enemy type. Currently we only support 2 types of enemy so the value is only valid with 0 and 1.
 
-WARNING: Don't modify the file "Resources/script/default_checkpoint.json" unless you know what you are doing.
+*WARNING*: Don't modify the file "Resources/script/default_checkpoint.json" unless you know what you are doing.
 
 ## Links
 * [Cocos2d-x stable versions](http://www.cocos2d-x.org/download)
