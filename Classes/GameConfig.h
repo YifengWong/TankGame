@@ -5,8 +5,8 @@
 class GameConfig {
 public:
     // Window size
-    static const unsigned WINDOW_ROW_NUM = 18;
-    static const unsigned WINDOW_COLUMN_NUM = 25;
+    static const unsigned WINDOW_ROW_NUM = 16;
+    static const unsigned WINDOW_COLUMN_NUM = 26;
 
     // Bullet common config
     static int BULLET_DAMAGE;
