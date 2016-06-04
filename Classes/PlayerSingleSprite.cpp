@@ -37,20 +37,20 @@ PlayerSingleSprite* PlayerSingleSprite::create(GameScene1Player *scene) {
     return nullptr;
 }
 
-void PlayerSingleSprite::setMoveVal(const Direction &direc) {
+void PlayerSingleSprite::setMoveVal(const GameUtil::Direction &direc) {
     auto physicBody = getPhysicsBody();
     if (physicBody == nullptr) return;
     switch (direc) {
-        case LEFT:
+        case GameUtil::Direction::LEFT:
             physicBody->setVelocity(Vec2(-GameConfig::PLAYER_MOVE_SPEED, physicBody->getVelocity().y));
             break;
-        case UP:
+        case GameUtil::Direction::UP:
             physicBody->setVelocity(Vec2(physicBody->getVelocity().x, GameConfig::PLAYER_MOVE_SPEED));
             break;
-        case RIGHT:
+        case GameUtil::Direction::RIGHT:
             physicBody->setVelocity(Vec2(GameConfig::PLAYER_MOVE_SPEED, physicBody->getVelocity().y));
             break;
-        case DOWN:
+        case GameUtil::Direction::DOWN:
             physicBody->setVelocity(Vec2(physicBody->getVelocity().x, -GameConfig::PLAYER_MOVE_SPEED));
             break;
         default:
@@ -58,23 +58,23 @@ void PlayerSingleSprite::setMoveVal(const Direction &direc) {
     }
 }
 
-void PlayerSingleSprite::resetMoveVal(const Direction &direc) {
+void PlayerSingleSprite::resetMoveVal(const GameUtil::Direction &direc) {
     auto physicBody = getPhysicsBody();
     if (physicBody == nullptr) return;
     switch (direc) {
-        case LEFT:
+        case GameUtil::Direction::LEFT:
             if (physicBody->getVelocity().x == 0) break;
             physicBody->setVelocity(physicBody->getVelocity() + Vec2(GameConfig::PLAYER_MOVE_SPEED, 0));
             break;
-        case UP:
+        case GameUtil::Direction::UP:
             if (physicBody->getVelocity().y == 0) break;
             physicBody->setVelocity(physicBody->getVelocity() + Vec2(0, -GameConfig::PLAYER_MOVE_SPEED));
             break;
-        case RIGHT:
+        case GameUtil::Direction::RIGHT:
             if (physicBody->getVelocity().x == 0) break;
             physicBody->setVelocity(physicBody->getVelocity() + Vec2(-GameConfig::PLAYER_MOVE_SPEED, 0));
             break;
-        case DOWN:
+        case GameUtil::Direction::DOWN:
             if (physicBody->getVelocity().y == 0) break;
             physicBody->setVelocity(physicBody->getVelocity() + Vec2(0, GameConfig::PLAYER_MOVE_SPEED));
             break;

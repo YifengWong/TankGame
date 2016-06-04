@@ -5,21 +5,21 @@
 class EnemySpriteBase;
 
 /*
-Move direction declaration.
-Author: ChuyangLiu
-*/
-enum Direction {
-    LEFT,
-    UP,
-    RIGHT,
-    DOWN
-};
-
-/*
 Game utilities
 */
 class GameUtil {
 public:
+    /*
+    Move direction declaration.
+    Author: ChuyangLiu
+    */
+    enum Direction {
+        LEFT,
+        UP,
+        RIGHT,
+        DOWN
+    };
+
     /*
     Return to home scene.
     Author: ChuyangLiu

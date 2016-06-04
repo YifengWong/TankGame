@@ -148,19 +148,19 @@ void GameScene1Player::addKeyboardListener() {
         switch (code) {
             case cocos2d::EventKeyboard::KeyCode::KEY_A:
                 if (!GameScene1Player::player) return;
-                player->setMoveVal(Direction::LEFT);
+                player->setMoveVal(GameUtil::Direction::LEFT);
                 break;
             case cocos2d::EventKeyboard::KeyCode::KEY_D:
                 if (!GameScene1Player::player) return;
-                player->setMoveVal(Direction::RIGHT);
+                player->setMoveVal(GameUtil::Direction::RIGHT);
                 break;
             case cocos2d::EventKeyboard::KeyCode::KEY_W:
                 if (!GameScene1Player::player) return;
-                player->setMoveVal(Direction::UP);
+                player->setMoveVal(GameUtil::Direction::UP);
                 break;
             case cocos2d::EventKeyboard::KeyCode::KEY_S:
                 if (!GameScene1Player::player) return;
-                player->setMoveVal(Direction::DOWN);
+                player->setMoveVal(GameUtil::Direction::DOWN);
                 break;
             case cocos2d::EventKeyboard::KeyCode::KEY_HOME:
                 GameUtil::returnToHome();
@@ -174,16 +174,16 @@ void GameScene1Player::addKeyboardListener() {
         if (player) {
             switch (code) {
                 case cocos2d::EventKeyboard::KeyCode::KEY_A:
-                    player->resetMoveVal(Direction::LEFT);
+                    player->resetMoveVal(GameUtil::Direction::LEFT);
                     break;
                 case cocos2d::EventKeyboard::KeyCode::KEY_D:
-                    player->resetMoveVal(Direction::RIGHT);
+                    player->resetMoveVal(GameUtil::Direction::RIGHT);
                     break;
                 case cocos2d::EventKeyboard::KeyCode::KEY_W:
-                    player->resetMoveVal(Direction::UP);
+                    player->resetMoveVal(GameUtil::Direction::UP);
                     break;
                 case cocos2d::EventKeyboard::KeyCode::KEY_S:
-                    player->resetMoveVal(Direction::DOWN);
+                    player->resetMoveVal(GameUtil::Direction::DOWN);
                     break;
                 default:
                     break;

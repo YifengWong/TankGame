@@ -13,13 +13,13 @@ public:
     Set the move value of the player towards the direction.
     Author: ChuyangLiu
     */
-    virtual void setMoveVal(const Direction &direc) = 0;
+    virtual void setMoveVal(const GameUtil::Direction &direc) = 0;
 
     /*
     Reset the move value of the player towards the direction.
     Author: ChuyangLiu
     */
-    virtual void resetMoveVal(const Direction &direc) = 0;
+    virtual void resetMoveVal(const GameUtil::Direction &direc) = 0;
 
     /*
     Player fire at the target.

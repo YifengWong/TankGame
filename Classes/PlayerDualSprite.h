@@ -28,13 +28,13 @@ public:
 	Set the move value of the player towards the direction, and change the picture.
 	Author: YifengWong
 	*/
-    virtual void setMoveVal(const Direction &direc) override;
+    virtual void setMoveVal(const GameUtil::Direction &direc) override;
 
 	/*
 	Reset the move value of the player towards the direction.
 	Author: YifengWong
 	*/
-    virtual void resetMoveVal(const Direction &direc) override;
+    virtual void resetMoveVal(const GameUtil::Direction &direc) override;
 
 	/*
 	Player fire at the target.
@@ -43,7 +43,7 @@ public:
     virtual void fire(cocos2d::Layer *layer, const cocos2d::Vec2 *target = nullptr) override;
 
 private:
-	Direction dir;
+    GameUtil::Direction dir;
     PlayerDualSprite::VSPlayerType type;
 
 	/*

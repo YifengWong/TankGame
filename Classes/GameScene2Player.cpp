@@ -128,35 +128,35 @@ void GameScene2Player::addKeyboardListener() {
 		switch (code) {
 			case cocos2d::EventKeyboard::KeyCode::KEY_A:
                 if (!player_1) return;
-				player_1->setMoveVal(Direction::LEFT);
+				player_1->setMoveVal(GameUtil::Direction::LEFT);
 				break;
 			case cocos2d::EventKeyboard::KeyCode::KEY_D:
                 if (!player_1) return;
-				player_1->setMoveVal(Direction::RIGHT);
+				player_1->setMoveVal(GameUtil::Direction::RIGHT);
 				break;
 			case cocos2d::EventKeyboard::KeyCode::KEY_W:
                 if (!player_1) return;
-				player_1->setMoveVal(Direction::UP);
+				player_1->setMoveVal(GameUtil::Direction::UP);
 				break;
 			case cocos2d::EventKeyboard::KeyCode::KEY_S:
                 if (!player_1) return;
-				player_1->setMoveVal(Direction::DOWN);
+				player_1->setMoveVal(GameUtil::Direction::DOWN);
 				break;
 			case cocos2d::EventKeyboard::KeyCode::KEY_LEFT_ARROW:
                 if (!player_2) return;
-				player_2->setMoveVal(Direction::LEFT);
+				player_2->setMoveVal(GameUtil::Direction::LEFT);
 				break;
 			case cocos2d::EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
                 if (!player_2) return;
-				player_2->setMoveVal(Direction::RIGHT);
+				player_2->setMoveVal(GameUtil::Direction::RIGHT);
 				break;
 			case cocos2d::EventKeyboard::KeyCode::KEY_UP_ARROW:
                 if (!player_2) return;
-				player_2->setMoveVal(Direction::UP);
+				player_2->setMoveVal(GameUtil::Direction::UP);
 				break;
 			case cocos2d::EventKeyboard::KeyCode::KEY_DOWN_ARROW:
                 if (!player_2) return;
-				player_2->setMoveVal(Direction::DOWN);
+				player_2->setMoveVal(GameUtil::Direction::DOWN);
 				break;
 			case cocos2d::EventKeyboard::KeyCode::KEY_SPACE:
                 if (!player_1) return;
@@ -178,28 +178,28 @@ void GameScene2Player::addKeyboardListener() {
 		if (player_1 && player_2) {
 			switch (code) {
 			case cocos2d::EventKeyboard::KeyCode::KEY_A:
-				player_1->resetMoveVal(Direction::LEFT);
+				player_1->resetMoveVal(GameUtil::Direction::LEFT);
 				break;
 			case cocos2d::EventKeyboard::KeyCode::KEY_D:
-				player_1->resetMoveVal(Direction::RIGHT);
+				player_1->resetMoveVal(GameUtil::Direction::RIGHT);
 				break;
 			case cocos2d::EventKeyboard::KeyCode::KEY_W:
-				player_1->resetMoveVal(Direction::UP);
+				player_1->resetMoveVal(GameUtil::Direction::UP);
 				break;
 			case cocos2d::EventKeyboard::KeyCode::KEY_S:
-				player_1->resetMoveVal(Direction::DOWN);
+				player_1->resetMoveVal(GameUtil::Direction::DOWN);
 				break;
 			case cocos2d::EventKeyboard::KeyCode::KEY_LEFT_ARROW:
-				player_2->resetMoveVal(Direction::LEFT);
+				player_2->resetMoveVal(GameUtil::Direction::LEFT);
 				break;
 			case cocos2d::EventKeyboard::KeyCode::KEY_RIGHT_ARROW:
-				player_2->resetMoveVal(Direction::RIGHT);
+				player_2->resetMoveVal(GameUtil::Direction::RIGHT);
 				break;
 			case cocos2d::EventKeyboard::KeyCode::KEY_UP_ARROW:
-				player_2->resetMoveVal(Direction::UP);
+				player_2->resetMoveVal(GameUtil::Direction::UP);
 				break;
 			case cocos2d::EventKeyboard::KeyCode::KEY_DOWN_ARROW:
-				player_2->resetMoveVal(Direction::DOWN);
+				player_2->resetMoveVal(GameUtil::Direction::DOWN);
 				break;
 			default:
 				break;

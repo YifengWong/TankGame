@@ -13,7 +13,7 @@ PlayerDualSprite::~PlayerDualSprite() {
 
 PlayerDualSprite* PlayerDualSprite::create(PlayerDualSprite::VSPlayerType type) {
 	PlayerDualSprite *player = new (std::nothrow) PlayerDualSprite();
-	player->dir = Direction::UP;
+	player->dir = GameUtil::Direction::UP;
 	player->type = type;
 	if (player) {
 		if (type == PlayerDualSprite::PLAYER_1 && player->initWithFile("player.png")) {
@@ -62,55 +62,55 @@ PlayerDualSprite* PlayerDualSprite::create(PlayerDualSprite::VSPlayerType type) 
 	return nullptr;
 }
 
-void PlayerDualSprite::setMoveVal(const Direction &direc) {
+void PlayerDualSprite::setMoveVal(const GameUtil::Direction &direc) {
 	auto physicBody = getPhysicsBody();
 	if (physicBody == nullptr) return;
 
 	dir = direc;
 	switch (direc) {
-	case LEFT:
-		setRotation(270);
-		physicBody->setVelocity(Vec2(-GameConfig::PLAYER_MOVE_SPEED, physicBody->getVelocity().y));
-		break;
-	case UP:
-		setRotation(0);
-		physicBody->setVelocity(Vec2(physicBody->getVelocity().x, GameConfig::PLAYER_MOVE_SPEED));
-		break;
-	case RIGHT:
-		setRotation(90);
-		physicBody->setVelocity(Vec2(GameConfig::PLAYER_MOVE_SPEED, physicBody->getVelocity().y));
-		break;
-	case DOWN:
-		setRotation(180);
-		physicBody->setVelocity(Vec2(physicBody->getVelocity().x, -GameConfig::PLAYER_MOVE_SPEED));
-		break;
-	default:
-		break;
+	    case GameUtil::Direction::LEFT:
+		    setRotation(270);
+		    physicBody->setVelocity(Vec2(-GameConfig::PLAYER_MOVE_SPEED, physicBody->getVelocity().y));
+		    break;
+	    case GameUtil::Direction::UP:
+		    setRotation(0);
+		    physicBody->setVelocity(Vec2(physicBody->getVelocity().x, GameConfig::PLAYER_MOVE_SPEED));
+		    break;
+	    case GameUtil::Direction::RIGHT:
+		    setRotation(90);
+		    physicBody->setVelocity(Vec2(GameConfig::PLAYER_MOVE_SPEED, physicBody->getVelocity().y));
+		    break;
+	    case GameUtil::Direction::DOWN:
+		    setRotation(180);
+		    physicBody->setVelocity(Vec2(physicBody->getVelocity().x, -GameConfig::PLAYER_MOVE_SPEED));
+		    break;
+	    default:
+		    break;
 	}
 }
 
-void PlayerDualSprite::resetMoveVal(const Direction &direc) {
+void PlayerDualSprite::resetMoveVal(const GameUtil::Direction &direc) {
 	auto physicBody = getPhysicsBody();
 	if (physicBody == nullptr) return;
 	switch (direc) {
-	case LEFT:
-		if (physicBody->getVelocity().x == 0) break;
-		physicBody->setVelocity(physicBody->getVelocity() + Vec2(GameConfig::PLAYER_MOVE_SPEED, 0));
-		break;
-	case UP:
-		if (physicBody->getVelocity().y == 0) break;
-		physicBody->setVelocity(physicBody->getVelocity() + Vec2(0, -GameConfig::PLAYER_MOVE_SPEED));
-		break;
-	case RIGHT:
-		if (physicBody->getVelocity().x == 0) break;
-		physicBody->setVelocity(physicBody->getVelocity() + Vec2(-GameConfig::PLAYER_MOVE_SPEED, 0));
-		break;
-	case DOWN:
-		if (physicBody->getVelocity().y == 0) break;
-		physicBody->setVelocity(physicBody->getVelocity() + Vec2(0, GameConfig::PLAYER_MOVE_SPEED));
-		break;
-	default:
-		break;
+	    case GameUtil::Direction::LEFT:
+		    if (physicBody->getVelocity().x == 0) break;
+		    physicBody->setVelocity(physicBody->getVelocity() + Vec2(GameConfig::PLAYER_MOVE_SPEED, 0));
+		    break;
+	    case GameUtil::Direction::UP:
+		    if (physicBody->getVelocity().y == 0) break;
+		    physicBody->setVelocity(physicBody->getVelocity() + Vec2(0, -GameConfig::PLAYER_MOVE_SPEED));
+		    break;
+	    case GameUtil::Direction::RIGHT:
+		    if (physicBody->getVelocity().x == 0) break;
+		    physicBody->setVelocity(physicBody->getVelocity() + Vec2(-GameConfig::PLAYER_MOVE_SPEED, 0));
+		    break;
+	    case GameUtil::Direction::DOWN:
+		    if (physicBody->getVelocity().y == 0) break;
+		    physicBody->setVelocity(physicBody->getVelocity() + Vec2(0, GameConfig::PLAYER_MOVE_SPEED));
+		    break;
+	    default:
+		    break;
 	}
 }
 
@@ -120,10 +120,10 @@ void PlayerDualSprite::fire(Layer *layer, const cocos2d::Vec2 *target) {
 	else bullet = EnemyBulletSprite::create();
 
 	Vec2 vec;
-	if (dir == LEFT) vec.y = 0, vec.x = -1;
-	else if (dir == RIGHT) vec.y = 0, vec.x = 1;
-	else if (dir == UP) vec.y = 1, vec.x = 0;
-	else if (dir == DOWN) vec.y = -1, vec.x = 0;
+	if (dir == GameUtil::Direction::LEFT) vec.y = 0, vec.x = -1;
+	else if (dir == GameUtil::Direction::RIGHT) vec.y = 0, vec.x = 1;
+	else if (dir == GameUtil::Direction::UP) vec.y = 1, vec.x = 0;
+	else if (dir == GameUtil::Direction::DOWN) vec.y = -1, vec.x = 0;
 
 	// Add bullet
 	bullet->setPosition(getPosition());
