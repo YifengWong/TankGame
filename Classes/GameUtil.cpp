@@ -6,9 +6,12 @@
 #include "GameScene1Player.h"
 #include "GameScene2Player.h"
 #include "HomeScene.h"
+#include <sstream>
 
 USING_NS_CC;
 using namespace CocosDenshion;
+using std::string;
+using std::stringstream;
 
 void GameUtil::returnToHome() {
     PlayerBulletSprite::clearBulletCount();
@@ -205,4 +208,12 @@ void GameUtil::addParticles(cocos2d::Layer *layer, const cocos2d::Vec2 &pos, con
     }
     ps->setPosition(pos);
     layer->addChild(ps);
+}
+
+string GameUtil::convertToString(const int &v) {
+    stringstream s;
+    string res;
+    s << v;
+    s >> res;
+    return res;
 }

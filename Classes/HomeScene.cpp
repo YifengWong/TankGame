@@ -3,8 +3,11 @@
 #include "GameScene1Player.h"
 #include "ui/CocosGUI.h"
 #include "GameUtil.h"
+#include "GameScriptFactory.h"
+#include <string>
 
 USING_NS_CC;
+using std::string;
 using namespace cocos2d::ui;
 
 Scene* HomeScene::createScene() {
@@ -20,8 +23,7 @@ bool HomeScene::init() {
     }
 
     addStartBtns();
-
-    // TODO Home scene design
+    addScriptInfo();
 
     return true;
 }
@@ -34,7 +36,7 @@ void HomeScene::addStartBtns() {
     startBtn->addClickEventListener([](Ref* pSender) {
         Director::getInstance()->replaceScene(GameScene1Player::createScene());
     });
-    addChild(startBtn, 0);
+    addChild(startBtn);
 
 	auto startVSBtn = Button::create();
 	startVSBtn->setTitleText("2 Player");
@@ -43,5 +45,13 @@ void HomeScene::addStartBtns() {
 	startVSBtn->addClickEventListener([](Ref* pSender) {
 		Director::getInstance()->replaceScene(GameScene2Player::createScene());
 	});
-	addChild(startVSBtn, 0);
+	addChild(startVSBtn);
+}
+
+void HomeScene::addScriptInfo() {
+    auto cptNum = Label::create();
+    auto cptCnt = GameScriptFactory::getInstance()->getCheckpointsCount();
+    cptNum->setString("Level number: " + GameUtil::convertToString(cptCnt));
+    cptNum->setPosition(GameUtil::getPosition(GameUtil::PositionType::RIGHT_BOTTOM) + Vec2(0, -20));
+    addChild(cptNum);
 }

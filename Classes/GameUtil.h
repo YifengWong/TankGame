@@ -1,5 +1,7 @@
 #pragma once
 
+#include <string>
+
 class EnemySpriteBase;
 
 /*
@@ -119,6 +121,12 @@ public:
         EXPLODE
     };
     static void addParticles(cocos2d::Layer *layer, const cocos2d::Vec2 &pos, const ParticleType &type);
+
+    /*
+    Convert a int value to string
+    Author: ChuyangLiu
+    */
+    static std::string convertToString(const int &v);
 
     /*
     Check if the enemy is a normal enemy

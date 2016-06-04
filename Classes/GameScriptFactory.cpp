@@ -23,11 +23,12 @@ GameScriptFactory* GameScriptFactory::getInstance() {
 }
 
 void GameScriptFactory::loadScripts() {
+    checkpoints.clear();
     string script = getScriptFromFile(CHECKPOINT_FILENAME);
     log(script.c_str());
     if (script.empty()) return;
 
-    parseCheckpointStr(script);
+    parseCheckpointStr(script);  // Parse script content
 
     if (checkpoints.empty()) {  // Parse failed
         loadDefaultCheckpointScript();  // Load default scripts

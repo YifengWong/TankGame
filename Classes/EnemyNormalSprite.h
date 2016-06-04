@@ -13,7 +13,7 @@ public:
     Create an enemy sprite.
     Author: ChuyangLiu
     */
-    static EnemyNormalSprite* create(GameScene1Player *scene = nullptr);
+    static EnemyNormalSprite* create(GameScene1Player *scene);
 
 private:
 

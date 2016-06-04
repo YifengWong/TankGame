@@ -99,7 +99,7 @@ void GameScene1Player::addBoundary() {
 void GameScene1Player::addPlayer() {
     auto cpt = GameScriptFactory::getInstance()->getCheckpoints()->at(checkpointCnt);
     auto pos = GameUtil::getPosition(cpt.playerRow, cpt.playerCol);
-    player = PlayerSingleSprite::create();
+    player = PlayerSingleSprite::create(this);
     player->setPosition(pos);
     addChild(player);
 }

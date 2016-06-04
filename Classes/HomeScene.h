@@ -8,7 +8,9 @@ public:
     static cocos2d::Scene* createScene();
     virtual bool init();
     CREATE_FUNC(HomeScene);
+
 private:
+
     /*
     Inaccessible default constructor from outside the class.
     Use createScene() to create the instance from outside the class.
@@ -21,5 +23,11 @@ private:
     Author: ChuyangLiu
     */
     void addStartBtns();
+
+    /*
+    Add label to show scripts info
+    Author: ChuyangLiu
+    */
+    void addScriptInfo();
 };
 

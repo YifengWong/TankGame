@@ -10,7 +10,7 @@ PlayerSingleSprite::PlayerSingleSprite() {
 PlayerSingleSprite::~PlayerSingleSprite() {
 }
 
-PlayerSingleSprite* PlayerSingleSprite::create() {
+PlayerSingleSprite* PlayerSingleSprite::create(GameScene1Player *scene) {
     PlayerSingleSprite *player = new (std::nothrow) PlayerSingleSprite();
     if (player && player->initWithFile("player.png")) {
         player->autorelease();
@@ -28,6 +28,7 @@ PlayerSingleSprite* PlayerSingleSprite::create() {
         // Set player sprites
         player->setAnchorPoint(Vec2(0.5, 0.5));
         player->setPhysicsBody(physicBody);
+        player->setGameScene(scene);
         player->setHP(HPValue(GameConfig::PLAYER_MAX_HP, GameConfig::PLAYER_INIT_HP));
 
         return player;

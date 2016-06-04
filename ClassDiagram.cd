@@ -94,14 +94,14 @@
   <Class Name="GameUtil" Collapsed="true">
     <Position X="22.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAIAIABJAAIAhEAAAAAAAAAAAAAgIAAAAAAARAAAAAA=</HashCode>
+      <HashCode>AAIAIABJAAIIhEAAAAAAAAAAAAAgIAAAAAAARAAAAAA=</HashCode>
       <FileName>C:\ChuyangLiu\WorkingSpace\CType\VisualStudio\TankGame\Classes\GameUtil.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="HomeScene" Collapsed="true">
     <Position X="22.75" Y="3.75" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAIAAAAAAAAAAAAAAAAAAAAAAABAAIAEBAAAAAAAAA=</HashCode>
+      <HashCode>AAAIAAAAAAAAAAAAAAAAAAAAAAABAAIAEBAAEAAAAAA=</HashCode>
       <FileName>C:\ChuyangLiu\WorkingSpace\CType\VisualStudio\TankGame\Classes\HomeScene.h</FileName>
     </TypeIdentifier>
   </Class>
@@ -148,7 +148,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="SpriteBase">
-    <Position X="6.75" Y="0.5" Width="2" />
+    <Position X="7" Y="0.5" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAACQAEAAQAACABAgAAAAAAAAAAAAAAAAACAIAA=</HashCode>
       <FileName>C:\ChuyangLiu\WorkingSpace\CType\VisualStudio\TankGame\Classes\SpriteBase.h</FileName>

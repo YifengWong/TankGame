@@ -13,7 +13,7 @@ public:
     Create a player sprite.
     Author: ChuyangLiu
     */
-    static PlayerSingleSprite* create();
+    static PlayerSingleSprite* create(GameScene1Player *scene);
 
     /*
     Set the move value of the player towards the direction.

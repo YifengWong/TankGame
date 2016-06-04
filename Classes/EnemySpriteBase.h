@@ -3,8 +3,6 @@
 #include "AliveSpriteBase.h"
 #include "SpriteBase.h"
 
-class GameScene1Player;
-
 /*
 Base class for an enemy sprite
 */
