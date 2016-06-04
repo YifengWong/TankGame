@@ -1,10 +1,12 @@
 #pragma once
 
+#define TEST_GETPOSITION false
+
 class GameConfig {
 public:
     // Window size
-    static unsigned WINDOW_ROW_NUM;
-    static unsigned WINDOW_COLUMN_NUM;
+    static const unsigned WINDOW_ROW_NUM = 18;
+    static const unsigned WINDOW_COLUMN_NUM = 25;
 
     // Bullet common config
     static int BULLET_DAMAGE;
@@ -41,7 +43,6 @@ public:
 
     // Debug switchers
     static const bool DRAW_WORLD_EDGE = false;
-
 
     /*
     Five types of the sprite:

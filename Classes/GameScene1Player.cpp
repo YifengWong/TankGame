@@ -4,9 +4,12 @@
 #include "EnemyBossSprite.h"
 #include "GameUtil.h"
 #include "HomeScene.h"
+#include "GameScriptFactory.h"
 
 USING_NS_CC;
 using namespace cocos2d::ui;
+
+unsigned GameScene1Player::checkpointCnt = 0;
 
 Scene* GameScene1Player::createScene() {
     // Create a scene with a physics world
@@ -26,15 +29,22 @@ bool GameScene1Player::init() {
         return false;
     }
 
-    // Test function: GameUtil::getPostion(const int x, const int y)
-    //for (int i = 0; i < GameConfig::WINDOW_ROW_NUM; ++i) {
-    //    for (int j = 0; j < GameConfig::WINDOW_COLUMN_NUM; ++j) {
-    //        auto pos = GameUtil::getPosition(i, j);
-    //        auto tmp = EnemyNormalSprite::create();
-    //        tmp->setPosition(pos);
-    //        addChild(tmp);
-    //    }
-    //}
+#if (TEST_GETPOSITION == true)
+    for (unsigned i = 0; i < GameConfig::WINDOW_ROW_NUM; ++i) {
+        for (unsigned j = 0; j < GameConfig::WINDOW_COLUMN_NUM; ++j) {
+            auto pos = GameUtil::getPosition(i, j);
+            auto tmp = EnemyNormalSprite::create();
+            tmp->setPosition(pos);
+            addChild(tmp);
+        }
+    }
+    return true;
+#endif
+
+    // Checkpoints loaded failed
+    if (GameScriptFactory::getInstance()->getCheckpoints()->empty()) {
+        return true;
+    }
 
     // Add sprites
     //addBackground();
@@ -87,61 +97,48 @@ void GameScene1Player::addBoundary() {
 }
 
 void GameScene1Player::addPlayer() {
+    auto cpt = GameScriptFactory::getInstance()->getCheckpoints()->at(checkpointCnt);
+    auto pos = GameUtil::getPosition(cpt.playerRow, cpt.playerCol);
     player = PlayerSingleSprite::create();
-    player->setPosition(GameUtil::getPosition(GameUtil::PositionType::LEFT_BOTTOM));
+    player->setPosition(pos);
     addChild(player);
 }
 
 void GameScene1Player::addEnemies() {
-    auto enemyNormal = EnemyNormalSprite::create(this);
-    enemyNormal->setPosition(GameUtil::getPosition(GameUtil::PositionType::LEFT_TOP));
-    addChild(enemyNormal);
+    auto cpt = GameScriptFactory::getInstance()->getCheckpoints()->at(checkpointCnt);
+    auto enemies = cpt.enemies;
 
-    auto enemyBoss = EnemyBossSprite::create(this);
-    enemyBoss->setPosition(GameUtil::getPosition(GameUtil::PositionType::RIGHT_TOP));
-    addChild(enemyBoss);
+    for (const auto &e : enemies) {
+        EnemySpriteBase *enemy = nullptr;
+        switch (e.type) {
+            case GameScriptFactory::EnemyType::NORMAL:
+                enemy = EnemyNormalSprite::create(this);
+                break;
+            case GameScriptFactory::EnemyType::BOSS:
+                enemy = EnemyBossSprite::create(this);
+                break;
+            default:
+                break;
+        }
 
-    enemyNormal = EnemyNormalSprite::create(this);
-    enemyNormal->setPosition(GameUtil::getPosition(GameUtil::PositionType::RIGHT_BOTTOM));
-    addChild(enemyNormal);
+        if (enemy) {
+            auto pos = GameUtil::getPosition(e.enemyRow, e.enemyCol);
+            enemy->setPosition(pos);
+            addChild(enemy);
+        }
+    }
 }
 
 void GameScene1Player::addWalls() {
-    auto wall = WallSprite::create(true);
-    wall->setPosition(GameUtil::getPosition(GameUtil::PositionType::CENTER_LEFT));
-    addChild(wall);
+    auto cpt = GameScriptFactory::getInstance()->getCheckpoints()->at(checkpointCnt);
+    auto walls = cpt.walls;
 
-    wall = WallSprite::create(true);
-    wall->setPosition(GameUtil::getPosition(GameUtil::PositionType::CENTER_TOP));
-    addChild(wall);
-
-    wall = WallSprite::create(true);
-    wall->setPosition(GameUtil::getPosition(GameUtil::PositionType::CENTER_RIGHT));
-    addChild(wall);
-
-    wall = WallSprite::create(true);
-    wall->setPosition(GameUtil::getPosition(GameUtil::PositionType::CENTER_DOWN));
-    addChild(wall);
-
-    wall = WallSprite::create(false);
-    wall->setPosition(GameUtil::getPosition(GameUtil::PositionType::CENTER));
-    addChild(wall);
-
-    wall = WallSprite::create(false);
-    wall->setPosition(GameUtil::getPosition(GameUtil::PositionType::EDGE_CENTER_BOTTOM));
-    addChild(wall);
-
-    wall = WallSprite::create(false);
-    wall->setPosition(GameUtil::getPosition(GameUtil::PositionType::EDGE_CENTER_LEFT));
-    addChild(wall);
-
-    wall = WallSprite::create(false);
-    wall->setPosition(GameUtil::getPosition(GameUtil::PositionType::EDGE_CENTER_RIGHT));
-    addChild(wall);
-
-    wall = WallSprite::create(false);
-    wall->setPosition(GameUtil::getPosition(GameUtil::PositionType::EDGE_CENTER_TOP));
-    addChild(wall);
+    for (const auto &w : walls) {
+        auto wall = WallSprite::create(w.breakable);
+        auto pos = GameUtil::getPosition(w.wallRow, w.wallCol);
+        wall->setPosition(pos);
+        addChild(wall);
+    }
 }
 
 void GameScene1Player::addKeyboardListener() {
