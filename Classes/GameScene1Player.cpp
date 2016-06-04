@@ -42,7 +42,7 @@ bool GameScene1Player::init() {
 #endif
 
     // Checkpoints loaded failed
-    if (GameScriptFactory::getInstance()->getCheckpoints()->empty()) {
+    if (GameScriptFactory::getInstance()->getCheckpointsCount() == 0) {
         return true;
     }
 

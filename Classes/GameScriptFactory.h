@@ -52,6 +52,12 @@ public:
     */
     const std::vector<Checkpoint>* getCheckpoints() const;
 
+    /*
+    Return the checkpoints size
+    Author: ChuyangLiu
+    */
+    unsigned getCheckpointsCount() const;
+
 private:
 
     /*
