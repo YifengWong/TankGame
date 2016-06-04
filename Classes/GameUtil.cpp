@@ -150,6 +150,10 @@ int GameUtil::getPositionTypeCount() {
 }
 
 Vec2 GameUtil::getPosition(const int &row, const int &column) {
+    if (!(row >= 0 && row <= GameConfig::WINDOW_ROW_NUM 
+        && column >= 0 && column <= GameConfig::WINDOW_COLUMN_NUM)) {
+        return getPosition(PositionType::LEFT_BOTTOM);
+    }
     auto origin = getOrigin();
     auto visibleSize = getVisibleSize();
     double gridWidth = (visibleSize.width - origin.x) / GameConfig::WINDOW_COLUMN_NUM;

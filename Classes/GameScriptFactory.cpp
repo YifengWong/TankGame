@@ -125,3 +125,7 @@ string GameScriptFactory::getScriptFromFile(const string &filename) {
 const std::vector<GameScriptFactory::Checkpoint>* GameScriptFactory::getCheckpoints() const {
     return &checkpoints;
 }
+
+unsigned GameScriptFactory::getCheckpointsCount() const {
+    return checkpoints.size();
+}

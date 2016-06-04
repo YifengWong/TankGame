@@ -1,6 +1,6 @@
 [
     {
-        "player_row": 15,
+        "player_row": 13,
         "player_col": 2,
         "enemies": [
             {
@@ -82,21 +82,11 @@
             },
             {
                 "breakable": true,
-                "wall_row": 17,
-                "wall_col": 17
-            },
-            {
-                "breakable": true,
-                "wall_row": 16,
-                "wall_col": 17
-            },
-            {
-                "breakable": false,
                 "wall_row": 15,
                 "wall_col": 17
             },
             {
-                "breakable": false,
+                "breakable": true,
                 "wall_row": 14,
                 "wall_col": 17
             },
@@ -106,12 +96,12 @@
                 "wall_col": 17
             },
             {
-                "breakable": true,
+                "breakable": false,
                 "wall_row": 12,
                 "wall_col": 17
             },
             {
-                "breakable": true,
+                "breakable": false,
                 "wall_row": 11,
                 "wall_col": 17
             },
@@ -149,6 +139,99 @@
                 "breakable": true,
                 "wall_row": 4,
                 "wall_col": 17
+            },
+            {
+                "breakable": true,
+                "wall_row": 3,
+                "wall_col": 17
+            },
+            {
+                "breakable": true,
+                "wall_row": 2,
+                "wall_col": 17
+            }
+        ]
+    },
+    {
+        "player_row": 12,
+        "player_col": 2,
+        "enemies": [
+            {
+                "type": 1,
+                "enemy_row": 2,
+                "enemy_col": 21
+            }
+        ],
+        "walls": [
+            {
+                "breakable": true,
+                "wall_row": 0,
+                "wall_col": 18
+            },
+            {
+                "breakable": true,
+                "wall_row": 1,
+                "wall_col": 18
+            },
+            {
+                "breakable": true,
+                "wall_row": 2,
+                "wall_col": 18
+            },
+            {
+                "breakable": true,
+                "wall_row": 3,
+                "wall_col": 18
+            },
+            {
+                "breakable": true,
+                "wall_row": 4,
+                "wall_col": 18
+            },
+            {
+                "breakable": true,
+                "wall_row": 5,
+                "wall_col": 18
+            },
+            {
+                "breakable": true,
+                "wall_row": 5,
+                "wall_col": 19
+            },
+            {
+                "breakable": true,
+                "wall_row": 5,
+                "wall_col": 20
+            },
+            {
+                "breakable": true,
+                "wall_row": 5,
+                "wall_col": 21
+            },
+            {
+                "breakable": true,
+                "wall_row": 5,
+                "wall_col": 22
+            },
+            {
+                "breakable": true,
+                "wall_row": 5,
+                "wall_col": 23
+            },
+            {
+                "breakable": true,
+                "wall_row": 5,
+                "wall_col": 24
+            },
+            {
+                "breakable": true,
+                "wall_row": 5,
+                "wall_col": 25
+            },
+            {
+                "breakable": false,
+                "wall_row": 8,
+                "wall_col": 13
             }
         ]
     }
