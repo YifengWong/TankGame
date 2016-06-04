@@ -15,18 +15,3 @@ void BulletSpriteBase::scheduleAutoRemove() {
         }
     }, GameConfig::BULLET_LAST_TIME, "BulletSchedule");
 }
-
-void BulletSpriteBase::removeFromParent() {
-    mutex.lock();
-    if (removed) {
-        mutex.unlock();
-        return;
-    } else {
-        removed = true;
-        mutex.unlock();
-    }
-
-    onRemove();  // Call onRemove() cb
-    Sprite::removeFromParent();
-}
-

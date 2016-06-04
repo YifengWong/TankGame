@@ -1,17 +1,11 @@
 #pragma once
 
-class BulletSpriteBase : public cocos2d::Sprite {
+#include "SpriteBase.h"
+
+class BulletSpriteBase : public SpriteBase {
 public:
     BulletSpriteBase();
     virtual ~BulletSpriteBase();
-
-    /*
-    Remove the sprite from the parent
-    Override Node::removeFromParent()
-    This is a thread-safe method.
-    Author: ChuyangLiu
-    */
-    void removeFromParent();
 
 protected:
     /*
@@ -20,14 +14,6 @@ protected:
     */
     void scheduleAutoRemove();
 
-    /*
-    onRemove() event called in removeFromParent()
-    Author: ChuyangLiu
-    */
-    virtual void onRemove() = 0;
-
 private:
-    bool removed = false;
 
-    std::mutex mutex;
 };

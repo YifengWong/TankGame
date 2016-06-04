@@ -35,5 +35,3 @@ EnemyBulletSprite* EnemyBulletSprite::create() {
     return nullptr;
 }
 
-void EnemyBulletSprite::onRemove() {
-}

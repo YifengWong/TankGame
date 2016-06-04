@@ -2,9 +2,9 @@
 
 #include "AliveSpriteBase.h"
 #include "GameUtil.h"
+#include "SpriteBase.h"
 
-
-class PlayerSpriteBase : public AliveSpriteBase {
+class PlayerSpriteBase : public AliveSpriteBase, public SpriteBase {
 public:
     PlayerSpriteBase();
     virtual ~PlayerSpriteBase();

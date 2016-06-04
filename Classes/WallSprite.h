@@ -1,9 +1,11 @@
 #pragma once
 
+#include "SpriteBase.h"
+
 /*
 A wall sprite
 */
-class WallSprite : public cocos2d::Sprite {
+class WallSprite : public SpriteBase {
 public:
     ~WallSprite();
 

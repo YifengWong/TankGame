@@ -2,7 +2,7 @@
 
 #include "HPValue.h"
 
-class AliveSpriteBase : public cocos2d::Sprite {
+class AliveSpriteBase {
 public:
     AliveSpriteBase();
     virtual ~AliveSpriteBase();

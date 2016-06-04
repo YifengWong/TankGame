@@ -8,14 +8,6 @@ EnemySpriteBase::EnemySpriteBase() {
 EnemySpriteBase::~EnemySpriteBase() {
 }
 
-void EnemySpriteBase::setGameScene(GameScene1Player *gameScene_) {
-    gameScene = gameScene_;
-}
-
-GameScene1Player* EnemySpriteBase::getGameScene() {
-    return gameScene;
-}
-
 void EnemySpriteBase::runAI() {
     schedule([&](float f) {
         makeAIDecision();

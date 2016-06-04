@@ -1,13 +1,14 @@
 #pragma once
 
 #include "AliveSpriteBase.h"
+#include "SpriteBase.h"
 
 class GameScene1Player;
 
 /*
 Base class for an enemy sprite
 */
-class EnemySpriteBase : public AliveSpriteBase {
+class EnemySpriteBase : public AliveSpriteBase, public SpriteBase {
 public:
     EnemySpriteBase();
     virtual ~EnemySpriteBase();
@@ -25,17 +26,6 @@ public:
     virtual void makeAIDecision() = 0;
 
 protected:
-    /*
-    Set the layer of the enemy.
-    Author: ChuyangLiu
-    */
-    void setGameScene(GameScene1Player *gameScene_);
-
-    /*
-    Return the layer of the enemy.
-    Author: ChuyangLiu
-    */
-    GameScene1Player* getGameScene();
 
     /*
     Run the enemy AI.
@@ -44,6 +34,5 @@ protected:
     void runAI();
 
 private:
-    // The GameScene layer of the enemy
-    GameScene1Player *gameScene = nullptr;
+
 };
