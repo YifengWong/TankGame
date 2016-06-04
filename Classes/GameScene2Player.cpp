@@ -159,7 +159,7 @@ void GameScene2Player::addKeyboardListener() {
 				player_2->setMoveVal(Direction::DOWN);
 				break;
 			case cocos2d::EventKeyboard::KeyCode::KEY_SPACE:
-                if (!player_2) return;
+                if (!player_1) return;
 				player_1->fire(this);
 				break;
 			case cocos2d::EventKeyboard::KeyCode::KEY_ENTER:
@@ -352,6 +352,7 @@ void GameScene2Player::meetEnemyWithPlayerBullet(PlayerDualSprite *enemy, Player
             GameUtil::addParticles(this, enemy->getPosition(), GameUtil::ParticleType::EXPLODE);
 			enemy->removeFromParent();
 			enemy = nullptr;
+			GameScene2Player::player_2 = nullptr;
 		}
 	}
 }
