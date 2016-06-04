@@ -23,6 +23,12 @@ public:
     */
     virtual void makeAIDecision() = 0;
 
+    /*
+    Implement onRemove event
+    Author: ChuyangLiu
+    */
+    virtual void onRemove() override;
+
 protected:
 
     /*

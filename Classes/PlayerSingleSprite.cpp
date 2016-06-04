@@ -1,6 +1,7 @@
 #include "PlayerSingleSprite.h"
 #include "GameConfig.h"
 #include "PlayerBulletSprite.h"
+#include "GameScene1Player.h"
 
 USING_NS_CC;
 
@@ -92,4 +93,8 @@ void PlayerSingleSprite::fire(Layer *layer, const cocos2d::Vec2 *target) {
     bullet->getPhysicsBody()->setVelocity(vec * GameConfig::PLAYER_BULLET_SPEED);
     // Add to layer
     layer->addChild(bullet);
+}
+
+void PlayerSingleSprite::onRemove() {
+    getGameScene()->showGameoverBtn();
 }

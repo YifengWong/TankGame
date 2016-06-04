@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="Cocos2dRenderer" Collapsed="true">
-    <Position X="4" Y="20.75" Width="1.5" />
+    <Position X="4" Y="22.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AQBgAAAAgCEBAgABABCAAAAAAAAAEACAAAAAAAggACA=</HashCode>
       <FileName>Cocos2dEngine\Cocos2dRenderer.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="OpenGLES" Collapsed="true">
-    <Position X="7.5" Y="20.75" Width="1.5" />
+    <Position X="7.5" Y="22.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAAAQABQAAgAIABAAAAAAAAAAAAgJAAEAgIAA=</HashCode>
       <FileName>Cocos2dEngine\OpenGLES.h</FileName>
@@ -22,7 +22,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="AppDelegate" Collapsed="true">
-    <Position X="2.25" Y="20.75" Width="1.5" />
+    <Position X="2.25" Y="22.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAACAAAAAAAAACAAQAAAEAAAAAAAAAAAAk=</HashCode>
       <FileName>C:\ChuyangLiu\WorkingSpace\CType\VisualStudio\TankGame\Classes\AppDelegate.h</FileName>
@@ -59,21 +59,21 @@
   <Class Name="EnemySpriteBase">
     <Position X="6.5" Y="4.75" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAABAAAAAAAAAEAAAAAICAABAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAABQAAAAAAAAEAAAAAICAABAAAAAAAAAA=</HashCode>
       <FileName>C:\ChuyangLiu\WorkingSpace\CType\VisualStudio\TankGame\Classes\EnemySpriteBase.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="GameConfig" Collapsed="true">
     <Position X="13.5" Y="13.25" Width="3.5" />
     <TypeIdentifier>
-      <HashCode>gh4DAAEABDBACAEhAAAMoASEAJWiAgARgAAYojEAAgY=</HashCode>
+      <HashCode>gh4DAAEABLBACAEhAAAMoASEAJWiAgARgAAYojEAAgY=</HashCode>
       <FileName>C:\ChuyangLiu\WorkingSpace\CType\VisualStudio\TankGame\Classes\GameConfig.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="GameScene1Player">
     <Position X="0.5" Y="13.25" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>BAAJJAAQAEAgAQAAAAAwAAAAABCgCAYBARAAAAAMAAA=</HashCode>
+      <HashCode>BAIJoAAQAEIgAQAAIAEwQABAABCgCAaBARAAAIAMAAA=</HashCode>
       <FileName>C:\ChuyangLiu\WorkingSpace\CType\VisualStudio\TankGame\Classes\GameScene1Player.h</FileName>
     </TypeIdentifier>
   </Class>
@@ -143,14 +143,14 @@
       </Enum>
     </NestedTypes>
     <TypeIdentifier>
-      <HashCode>AAIAIABJAAIIhEAAAAAAAAAAAAAgIAAAAAAARAAAAAA=</HashCode>
+      <HashCode>AAAAIABJAAIIhEAAAAAAAAAQBAAgICACAAAARAABAAA=</HashCode>
       <FileName>C:\ChuyangLiu\WorkingSpace\CType\VisualStudio\TankGame\Classes\GameUtil.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="HomeScene">
     <Position X="6" Y="13.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAIAAAAAAAAAAAAAAAAAAAAAAABAAIAEBAAEAAAAAA=</HashCode>
+      <HashCode>AAAIAAAAAAAAAAAAAAAAAAAAAAABAAIAEBgAAAAAAEA=</HashCode>
       <FileName>C:\ChuyangLiu\WorkingSpace\CType\VisualStudio\TankGame\Classes\HomeScene.h</FileName>
     </TypeIdentifier>
   </Class>
@@ -185,7 +185,7 @@
   <Class Name="PlayerSingleSprite">
     <Position X="2.75" Y="8.75" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAAAIEAAAAAAAAAAAAAAAAAAAEAAAAAABABAAAAAAgA=</HashCode>
+      <HashCode>AAAAIEAAAAAAAQAAAAAAAAAAAEAAAAAABABAAAAAAgA=</HashCode>
       <FileName>C:\ChuyangLiu\WorkingSpace\CType\VisualStudio\TankGame\Classes\PlayerSingleSprite.h</FileName>
     </TypeIdentifier>
   </Class>
@@ -211,14 +211,14 @@
     </TypeIdentifier>
   </Class>
   <Class Name="CocosAppWinRT::OpenGLESPage" Collapsed="true">
-    <Position X="5.75" Y="20.75" Width="1.5" />
+    <Position X="5.75" Y="22.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AhgQhIAEACUEhAAABAAAgICSYAw0AAQAUAAQAKIxAQo=</HashCode>
       <FileName>Cocos2dEngine\OpenGLESPage.xaml.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CocosAppWinRT::App" Collapsed="true">
-    <Position X="0.5" Y="20.75" Width="1.5" />
+    <Position X="0.5" Y="22.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>IAAChAAAAAQAAACAAAAAAAAGAAAAAAAAQAAAAAAoAAA=</HashCode>
       <FileName>App.xaml.h</FileName>

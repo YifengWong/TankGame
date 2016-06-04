@@ -4,6 +4,8 @@
 
 class GameConfig {
 public:
+    static unsigned CURRENT_CHECKPOINT;
+
     // Window size
     static const unsigned WINDOW_ROW_NUM = 16;
     static const unsigned WINDOW_COLUMN_NUM = 26;

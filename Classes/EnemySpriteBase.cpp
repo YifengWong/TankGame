@@ -13,3 +13,7 @@ void EnemySpriteBase::runAI() {
         makeAIDecision();
     }, GameConfig::ENEMY_DECISION_INTERVAL, "EnemyAISchedule");
 }
+
+void EnemySpriteBase::onRemove() {
+    getGameScene()->decreaseEnemyCnt();
+}

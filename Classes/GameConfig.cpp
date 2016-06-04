@@ -1,5 +1,7 @@
 #include "GameConfig.h"
 
+unsigned GameConfig::CURRENT_CHECKPOINT = 0;
+
 // Bullet common config
 int GameConfig::BULLET_DAMAGE = 100;
 int GameConfig::BULLET_LAST_TIME = 4;  // Seconds

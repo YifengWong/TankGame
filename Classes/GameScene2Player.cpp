@@ -3,6 +3,7 @@
 #include "EnemyNormalSprite.h"
 #include "EnemyBossSprite.h"
 #include "GameUtil.h"
+#include "HomeScene.h"
 
 USING_NS_CC;
 using namespace cocos2d::ui;
@@ -167,7 +168,7 @@ void GameScene2Player::addKeyboardListener() {
 				player_2->fire(this);
 				break;
 			case cocos2d::EventKeyboard::KeyCode::KEY_HOME:
-				GameUtil::returnToHome();
+				GameUtil::toHomeScene();
 				break;
 			default:
 				break;

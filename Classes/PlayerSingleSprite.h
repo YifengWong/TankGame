@@ -33,6 +33,12 @@ public:
     */
     virtual void fire(cocos2d::Layer *layer, const cocos2d::Vec2 *target = nullptr) override;
 
+    /*
+    Implement onRemove event
+    Author: ChuyangLiu
+    */
+    virtual void onRemove() override;
+
 private:
     /*
     Inaccessible default constructor from outside the class.

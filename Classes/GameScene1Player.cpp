@@ -9,8 +9,6 @@
 USING_NS_CC;
 using namespace cocos2d::ui;
 
-unsigned GameScene1Player::checkpointCnt = 0;
-
 Scene* GameScene1Player::createScene() {
     // Create a scene with a physics world
     auto scene = Scene::createWithPhysics();
@@ -52,6 +50,7 @@ bool GameScene1Player::init() {
     addPlayer();
     addEnemies();
     addWalls();
+    addGameInfo();
 
     // Add event listeners
     addKeyboardListener();
@@ -65,6 +64,40 @@ bool GameScene1Player::init() {
 }
 
 void GameScene1Player::update(float f) {
+}
+
+void GameScene1Player::addGameInfo() {
+    winBtn = Button::create();
+    winBtn->setTitleText("YOU WIN");
+    winBtn->setTitleFontSize(30);
+    winBtn->setPosition(GameUtil::getPosition(GameUtil::PositionType::CENTER));
+    winBtn->addClickEventListener([](Ref* pSender) {
+        GameUtil::toHomeScene();
+    });
+    winBtn->setVisible(false);
+    addChild(winBtn, 1);
+
+    gameoverBtn = Button::create();
+    gameoverBtn->setTitleText("GAME OVER");
+    gameoverBtn->setTitleFontSize(30);
+    gameoverBtn->setPosition(GameUtil::getPosition(GameUtil::PositionType::CENTER));
+    gameoverBtn->addClickEventListener([](Ref* pSender) {
+        GameUtil::toHomeScene();
+    });
+    gameoverBtn->setVisible(false);
+    addChild(gameoverBtn, 1);
+
+    nextBtn = Button::create();
+    nextBtn->setTitleText("NEXT");
+    nextBtn->setTitleFontSize(30);
+    nextBtn->setPosition(GameUtil::getPosition(GameUtil::PositionType::CENTER));
+    nextBtn->addClickEventListener([&](Ref* pSender) {
+        if (GameUtil::hasNextCheckpoint()) {
+            GameUtil::toNextCheckpoint();
+        }
+    });
+    nextBtn->setVisible(false);
+    addChild(nextBtn, 1);
 }
 
 void GameScene1Player::addBackground() {
@@ -97,7 +130,7 @@ void GameScene1Player::addBoundary() {
 }
 
 void GameScene1Player::addPlayer() {
-    auto cpt = GameScriptFactory::getInstance()->getCheckpoints()->at(checkpointCnt);
+    auto cpt = GameScriptFactory::getInstance()->getCheckpoints()->at(GameConfig::CURRENT_CHECKPOINT);
     auto pos = GameUtil::getPosition(cpt.playerRow, cpt.playerCol);
     player = PlayerSingleSprite::create(this);
     player->setPosition(pos);
@@ -105,7 +138,7 @@ void GameScene1Player::addPlayer() {
 }
 
 void GameScene1Player::addEnemies() {
-    auto cpt = GameScriptFactory::getInstance()->getCheckpoints()->at(checkpointCnt);
+    auto cpt = GameScriptFactory::getInstance()->getCheckpoints()->at(GameConfig::CURRENT_CHECKPOINT);
     auto enemies = cpt.enemies;
 
     for (const auto &e : enemies) {
@@ -125,12 +158,13 @@ void GameScene1Player::addEnemies() {
             auto pos = GameUtil::getPosition(e.enemyRow, e.enemyCol);
             enemy->setPosition(pos);
             addChild(enemy);
+            ++enemyCnt;
         }
     }
 }
 
 void GameScene1Player::addWalls() {
-    auto cpt = GameScriptFactory::getInstance()->getCheckpoints()->at(checkpointCnt);
+    auto cpt = GameScriptFactory::getInstance()->getCheckpoints()->at(GameConfig::CURRENT_CHECKPOINT);
     auto walls = cpt.walls;
 
     for (const auto &w : walls) {
@@ -163,7 +197,7 @@ void GameScene1Player::addKeyboardListener() {
                 player->setMoveVal(GameUtil::Direction::DOWN);
                 break;
             case cocos2d::EventKeyboard::KeyCode::KEY_HOME:
-                GameUtil::returnToHome();
+                GameUtil::toHomeScene();
                 break;
             default:
                 break;
@@ -379,4 +413,36 @@ void GameScene1Player::meetBulletWithWall(BulletSpriteBase *bullet, WallSprite *
 
 const PlayerSingleSprite* GameScene1Player::getPlayer() const {
     return player;
+}
+
+void GameScene1Player::showGameoverBtn() {
+    if (isOneInfoShown()) return;
+    gameoverBtn->setVisible(true);
+}
+
+void GameScene1Player::showNextBtn() {
+    if (isOneInfoShown()) return;
+    nextBtn->setVisible(true);
+}
+
+void GameScene1Player::showWinBtn() {
+    if (isOneInfoShown()) return;
+    winBtn->setVisible(true);
+}
+
+void GameScene1Player::decreaseEnemyCnt() {
+    if (enemyCnt > 0) {
+        --enemyCnt;
+        if (enemyCnt == 0) {
+            if (GameUtil::hasNextCheckpoint()) {
+                showNextBtn();
+            } else {
+                showWinBtn();
+            }
+        }
+    }
+}
+
+bool GameScene1Player::isOneInfoShown() const {
+    return gameoverBtn->isVisible() || nextBtn->isVisible() || winBtn->isVisible();
 }

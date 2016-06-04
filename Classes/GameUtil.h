@@ -21,12 +21,6 @@ public:
     };
 
     /*
-    Return to home scene.
-    Author: ChuyangLiu
-    */
-    static void returnToHome();
-
-    /*
     Return origin position of the game window.
     Author: ChuyangLiu
     */
@@ -139,4 +133,35 @@ public:
     Author: ChuyangLiu
     */
     static bool isBossEnemy(EnemySpriteBase *enemy);
+
+    /*
+    Change current scene to home scene
+    Author: ChuyangLiu
+    */
+    static void toHomeScene();
+
+    /*
+    Change current scene to GameScene1Player scene
+    Author: ChuyangLiu
+    */
+    static void toGameScene1Player();
+
+    /*
+    Change scene to next checkpoint
+    Author: ChuyangLiu
+    */
+    static void toNextCheckpoint();
+
+    /*
+    Check if current checkpoint is the last checkpoint
+    Author: ChuyangLiu
+    */
+    static bool hasNextCheckpoint();
+
+private:
+    /*
+    Reset some fields before replace to a new scene
+    Author: ChuyangLiu
+    */
+    static void resetBeforeReplace();
 };

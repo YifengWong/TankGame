@@ -10,6 +10,7 @@ public:
     CREATE_FUNC(HomeScene);
 
 private:
+    cocos2d::ui::Button *curCptBtn = nullptr;
 
     /*
     Inaccessible default constructor from outside the class.
@@ -25,9 +26,8 @@ private:
     void addStartBtns();
 
     /*
-    Add label to show scripts info
+    Add button to change checkpoint
     Author: ChuyangLiu
     */
-    void addScriptInfo();
+    void addCheckpointBtn();
 };
-

@@ -3,6 +3,7 @@
 #include "GameScene1Player.h"
 #include "ui/CocosGUI.h"
 #include "GameUtil.h"
+#include "GameConfig.h"
 #include "GameScriptFactory.h"
 #include <string>
 
@@ -23,7 +24,7 @@ bool HomeScene::init() {
     }
 
     addStartBtns();
-    addScriptInfo();
+    addCheckpointBtn();
 
     return true;
 }
@@ -48,10 +49,18 @@ void HomeScene::addStartBtns() {
 	addChild(startVSBtn);
 }
 
-void HomeScene::addScriptInfo() {
-    auto cptNum = Label::create();
-    auto cptCnt = GameScriptFactory::getInstance()->getCheckpointsCount();
-    cptNum->setString("Level number: " + GameUtil::convertToString(cptCnt));
-    cptNum->setPosition(GameUtil::getPosition(GameUtil::PositionType::RIGHT_BOTTOM) + Vec2(0, -20));
-    addChild(cptNum);
+void HomeScene::addCheckpointBtn() {
+    curCptBtn = Button::create();
+    curCptBtn->setTitleText("Current level: " + GameUtil::convertToString(GameConfig::CURRENT_CHECKPOINT));
+    curCptBtn->setPosition(GameUtil::getPosition(GameUtil::PositionType::RIGHT_BOTTOM) + Vec2(0, -20));
+    curCptBtn->addClickEventListener([&](Ref* pSender) {
+        auto max = GameScriptFactory::getInstance()->getCheckpointsCount();
+        if (GameConfig::CURRENT_CHECKPOINT == max - 1) {
+            GameConfig::CURRENT_CHECKPOINT = 0;
+        } else {
+            ++GameConfig::CURRENT_CHECKPOINT;
+        }
+        curCptBtn->setTitleText("Current level: " + GameUtil::convertToString(GameConfig::CURRENT_CHECKPOINT));
+    });
+    addChild(curCptBtn);
 }

@@ -21,10 +21,29 @@ public:
     */
     const PlayerSingleSprite* getPlayer() const;
 
-private:
-    PlayerSingleSprite *player = nullptr;
+    /*
+    Show widgets
+    Author: ChuyangLiu
+    */
+    void showGameoverBtn();
+    void showNextBtn();
+    void showWinBtn();
 
-    static unsigned checkpointCnt;
+    /*
+    Decrease the enemy count and check if the player
+    can go to next checkpoint
+    Author: ChuyangLiu
+    */
+    void decreaseEnemyCnt();
+
+private:
+    unsigned enemyCnt = 0;
+
+    PlayerSingleSprite *player = nullptr;
+    cocos2d::ui::Button *gameoverBtn = nullptr;
+    cocos2d::ui::Button *nextBtn = nullptr;
+    cocos2d::ui::Button *winBtn = nullptr;
+
 
     /*
     Inaccessible default constructor from outside the class.
@@ -42,6 +61,7 @@ private:
     void addPlayer();
     void addEnemies();
     void addWalls();
+    void addGameInfo();
 
     /*
     Add event listeners.
@@ -67,4 +87,10 @@ private:
     Author: ChuyangLiu
     */
     void update(float f);
+
+    /*
+    Check if there is one game info label shown
+    Author: ChuyangLiu
+    */
+    bool isOneInfoShown() const;
 };

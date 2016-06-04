@@ -6,18 +6,13 @@
 #include "GameScene1Player.h"
 #include "GameScene2Player.h"
 #include "HomeScene.h"
+#include "GameScriptFactory.h"
 #include <sstream>
 
 USING_NS_CC;
 using namespace CocosDenshion;
 using std::string;
 using std::stringstream;
-
-void GameUtil::returnToHome() {
-    PlayerBulletSprite::clearBulletCount();
-    Director::getInstance()->getEventDispatcher()->removeAllEventListeners();
-    Director::getInstance()->replaceScene(HomeScene::createScene());
-}
 
 Vec2 GameUtil::getOrigin() {
     return Director::getInstance()->getVisibleOrigin();
@@ -216,4 +211,28 @@ string GameUtil::convertToString(const int &v) {
     s << v;
     s >> res;
     return res;
+}
+
+void GameUtil::toHomeScene() {
+    resetBeforeReplace();
+    Director::getInstance()->replaceScene(HomeScene::createScene());
+}
+
+void GameUtil::toGameScene1Player() {
+    resetBeforeReplace();
+    Director::getInstance()->replaceScene(GameScene1Player::createScene());
+}
+
+void GameUtil::resetBeforeReplace() {
+    PlayerBulletSprite::clearBulletCount();
+    Director::getInstance()->getEventDispatcher()->removeAllEventListeners();
+}
+
+void GameUtil::toNextCheckpoint() {
+    ++GameConfig::CURRENT_CHECKPOINT;
+    GameUtil::toGameScene1Player();
+}
+
+bool GameUtil::hasNextCheckpoint() {
+    return GameConfig::CURRENT_CHECKPOINT < GameScriptFactory::getInstance()->getCheckpointsCount() - 1;
 }
