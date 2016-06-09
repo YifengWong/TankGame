@@ -378,7 +378,8 @@ void GameScene1Player::meetEnemyWithPlayerBullet(EnemySpriteBase *enemy, PlayerB
         log("Enemy HP: %d", enemy->getHP()->getValue());
         if (enemy->isDead()) {
             GameUtil::addParticles(this, enemy->getPosition(), GameUtil::ParticleType::EXPLODE);
-            enemy->removeFromParent();
+			
+			enemy->removeFromParent();
         }
     }
 }

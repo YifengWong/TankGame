@@ -27,5 +27,7 @@ public:
     */
     virtual void fire(cocos2d::Layer *layer, const cocos2d::Vec2 *target = nullptr) = 0;
 
+
 private:
+	cocos2d::ProgressTimer* hpSprite;
 };

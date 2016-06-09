@@ -29,6 +29,7 @@ public:
     */
     virtual void onRemove() override;
 
+
 protected:
 
     /*
@@ -37,6 +38,31 @@ protected:
     */
     void runAI();
 
-private:
+	/*
+	Update the hp bar
+	Author: YifengWong
+	*/
+	void updateHpBar();
 
+	/*
+	Show the hp bar
+	Author: YifengWong
+	*/
+	void showHpBar();
+
+	/*
+	Set the hp bar
+	Author: YifengWong
+	*/
+	void setHpBar();
+
+	/*
+	Remove the hp bar
+	Author: YifengWong
+	*/
+	void removeHpBar();
+
+	cocos2d::ProgressTimer* hpSprite;
+
+private:
 };

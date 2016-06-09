@@ -2,6 +2,7 @@
 #include "GameConfig.h"
 #include "PlayerBulletSprite.h"
 #include "EnemyBulletSprite.h"
+#include "GameScene2Player.h"
 
 USING_NS_CC;
 
@@ -33,7 +34,6 @@ PlayerDualSprite* PlayerDualSprite::create(PlayerDualSprite::VSPlayerType type) 
 			player->setAnchorPoint(Vec2(0.5, 0.5));
 			player->setPhysicsBody(physicBody);
             player->setHP(HPValue(GameConfig::PLAYER_MAX_HP, GameConfig::PLAYER_INIT_HP));
-
 
 		} else if (type == PlayerDualSprite::PLAYER_2 && player->initWithFile("enemy.png")) {
 			player->autorelease();

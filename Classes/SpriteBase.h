@@ -1,5 +1,6 @@
 #pragma once
 
+
 class GameScene1Player;
 
 class SpriteBase : public cocos2d::Sprite {
@@ -33,6 +34,7 @@ protected:
     Author: ChuyangLiu
     */
     GameScene1Player* getGameScene();
+
 
 private:
     std::mutex mutex;
