@@ -4,6 +4,7 @@
 #include "EnemyBossSprite.h"
 #include "GameUtil.h"
 #include "HomeScene.h"
+#include "GameScriptFactory.h"
 
 USING_NS_CC;
 using namespace cocos2d::ui;
@@ -31,6 +32,7 @@ bool GameScene2Player::init() {
 	addBoundary();
 	addPlayer();
 	addWalls();
+	addGameInfo();
 
 	// Add event listeners
 	addKeyboardListener();
@@ -43,6 +45,17 @@ bool GameScene2Player::init() {
 }
 
 void GameScene2Player::update(float f) {
+}
+
+void GameScene2Player::addGameInfo() {
+	winBtn = Button::create();
+	winBtn->setTitleFontSize(30);
+	winBtn->setPosition(GameUtil::getPosition(GameUtil::PositionType::CENTER));
+	winBtn->addClickEventListener([](Ref* pSender) {
+		GameUtil::toHomeScene();
+	});
+	winBtn->setVisible(false);
+	addChild(winBtn, 1);
 }
 
 void GameScene2Player::addBackground() {
@@ -85,41 +98,15 @@ void GameScene2Player::addPlayer() {
 }
 
 void GameScene2Player::addWalls() {
-	auto wall = WallSprite::create(true);
-	wall->setPosition(GameUtil::getPosition(GameUtil::PositionType::CENTER_LEFT));
-	addChild(wall);
+	auto stage = GameScriptFactory::getInstance()->getStages()->at(GameConfig::CHECKPOINT_2_PLAYER);
+	auto walls = stage.walls;
 
-	wall = WallSprite::create(true);
-	wall->setPosition(GameUtil::getPosition(GameUtil::PositionType::CENTER_TOP));
-	addChild(wall);
-
-	wall = WallSprite::create(true);
-	wall->setPosition(GameUtil::getPosition(GameUtil::PositionType::CENTER_RIGHT));
-	addChild(wall);
-
-	wall = WallSprite::create(true);
-	wall->setPosition(GameUtil::getPosition(GameUtil::PositionType::CENTER_DOWN));
-	addChild(wall);
-
-	wall = WallSprite::create(false);
-	wall->setPosition(GameUtil::getPosition(GameUtil::PositionType::CENTER));
-	addChild(wall);
-
-	wall = WallSprite::create(false);
-	wall->setPosition(GameUtil::getPosition(GameUtil::PositionType::EDGE_CENTER_BOTTOM));
-	addChild(wall);
-
-	wall = WallSprite::create(false);
-	wall->setPosition(GameUtil::getPosition(GameUtil::PositionType::EDGE_CENTER_LEFT));
-	addChild(wall);
-
-	wall = WallSprite::create(false);
-	wall->setPosition(GameUtil::getPosition(GameUtil::PositionType::EDGE_CENTER_RIGHT));
-	addChild(wall);
-
-	wall = WallSprite::create(false);
-	wall->setPosition(GameUtil::getPosition(GameUtil::PositionType::EDGE_CENTER_TOP));
-	addChild(wall);
+	for (const auto &w : walls) {
+		auto wall = WallSprite::create(w.breakable);
+		auto pos = GameUtil::getPosition(w.wallRow, w.wallCol);
+		wall->setPosition(pos);
+		addChild(wall);
+	}
 }
 
 void GameScene2Player::addKeyboardListener() {

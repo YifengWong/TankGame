@@ -15,6 +15,9 @@ public:
 	virtual bool init();
 	CREATE_FUNC(GameScene2Player);
 
+	// public for the player2 sprite getting this pointer
+	cocos2d::ui::Button *winBtn = nullptr;
+
 private:
     PlayerDualSprite *player_1 = nullptr;
     PlayerDualSprite *player_2 = nullptr;
@@ -34,6 +37,7 @@ private:
 	void addBoundary();
 	void addPlayer();
 	void addWalls();
+	void addGameInfo();
 
 	/*
 	Add event listeners.
