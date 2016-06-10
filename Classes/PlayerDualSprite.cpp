@@ -2,7 +2,6 @@
 #include "GameConfig.h"
 #include "PlayerBulletSprite.h"
 #include "EnemyBulletSprite.h"
-#include "GameScene2Player.h"
 
 USING_NS_CC;
 

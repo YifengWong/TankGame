@@ -45,7 +45,7 @@ bool GameScene1Player::init() {
     }
 
     // Add sprites
-    //addBackground();
+    addBackground();
     addBoundary();
     addPlayer();
     addEnemies();
