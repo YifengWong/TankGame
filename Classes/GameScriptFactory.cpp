@@ -23,23 +23,23 @@ GameScriptFactory* GameScriptFactory::getInstance() {
 }
 
 void GameScriptFactory::loadScripts() {
-    checkpoints.clear();
+    stages.clear();
     string script = getScriptFromFile(CHECKPOINT_FILENAME);
     log(script.c_str());
     if (script.empty()) return;
 
-    parseCheckpointStr(script);  // Parse script content
+    parseStageStr(script);  // Parse script content
 
-    if (checkpoints.empty()) {  // Parse failed
-        loadDefaultCheckpointScript();  // Load default scripts
+    if (stages.empty()) {  // Parse failed
+        loadDefaultStageScript();  // Load default scripts
     }
 }
 
-void GameScriptFactory::loadDefaultCheckpointScript() {
-    parseCheckpointStr(getScriptFromFile(CHECKPOINT_DEFAULT_FILENAME));
+void GameScriptFactory::loadDefaultStageScript() {
+    parseStageStr(getScriptFromFile(CHECKPOINT_DEFAULT_FILENAME));
 }
 
-void GameScriptFactory::parseCheckpointStr(const std::string &json) {
+void GameScriptFactory::parseStageStr(const std::string &json) {
     Document doc;
     doc.Parse<0>(json.c_str());
     if (doc.HasParseError() || !doc.IsArray()) {
@@ -52,15 +52,25 @@ void GameScriptFactory::parseCheckpointStr(const std::string &json) {
             return;
         }
 
-        Checkpoint cpt;
+        Stage cpt;
 
-        if (cptVal.HasMember(PLAYER_ROW_ATTR) && cptVal[PLAYER_ROW_ATTR].IsUint()) {
-            cpt.playerRow = cptVal[PLAYER_ROW_ATTR].GetUint();
+        if (cptVal.HasMember(PLAYER_1_ROW_ATTR) && cptVal[PLAYER_1_ROW_ATTR].IsUint()) {
+            cpt.player1Row = cptVal[PLAYER_1_ROW_ATTR].GetUint();
         } else {
             return;
         }
-        if (cptVal.HasMember(PLAYER_COL_ATTR) && cptVal[PLAYER_COL_ATTR].IsUint()) {
-            cpt.playerCol = cptVal[PLAYER_COL_ATTR].GetUint();
+        if (cptVal.HasMember(PLAYER_1_COL_ATTR) && cptVal[PLAYER_1_COL_ATTR].IsUint()) {
+            cpt.player1Col = cptVal[PLAYER_1_COL_ATTR].GetUint();
+        } else {
+            return;
+        }
+        if (cptVal.HasMember(PLAYER_2_ROW_ATTR) && cptVal[PLAYER_2_ROW_ATTR].IsUint()) {
+            cpt.player2Row = cptVal[PLAYER_2_ROW_ATTR].GetUint();
+        } else {
+            return;
+        }
+        if (cptVal.HasMember(PLAYER_2_COL_ATTR) && cptVal[PLAYER_2_COL_ATTR].IsUint()) {
+            cpt.player2Col = cptVal[PLAYER_2_COL_ATTR].GetUint();
         } else {
             return;
         }
@@ -113,7 +123,7 @@ void GameScriptFactory::parseCheckpointStr(const std::string &json) {
             }
         }
 
-        checkpoints.push_back(cpt);
+        stages.push_back(cpt);
     }
 }
 
@@ -123,10 +133,10 @@ string GameScriptFactory::getScriptFromFile(const string &filename) {
     return content;
 }
 
-const std::vector<GameScriptFactory::Checkpoint>* GameScriptFactory::getCheckpoints() const {
-    return &checkpoints;
+const std::vector<GameScriptFactory::Stage>* GameScriptFactory::getStages() const {
+    return &stages;
 }
 
-unsigned GameScriptFactory::getCheckpointsCount() const {
-    return checkpoints.size();
+unsigned GameScriptFactory::getStageCount() const {
+    return stages.size();
 }

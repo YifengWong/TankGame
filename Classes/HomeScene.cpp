@@ -54,7 +54,7 @@ void HomeScene::addCheckpointBtn() {
     curCptBtn->setTitleText("Current level: " + GameUtil::convertToString(GameConfig::CURRENT_CHECKPOINT));
     curCptBtn->setPosition(GameUtil::getPosition(GameUtil::PositionType::RIGHT_BOTTOM) + Vec2(0, -20));
     curCptBtn->addClickEventListener([&](Ref* pSender) {
-        auto max = GameScriptFactory::getInstance()->getCheckpointsCount();
+        auto max = GameScriptFactory::getInstance()->getStageCount();
         if (GameConfig::CURRENT_CHECKPOINT == max - 1) {
             GameConfig::CURRENT_CHECKPOINT = 0;
         } else {

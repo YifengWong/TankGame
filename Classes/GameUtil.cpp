@@ -234,5 +234,5 @@ void GameUtil::toNextCheckpoint() {
 }
 
 bool GameUtil::hasNextCheckpoint() {
-    return GameConfig::CURRENT_CHECKPOINT < GameScriptFactory::getInstance()->getCheckpointsCount() - 1;
+    return GameConfig::CURRENT_CHECKPOINT < GameScriptFactory::getInstance()->getStageCount() - 1;
 }

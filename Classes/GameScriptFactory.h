@@ -27,9 +27,11 @@ public:
         unsigned wallCol;
     };
 
-    struct Checkpoint {
-        unsigned playerRow;
-        unsigned playerCol;
+    struct Stage {
+        unsigned player1Row;
+        unsigned player1Col;
+        unsigned player2Row;
+        unsigned player2Col;
         std::vector<EnemyObj> enemies;
         std::vector<WallObj> walls;
     };
@@ -50,13 +52,13 @@ public:
     Return the checkpoints vector
     Author: ChuyangLiu
     */
-    const std::vector<Checkpoint>* getCheckpoints() const;
+    const std::vector<Stage>* getStages() const;
 
     /*
     Return the checkpoints size
     Author: ChuyangLiu
     */
-    unsigned getCheckpointsCount() const;
+    unsigned getStageCount() const;
 
 private:
 
@@ -76,23 +78,25 @@ private:
     Parse the checkpoint file content
     Author: ChuyangLiu
     */
-    void parseCheckpointStr(const std::string &json);
+    void parseStageStr(const std::string &json);
 
     /*
     Load default checkpoint scripts
     Author: ChuyangLiu
     */
-    void loadDefaultCheckpointScript();
+    void loadDefaultStageScript();
 
     // Checkpoints of the game
-    std::vector<Checkpoint> checkpoints;
+    std::vector<Stage> stages;
 
     // Script filename
-    const char *CHECKPOINT_FILENAME = "script/checkpoint.json";
-    const char *CHECKPOINT_DEFAULT_FILENAME = "script/default_checkpoint.json";
+    const char *CHECKPOINT_FILENAME = "script/stage.json";
+    const char *CHECKPOINT_DEFAULT_FILENAME = "script/default_stage.json";
     // Script attributes
-    const char *PLAYER_ROW_ATTR = "player_row";
-    const char *PLAYER_COL_ATTR = "player_col";
+    const char *PLAYER_1_ROW_ATTR = "player1_row";
+    const char *PLAYER_1_COL_ATTR = "player1_col";
+    const char *PLAYER_2_ROW_ATTR = "player2_row";
+    const char *PLAYER_2_COL_ATTR = "player2_col";
     const char *ENEMIES_ATTR = "enemies";
     const char *TYPE_ATTR = "type";
     const char *ENEMY_ROW_ATTR = "enemy_row";

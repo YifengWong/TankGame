@@ -1,7 +1,9 @@
 [
     {
-        "player_row": 13,
-        "player_col": 2,
+        "player1_row": 13,
+        "player1_col": 2,
+        "player2_row": 2,
+        "player2_col": 13,
         "enemies": [
             {
                 "type": 0,
@@ -153,8 +155,10 @@
         ]
     },
     {
-        "player_row": 12,
-        "player_col": 2,
+        "player1_row": 12,
+        "player1_col": 2,
+        "player2_row": 2,
+        "player2_col": 12,
         "enemies": [
             {
                 "type": 1,
@@ -236,8 +240,10 @@
         ]
     },
     {
-        "player_row": 13,
-        "player_col": 2,
+        "player1_row": 13,
+        "player1_col": 2,
+        "player2_row": 2,
+        "player2_col": 13,
         "enemies": [
             {
                 "type": 0,

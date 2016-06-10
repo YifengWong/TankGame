@@ -134,3 +134,8 @@ void PlayerDualSprite::fire(Layer *layer, const cocos2d::Vec2 *target) {
 	// Add to layer
 	layer->addChild(bullet);
 }
+
+void PlayerDualSprite::onRemove() {
+    PlayerSpriteBase::onRemove();
+    // TODO
+}

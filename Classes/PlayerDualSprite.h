@@ -54,4 +54,10 @@ private:
 	Author: YifengWong
 	*/
     PlayerDualSprite();
+
+    /*
+    Implement onRemove event
+    Author: ChuyangLiu
+    */
+    virtual void onRemove() override;
 };

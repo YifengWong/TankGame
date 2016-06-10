@@ -40,7 +40,7 @@ bool GameScene1Player::init() {
 #endif
 
     // Checkpoints loaded failed
-    if (GameScriptFactory::getInstance()->getCheckpointsCount() == 0) {
+    if (GameScriptFactory::getInstance()->getStageCount() == 0) {
         return true;
     }
 
@@ -130,16 +130,16 @@ void GameScene1Player::addBoundary() {
 }
 
 void GameScene1Player::addPlayer() {
-    auto cpt = GameScriptFactory::getInstance()->getCheckpoints()->at(GameConfig::CURRENT_CHECKPOINT);
-    auto pos = GameUtil::getPosition(cpt.playerRow, cpt.playerCol);
+    auto stage = GameScriptFactory::getInstance()->getStages()->at(GameConfig::CURRENT_CHECKPOINT);
+    auto pos = GameUtil::getPosition(stage.player1Row, stage.player1Col);
     player = PlayerSingleSprite::create(this);
     player->setPosition(pos);
     addChild(player);
 }
 
 void GameScene1Player::addEnemies() {
-    auto cpt = GameScriptFactory::getInstance()->getCheckpoints()->at(GameConfig::CURRENT_CHECKPOINT);
-    auto enemies = cpt.enemies;
+    auto stage = GameScriptFactory::getInstance()->getStages()->at(GameConfig::CURRENT_CHECKPOINT);
+    auto enemies = stage.enemies;
 
     for (const auto &e : enemies) {
         EnemySpriteBase *enemy = nullptr;
@@ -164,8 +164,8 @@ void GameScene1Player::addEnemies() {
 }
 
 void GameScene1Player::addWalls() {
-    auto cpt = GameScriptFactory::getInstance()->getCheckpoints()->at(GameConfig::CURRENT_CHECKPOINT);
-    auto walls = cpt.walls;
+    auto stage = GameScriptFactory::getInstance()->getStages()->at(GameConfig::CURRENT_CHECKPOINT);
+    auto walls = stage.walls;
 
     for (const auto &w : walls) {
         auto wall = WallSprite::create(w.breakable);

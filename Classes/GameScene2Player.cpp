@@ -27,7 +27,7 @@ bool GameScene2Player::init() {
 	}
 
 	// Add sprites
-	//addBackground();
+	addBackground();
 	addBoundary();
 	addPlayer();
 	addWalls();
