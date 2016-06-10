@@ -1,5 +1,6 @@
 #pragma once
 
+
 class GameScene1Player;
 
 class SpriteBase : public cocos2d::Sprite {
@@ -32,11 +33,12 @@ protected:
     Return the game scene of the sprite.
     Author: ChuyangLiu
     */
-    GameScene1Player* getGameScene();
+	GameScene1Player* getGameScene();
+
 
 private:
     std::mutex mutex;
     bool removed = false;
 
-    GameScene1Player *gameScene = nullptr;
+	GameScene1Player *gameScene = nullptr;
 };

@@ -33,6 +33,7 @@ EnemyNormalSprite* EnemyNormalSprite::create(GameScene1Player *scene) {
         enemy->setGameScene(scene);
         enemy->runAI();
         enemy->setHP(HPValue(GameConfig::ENEMY_NORMAL_MAX_HP, GameConfig::ENEMY_NORMAL_INIT_HP));
+		enemy->showHpBar();
 
         return enemy;
     }

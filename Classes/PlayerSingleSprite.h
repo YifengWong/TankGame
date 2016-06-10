@@ -39,6 +39,33 @@ public:
     */
     virtual void onRemove() override;
 
+protected:
+	/*
+	Update the hp bar
+	Author: YifengWong
+	*/
+	void updateHpBar();
+
+	/*
+	Show the hp bar
+	Author: YifengWong
+	*/
+	void showHpBar();
+
+	/*
+	Set the hp bar
+	Author: YifengWong
+	*/
+	void setHpBar();
+
+	/*
+	Remove the hp bar
+	Author: YifengWong
+	*/
+	void removeHpBar();
+
+	cocos2d::ProgressTimer* hpSprite;
+
 private:
     /*
     Inaccessible default constructor from outside the class.

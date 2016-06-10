@@ -6,9 +6,11 @@
 USING_NS_CC;
 
 PlayerSingleSprite::PlayerSingleSprite() {
+	setHpBar();
 }
 
 PlayerSingleSprite::~PlayerSingleSprite() {
+	removeHpBar();
 }
 
 PlayerSingleSprite* PlayerSingleSprite::create(GameScene1Player *scene) {
@@ -31,6 +33,7 @@ PlayerSingleSprite* PlayerSingleSprite::create(GameScene1Player *scene) {
         player->setPhysicsBody(physicBody);
         player->setGameScene(scene);
         player->setHP(HPValue(GameConfig::PLAYER_MAX_HP, GameConfig::PLAYER_INIT_HP));
+		player->showHpBar();
 
         return player;
     }
@@ -96,5 +99,35 @@ void PlayerSingleSprite::fire(Layer *layer, const cocos2d::Vec2 *target) {
 }
 
 void PlayerSingleSprite::onRemove() {
-    getGameScene()->showGameoverBtn();
+	getGameScene()->showGameoverBtn();
+}
+
+void PlayerSingleSprite::removeHpBar() {
+	hpSprite->removeFromParent();
+	hpSprite = nullptr;
+}
+
+void PlayerSingleSprite::showHpBar() {
+	getGameScene()->addChild(hpSprite, 1);
+	schedule([&](float f) {
+		updateHpBar();
+	}, "HpBarUpdateSchedule");
+}
+
+void PlayerSingleSprite::updateHpBar() {
+	if (hpSprite) {
+		hpSprite->setPosition(this->getPosition() + cocos2d::Vec2(-7, -15));
+		hpSprite->setPercentage(this->getHP()->getValue() / 10);
+	}
+}
+
+void PlayerSingleSprite::setHpBar() {
+	cocos2d::Sprite* sp = cocos2d::Sprite::create("hp_bar.png");
+
+	hpSprite = cocos2d::ProgressTimer::create(sp);
+	hpSprite->setAnchorPoint(cocos2d::Vec2(0, 0));
+	hpSprite->setType(cocos2d::ProgressTimerType::BAR);
+	hpSprite->setBarChangeRate(cocos2d::Point(1, 0));
+	hpSprite->setMidpoint(cocos2d::Point(0, 1));
+	hpSprite->setPercentage(getHP()->getValue() / 10);
 }

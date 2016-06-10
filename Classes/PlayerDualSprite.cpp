@@ -34,7 +34,6 @@ PlayerDualSprite* PlayerDualSprite::create(PlayerDualSprite::VSPlayerType type) 
 			player->setPhysicsBody(physicBody);
             player->setHP(HPValue(GameConfig::PLAYER_MAX_HP, GameConfig::PLAYER_INIT_HP));
 
-
 		} else if (type == PlayerDualSprite::PLAYER_2 && player->initWithFile("enemy.png")) {
 			player->autorelease();
 
