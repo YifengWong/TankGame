@@ -3,15 +3,17 @@ A tank game written in cocos2d-x.
 
 ## Game script usage
 
-You can design the checkpoints of the game through the script file "Resources/script/checkpoint.json".
+You can design the stages of the game through the script file "Resources/script/stage.json".
 
 The script is constructed as  a json array:
 
 	[
-		// Checkpoint 1 start
+		// Stage 1 start
 	    {
-	        "player_row": 13,
-	        "player_col": 2,
+	        "player1_row": 13,
+	        "player1_col": 2,
+	        "player2_row": 2,
+	        "player2_col": 13,
 	        "enemies": [
 	            {
 	                "type": 0,
@@ -27,10 +29,12 @@ The script is constructed as  a json array:
 	            }
 	        ]
 	    },
-	    // Checkpoint 2 start
+	    // Stage 2 start
 	    {
-	        "player_row": 12,
-	        "player_col": 2,
+	        "player1_row": 12,
+	        "player1_col": 2,
+	        "player2_row": 2,
+	        "player2_col": 12,
 	        "enemies": [
 	            {
 	                "type": 0,
@@ -48,11 +52,11 @@ The script is constructed as  a json array:
 	    }
 	]
 	
-The game map is partitioned as 16\*26 matrix. Each "\*_row" and "\*_col" json attribute describes the position of the sprite.
+The game map is partitioned to a 16\*26 matrix. Each "\*_row" and "\*_col" json attribute describes the position of the sprite.
 
-The above script create 2 checkpoints with different enemies and walls in it. The "type" attribute describes the enemy type. Currently we only support 2 types of enemy so the value is only valid with 0 and 1.
+The above script create 2 stages with different enemies and walls in it. The "type" attribute describes the enemy type. Currently we only support 2 types of enemy so the value is only valid with 0 and 1.
 
-*WARNING*: Don't modify the file "Resources/script/default_checkpoint.json" unless you know what you are doing.
+*WARNING*: Don't modify the file "Resources/script/default_stage.json" unless you know what you are doing.
 
 ## Links
 * [Cocos2d-x stable versions](http://www.cocos2d-x.org/download)
