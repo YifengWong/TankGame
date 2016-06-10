@@ -5,7 +5,6 @@
 class GameConfig {
 public:
     static unsigned CURRENT_CHECKPOINT;
-	static unsigned CHECKPOINT_2_PLAYER;
 
     // Window size
     static const unsigned WINDOW_ROW_NUM = 16;
