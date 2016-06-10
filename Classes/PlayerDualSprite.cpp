@@ -136,6 +136,13 @@ void PlayerDualSprite::fire(Layer *layer, const cocos2d::Vec2 *target) {
 }
 
 void PlayerDualSprite::onRemove() {
+	std::string text;
+	if (type == PLAYER_1) text = "Player Red Win!";
+	else if (type == PLAYER_2) text = "Player Yellow Win!";
+	GameScene2Player* layer = dynamic_cast<GameScene2Player*>(getGameScene());
+	layer->winBtn->setTitleText(text);
+	layer->winBtn->setVisible(true);
+
     PlayerSpriteBase::onRemove();
     // TODO
 }
