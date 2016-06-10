@@ -2,6 +2,8 @@
 
 #include "EnemySpriteBase.h"
 
+class GameScene1Player;
+
 /*
 A normal enemy sprite
 */

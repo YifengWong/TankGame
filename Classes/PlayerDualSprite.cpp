@@ -2,6 +2,7 @@
 #include "GameConfig.h"
 #include "PlayerBulletSprite.h"
 #include "EnemyBulletSprite.h"
+#include "GameScene2Player.h"
 
 USING_NS_CC;
 
@@ -11,7 +12,7 @@ PlayerDualSprite::PlayerDualSprite() {
 PlayerDualSprite::~PlayerDualSprite() {
 }
 
-PlayerDualSprite* PlayerDualSprite::create(PlayerDualSprite::VSPlayerType type) {
+PlayerDualSprite* PlayerDualSprite::create(GameScene2Player *scene, PlayerDualSprite::VSPlayerType type) {
 	PlayerDualSprite *player = new (std::nothrow) PlayerDualSprite();
 	player->dir = GameUtil::Direction::UP;
 	player->type = type;
@@ -32,7 +33,9 @@ PlayerDualSprite* PlayerDualSprite::create(PlayerDualSprite::VSPlayerType type) 
 			// Set player sprites
 			player->setAnchorPoint(Vec2(0.5, 0.5));
 			player->setPhysicsBody(physicBody);
+            player->setGameScene(scene);
             player->setHP(HPValue(GameConfig::PLAYER_MAX_HP, GameConfig::PLAYER_INIT_HP));
+            player->initHpBar(scene, "hp_bar.png");
 
 		} else if (type == PlayerDualSprite::PLAYER_2 && player->initWithFile("enemy.png")) {
 			player->autorelease();
@@ -50,8 +53,9 @@ PlayerDualSprite* PlayerDualSprite::create(PlayerDualSprite::VSPlayerType type) 
 			// Set player sprites
 			player->setAnchorPoint(Vec2(0.5, 0.5));
 			player->setPhysicsBody(physicBody);
+            player->setGameScene(scene);
             player->setHP(HPValue(GameConfig::PLAYER_MAX_HP, GameConfig::PLAYER_INIT_HP));
-
+            player->initHpBar(scene, "hp_bar.png");
 		}
 
 		return player;

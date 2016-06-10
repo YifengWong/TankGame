@@ -1,6 +1,7 @@
 #pragma once
 
 #include "HPValue.h"
+#include <string>
 
 class AliveSpriteBase {
 public:
@@ -37,6 +38,33 @@ public:
     */
     void decreaseHP(const int v);
 
+protected:
+    /*
+    Initialize the hp bar
+    Author: YifengWong & ChuyangLiu
+    */
+    void initHpBar(cocos2d::Layer *layer, const std::string &imageFilename);
+
+    /*
+    Update the hp bar at every frame
+    Author: YifengWong & ChuyangLiu
+    */
+    virtual void updateHpBar();
+
+    /*
+    Return the hp bar object
+    Author: ChuyangLiu
+    */
+    cocos2d::ProgressTimer* getHpBar();
+
+    /*
+    Remove the hp bar object
+    Author: YifengWong & ChuyangLiu
+    */
+    void removeHpBar();
+
 private:
     HPValue hp;
+
+    cocos2d::ProgressTimer* hpBar = nullptr;
 };

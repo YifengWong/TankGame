@@ -17,6 +17,13 @@ public:
     */
     virtual void fire(const cocos2d::Vec2 &target) = 0;
 
+protected:
+    /*
+    Run the enemy AI.
+    Author: ChuyangLiu
+    */
+    void runAI();
+
     /*
     Make an AI decision.
     Author: ChuyangLiu
@@ -29,40 +36,10 @@ public:
     */
     virtual void onRemove() override;
 
-
-protected:
-
-    /*
-    Run the enemy AI.
-    Author: ChuyangLiu
-    */
-    void runAI();
-
-	/*
-	Update the hp bar
-	Author: YifengWong
-	*/
-	void updateHpBar();
-
-	/*
-	Show the hp bar
-	Author: YifengWong
-	*/
-	void showHpBar();
-
-	/*
-	Set the hp bar
-	Author: YifengWong
-	*/
-	void setHpBar();
-
-	/*
-	Remove the hp bar
-	Author: YifengWong
-	*/
-	void removeHpBar();
-
-	cocos2d::ProgressTimer* hpSprite;
-
 private:
+    /*
+    Update the hp bar at every frame
+    Author: YifengWong & ChuyangLiu
+    */
+    virtual void updateHpBar() override;
 };

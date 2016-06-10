@@ -1,8 +1,5 @@
 #pragma once
 
-
-class GameScene1Player;
-
 class SpriteBase : public cocos2d::Sprite {
 public:
     SpriteBase();
@@ -27,18 +24,17 @@ protected:
     Set the game scene of the sprite.
     Author: ChuyangLiu
     */
-    void setGameScene(GameScene1Player *gameScene_);
+    void setGameScene(cocos2d::Layer *gameScene_);
 
     /*
     Return the game scene of the sprite.
     Author: ChuyangLiu
     */
-	GameScene1Player* getGameScene();
-
+    cocos2d::Layer* getGameScene();
 
 private:
     std::mutex mutex;
     bool removed = false;
 
-	GameScene1Player *gameScene = nullptr;
+    cocos2d::Layer *gameScene = nullptr;
 };

@@ -17,71 +17,71 @@
   <Class Name="AliveSpriteBase">
     <Position X="3.75" Y="4.25" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAARAAgAAAAAAARAAABAAAABAAEAAAAA=</HashCode>
-      <FileName>G:\Git\TankGame\Classes\AliveSpriteBase.h</FileName>
+      <HashCode>gAAAAAAAAgAAAARAEgAAAAAIARAAABAAAABAAEAAIAA=</HashCode>
+      <FileName>C:\ChuyangLiu\WorkingSpace\CType\VisualStudio\TankGame\Classes\AliveSpriteBase.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="AppDelegate" Collapsed="true">
     <Position X="2.25" Y="22.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAACAAAAAAAAACAAQAAAEAAAAAAAAAAAAk=</HashCode>
-      <FileName>G:\Git\TankGame\Classes\AppDelegate.h</FileName>
+      <FileName>C:\ChuyangLiu\WorkingSpace\CType\VisualStudio\TankGame\Classes\AppDelegate.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BulletSpriteBase">
     <Position X="11.5" Y="5" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAgAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAgAA=</HashCode>
-      <FileName>G:\Git\TankGame\Classes\BulletSpriteBase.h</FileName>
+      <FileName>C:\ChuyangLiu\WorkingSpace\CType\VisualStudio\TankGame\Classes\BulletSpriteBase.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="EnemyBossSprite">
     <Position X="5.5" Y="8.75" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAABABAAAAAAwA=</HashCode>
-      <FileName>G:\Git\TankGame\Classes\EnemyBossSprite.h</FileName>
+      <FileName>C:\ChuyangLiu\WorkingSpace\CType\VisualStudio\TankGame\Classes\EnemyBossSprite.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="EnemyBulletSprite">
     <Position X="10.5" Y="8.75" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAEAAAAAAAAAAAACAAAAAAABAAAAAAAA=</HashCode>
-      <FileName>G:\Git\TankGame\Classes\EnemyBulletSprite.h</FileName>
+      <FileName>C:\ChuyangLiu\WorkingSpace\CType\VisualStudio\TankGame\Classes\EnemyBulletSprite.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="EnemyNormalSprite">
     <Position X="7.75" Y="8.75" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAAABAAABAAAAAAAAAEAAAAAAAAABABAAAAAAAA=</HashCode>
-      <FileName>G:\Git\TankGame\Classes\EnemyNormalSprite.h</FileName>
+      <FileName>C:\ChuyangLiu\WorkingSpace\CType\VisualStudio\TankGame\Classes\EnemyNormalSprite.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="EnemySpriteBase">
     <Position X="6.5" Y="4.75" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>gAAIAAAAAAAABQAAAACAAAEAAAAAICAABAAAAAAAoAA=</HashCode>
-      <FileName>G:\Git\TankGame\Classes\EnemySpriteBase.h</FileName>
+      <HashCode>gAAAAAAAAAAABQAAAAAAAAEAAAAAICAABAAAAAAAAAA=</HashCode>
+      <FileName>C:\ChuyangLiu\WorkingSpace\CType\VisualStudio\TankGame\Classes\EnemySpriteBase.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="GameConfig" Collapsed="true">
     <Position X="13.5" Y="13.25" Width="3.5" />
     <TypeIdentifier>
       <HashCode>gh4DAAEABLBACAEhAAAMoASEAJWiAgARgAAYojEAAgY=</HashCode>
-      <FileName>G:\Git\TankGame\Classes\GameConfig.h</FileName>
+      <FileName>C:\ChuyangLiu\WorkingSpace\CType\VisualStudio\TankGame\Classes\GameConfig.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="GameScene1Player">
     <Position X="0.5" Y="13.25" Width="2.5" />
     <TypeIdentifier>
       <HashCode>BAIJoAAQAEIgAQAAIAEwQABAABCgCAaBARAAAIAMAAA=</HashCode>
-      <FileName>G:\Git\TankGame\Classes\GameScene1Player.h</FileName>
+      <FileName>C:\ChuyangLiu\WorkingSpace\CType\VisualStudio\TankGame\Classes\GameScene1Player.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="GameScene2Player">
     <Position X="3.25" Y="13.25" Width="2.5" />
     <TypeIdentifier>
       <HashCode>BAAIAAAQAEAgIAAAAAAwAAAAABCgCIIAARAAABAMAAA=</HashCode>
-      <FileName>G:\Git\TankGame\Classes\GameScene2Player.h</FileName>
+      <FileName>C:\ChuyangLiu\WorkingSpace\CType\VisualStudio\TankGame\Classes\GameScene2Player.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="GameScriptFactory">
@@ -110,7 +110,7 @@
     </NestedTypes>
     <TypeIdentifier>
       <HashCode>AAQAAgAAQAIAAAgIAACAQBACAEBAAASAAAQIAEGAIAQ=</HashCode>
-      <FileName>G:\Git\TankGame\Classes\GameScriptFactory.h</FileName>
+      <FileName>C:\ChuyangLiu\WorkingSpace\CType\VisualStudio\TankGame\Classes\GameScriptFactory.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="GameUtil">
@@ -144,35 +144,32 @@
     </NestedTypes>
     <TypeIdentifier>
       <HashCode>AAAAIABJAAIIhEAAAAAAAAAQBAAgICACAAAARAABAAA=</HashCode>
-      <FileName>G:\Git\TankGame\Classes\GameUtil.h</FileName>
+      <FileName>C:\ChuyangLiu\WorkingSpace\CType\VisualStudio\TankGame\Classes\GameUtil.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="HomeScene">
     <Position X="6" Y="13.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAIAAAAAAAAAAAAAAAAAAAAAAABAAIAEBgAAAAAAEA=</HashCode>
-      <FileName>G:\Git\TankGame\Classes\HomeScene.h</FileName>
+      <FileName>C:\ChuyangLiu\WorkingSpace\CType\VisualStudio\TankGame\Classes\HomeScene.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="HPValue" Collapsed="true">
     <Position X="17.25" Y="13.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAMAEQABBAACAAAAIAAAAAAAABACAAAAAAAAAAAAA=</HashCode>
-      <FileName>G:\Git\TankGame\Classes\HPValue.h</FileName>
+      <FileName>C:\ChuyangLiu\WorkingSpace\CType\VisualStudio\TankGame\Classes\HPValue.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="PlayerBulletSprite">
     <Position X="12.5" Y="8.75" Width="1.75" />
     <TypeIdentifier>
       <HashCode>AAAABAAAAAAAAQMAAAAAAAAAAAACAAAAAAFAAAAAAAA=</HashCode>
-      <FileName>G:\Git\TankGame\Classes\PlayerBulletSprite.h</FileName>
+      <FileName>C:\ChuyangLiu\WorkingSpace\CType\VisualStudio\TankGame\Classes\PlayerBulletSprite.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="PlayerDualSprite">
     <Position X="0.5" Y="8.75" Width="2" />
-    <Compartments>
-      <Compartment Name="Nested Types" Collapsed="false" />
-    </Compartments>
     <NestedTypes>
       <Enum Name="PlayerDualSprite::VSPlayerType" Collapsed="true">
         <TypeIdentifier>
@@ -182,35 +179,35 @@
     </NestedTypes>
     <TypeIdentifier>
       <HashCode>ABAAAEAAACAAAAAAAAAAAAAAAAABAAAABABAQAAAAgA=</HashCode>
-      <FileName>G:\Git\TankGame\Classes\PlayerDualSprite.h</FileName>
+      <FileName>C:\ChuyangLiu\WorkingSpace\CType\VisualStudio\TankGame\Classes\PlayerDualSprite.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="PlayerSingleSprite">
     <Position X="2.75" Y="8.75" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>gAAIIEAAAAAAAQAAAACAAAAAAEAAAAAABABAAAAAogA=</HashCode>
-      <FileName>G:\Git\TankGame\Classes\PlayerSingleSprite.h</FileName>
+      <HashCode>AAAAIEAAAAAAAQAAAAAAAAAAAEAAAAAABABAAAAAAgA=</HashCode>
+      <FileName>C:\ChuyangLiu\WorkingSpace\CType\VisualStudio\TankGame\Classes\PlayerSingleSprite.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="PlayerSpriteBase">
     <Position X="1" Y="4.75" Width="1.75" />
     <TypeIdentifier>
-      <HashCode>AAAIAEAAAAAAAAAAAAAAQAAAAAAAAAAABAAAgAAAAgA=</HashCode>
-      <FileName>G:\Git\TankGame\Classes\PlayerSpriteBase.h</FileName>
+      <HashCode>gAAAAEAAAAAAAQAAAAAAQAAAAAAAAAAABAAAgAAAAgA=</HashCode>
+      <FileName>C:\ChuyangLiu\WorkingSpace\CType\VisualStudio\TankGame\Classes\PlayerSpriteBase.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SpriteBase">
     <Position X="7" Y="0.5" Width="2" />
     <TypeIdentifier>
       <HashCode>AAAAAAACQAEAAQAACABAgAAAAAAAAAAAAAAAAACAIAA=</HashCode>
-      <FileName>G:\Git\TankGame\Classes\SpriteBase.h</FileName>
+      <FileName>C:\ChuyangLiu\WorkingSpace\CType\VisualStudio\TankGame\Classes\SpriteBase.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="WallSprite">
     <Position X="15.25" Y="5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAIQAAAAAAAAABAAAAAAAAABAAAAAQBAAAAAAAA=</HashCode>
-      <FileName>G:\Git\TankGame\Classes\WallSprite.h</FileName>
+      <FileName>C:\ChuyangLiu\WorkingSpace\CType\VisualStudio\TankGame\Classes\WallSprite.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="CocosAppWinRT::OpenGLESPage" Collapsed="true">

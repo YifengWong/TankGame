@@ -2,6 +2,8 @@
 
 #include "PlayerSpriteBase.h"
 
+class GameScene2Player;
+
 /*
 A player sprite for dual model
 */
@@ -22,7 +24,7 @@ public:
 	Create a player sprite with players type.
 	Author: YifengWong
 	*/
-	static PlayerDualSprite* create(PlayerDualSprite::VSPlayerType type);
+	static PlayerDualSprite* create(GameScene2Player *scene, PlayerDualSprite::VSPlayerType type);
 
 	/*
 	Set the move value of the player towards the direction, and change the picture.

@@ -75,11 +75,11 @@ void GameScene2Player::addBoundary() {
 }
 
 void GameScene2Player::addPlayer() {
-	player_1 = PlayerDualSprite::create(PlayerDualSprite::PLAYER_1);
+	player_1 = PlayerDualSprite::create(this, PlayerDualSprite::PLAYER_1);
 	player_1->setPosition(GameUtil::getPosition(GameUtil::PositionType::LEFT_BOTTOM));
 	addChild(player_1);
 
-	player_2 = PlayerDualSprite::create(PlayerDualSprite::PLAYER_2);
+	player_2 = PlayerDualSprite::create(this, PlayerDualSprite::PLAYER_2);
 	player_2->setPosition(GameUtil::getPosition(GameUtil::PositionType::RIGHT_TOP));
 	addChild(player_2);
 }

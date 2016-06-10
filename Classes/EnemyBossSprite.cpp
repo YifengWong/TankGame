@@ -34,7 +34,7 @@ EnemyBossSprite* EnemyBossSprite::create(GameScene1Player *scene) {
 		enemy->runAI();
         enemy->setHP(HPValue(GameConfig::ENEMY_BOSS_MAX_HP, GameConfig::ENEMY_BOSS_INIT_HP));
         enemy->runAction(RepeatForever::create(RotateBy::create(0.4f, 90.0f)));
-		enemy->showHpBar();
+		enemy->initHpBar(scene, "hp_bar.png");
 
 		return enemy;
 	}
@@ -54,12 +54,15 @@ void EnemyBossSprite::fire(const cocos2d::Vec2 &target) {
 }
 
 void EnemyBossSprite::makeAIDecision() {
-    if (this == nullptr || getGameScene() == nullptr) return;
+    if (this == nullptr) return;
+
+    auto scene = dynamic_cast<GameScene1Player*>(getGameScene());
+    if (!scene) return;
 
     if (rand() % 100 < 30) {
         if (rand() % 100 < 50) {
-            if (getGameScene()->getPlayer() == nullptr) return;
-            this->fire(getGameScene()->getPlayer()->getPosition());
+            if (scene->getPlayer() == nullptr) return;
+            this->fire(scene->getPlayer()->getPosition());
         } else {
             this->fire(GameUtil::getPosition(static_cast<GameUtil::PositionType>(
                 rand() % GameUtil::getPositionTypeCount())));
@@ -69,9 +72,9 @@ void EnemyBossSprite::makeAIDecision() {
     if (rand() % 100 < 80) {
         Vec2 vec;
         if (rand() % 100 < 50) {
-            if (getGameScene()->getPlayer() == nullptr) return;
+            if (scene->getPlayer() == nullptr) return;
             vec = GameUtil::getUnitDirectionVector(this->getPosition(),
-                                                   getGameScene()->getPlayer()->getPosition());
+                                                   scene->getPlayer()->getPosition());
         } else {
             auto pos = static_cast<GameUtil::PositionType>(rand() % GameUtil::getPositionTypeCount());
             vec = GameUtil::getUnitDirectionVector(this->getPosition(),

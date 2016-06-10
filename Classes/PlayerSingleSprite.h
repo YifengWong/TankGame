@@ -2,6 +2,8 @@
 
 #include "PlayerSpriteBase.h"
 
+class GameScene1Player;
+
 /*
 A player sprite for single player model
 */
@@ -33,38 +35,7 @@ public:
     */
     virtual void fire(cocos2d::Layer *layer, const cocos2d::Vec2 *target = nullptr) override;
 
-    /*
-    Implement onRemove event
-    Author: ChuyangLiu
-    */
-    virtual void onRemove() override;
-
 protected:
-	/*
-	Update the hp bar
-	Author: YifengWong
-	*/
-	void updateHpBar();
-
-	/*
-	Show the hp bar
-	Author: YifengWong
-	*/
-	void showHpBar();
-
-	/*
-	Set the hp bar
-	Author: YifengWong
-	*/
-	void setHpBar();
-
-	/*
-	Remove the hp bar
-	Author: YifengWong
-	*/
-	void removeHpBar();
-
-	cocos2d::ProgressTimer* hpSprite;
 
 private:
     /*
@@ -73,4 +44,10 @@ private:
     Author: ChuyangLiu
     */
     PlayerSingleSprite();
+
+    /*
+    Implement onRemove event
+    Author: ChuyangLiu
+    */
+    virtual void onRemove() override;
 };

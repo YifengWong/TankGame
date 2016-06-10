@@ -27,7 +27,17 @@ public:
     */
     virtual void fire(cocos2d::Layer *layer, const cocos2d::Vec2 *target = nullptr) = 0;
 
+protected:
+    /*
+    Implement onRemove event
+    Author: ChuyangLiu
+    */
+    virtual void onRemove() override;
 
 private:
-	cocos2d::ProgressTimer* hpSprite;
+    /*
+    Update the hp bar at every frame
+    Author: YifengWong & ChuyangLiu
+    */
+    virtual void updateHpBar() override;
 };

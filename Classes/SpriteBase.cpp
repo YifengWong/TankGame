@@ -26,10 +26,10 @@ void SpriteBase::onRemove() {
     // Not implemented
 }
 
-void SpriteBase::setGameScene(GameScene1Player *gameScene_) {
+void SpriteBase::setGameScene(cocos2d::Layer *gameScene_) {
     gameScene = gameScene_;
 }
 
-GameScene1Player* SpriteBase::getGameScene() {
+cocos2d::Layer* SpriteBase::getGameScene() {
     return gameScene;
 }
