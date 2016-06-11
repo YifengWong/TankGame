@@ -130,7 +130,7 @@ void GameScene1Player::addBoundary() {
 }
 
 void GameScene1Player::addPlayer() {
-    auto stage = GameScriptFactory::getInstance()->getStages()->at(GameConfig::CURRENT_CHECKPOINT);
+    auto stage = GameScriptFactory::getInstance()->getStages()->at(GameConfig::CURRENT_STAGE);
     auto pos = GameUtil::getPosition(stage.player1Row, stage.player1Col);
     player = PlayerSingleSprite::create(this);
     player->setPosition(pos);
@@ -138,7 +138,7 @@ void GameScene1Player::addPlayer() {
 }
 
 void GameScene1Player::addEnemies() {
-    auto stage = GameScriptFactory::getInstance()->getStages()->at(GameConfig::CURRENT_CHECKPOINT);
+    auto stage = GameScriptFactory::getInstance()->getStages()->at(GameConfig::CURRENT_STAGE);
     auto enemies = stage.enemies;
 
     for (const auto &e : enemies) {
@@ -164,7 +164,7 @@ void GameScene1Player::addEnemies() {
 }
 
 void GameScene1Player::addWalls() {
-    auto stage = GameScriptFactory::getInstance()->getStages()->at(GameConfig::CURRENT_CHECKPOINT);
+    auto stage = GameScriptFactory::getInstance()->getStages()->at(GameConfig::CURRENT_STAGE);
     auto walls = stage.walls;
 
     for (const auto &w : walls) {

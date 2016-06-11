@@ -51,16 +51,16 @@ void HomeScene::addStartBtns() {
 
 void HomeScene::addCheckpointBtn() {
     curCptBtn = Button::create();
-    curCptBtn->setTitleText("Current level: " + GameUtil::convertToString(GameConfig::CURRENT_CHECKPOINT));
+    curCptBtn->setTitleText("Current stage: " + GameUtil::convertToString(GameConfig::CURRENT_STAGE));
     curCptBtn->setPosition(GameUtil::getPosition(GameUtil::PositionType::RIGHT_BOTTOM) + Vec2(0, -20));
     curCptBtn->addClickEventListener([&](Ref* pSender) {
         auto max = GameScriptFactory::getInstance()->getStageCount();
-        if (GameConfig::CURRENT_CHECKPOINT == max - 1) {
-            GameConfig::CURRENT_CHECKPOINT = 0;
+        if (GameConfig::CURRENT_STAGE == max - 1) {
+            GameConfig::CURRENT_STAGE = 0;
         } else {
-            ++GameConfig::CURRENT_CHECKPOINT;
+            ++GameConfig::CURRENT_STAGE;
         }
-        curCptBtn->setTitleText("Current level: " + GameUtil::convertToString(GameConfig::CURRENT_CHECKPOINT));
+        curCptBtn->setTitleText("Current stage: " + GameUtil::convertToString(GameConfig::CURRENT_STAGE));
     });
     addChild(curCptBtn);
 }

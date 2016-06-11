@@ -229,10 +229,10 @@ void GameUtil::resetBeforeReplace() {
 }
 
 void GameUtil::toNextCheckpoint() {
-    ++GameConfig::CURRENT_CHECKPOINT;
+    ++GameConfig::CURRENT_STAGE;
     GameUtil::toGameScene1Player();
 }
 
 bool GameUtil::hasNextCheckpoint() {
-    return GameConfig::CURRENT_CHECKPOINT < GameScriptFactory::getInstance()->getStageCount() - 1;
+    return GameConfig::CURRENT_STAGE < GameScriptFactory::getInstance()->getStageCount() - 1;
 }

@@ -88,7 +88,7 @@ void GameScene2Player::addBoundary() {
 }
 
 void GameScene2Player::addPlayer() {
-	auto stage = GameScriptFactory::getInstance()->getStages()->at(GameConfig::CURRENT_CHECKPOINT);
+	auto stage = GameScriptFactory::getInstance()->getStages()->at(GameConfig::CURRENT_STAGE);
 	auto pos1 = GameUtil::getPosition(stage.player1Row, stage.player1Col);
 	auto pos2 = GameUtil::getPosition(stage.player2Row, stage.player2Col);
 
@@ -102,7 +102,7 @@ void GameScene2Player::addPlayer() {
 }
 
 void GameScene2Player::addWalls() {
-	auto stage = GameScriptFactory::getInstance()->getStages()->at(GameConfig::CURRENT_CHECKPOINT);
+	auto stage = GameScriptFactory::getInstance()->getStages()->at(GameConfig::CURRENT_STAGE);
 	auto walls = stage.walls;
 
 	for (const auto &w : walls) {

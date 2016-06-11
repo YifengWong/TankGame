@@ -1,6 +1,6 @@
 #include "GameConfig.h"
 
-unsigned GameConfig::CURRENT_CHECKPOINT = 0;
+unsigned GameConfig::CURRENT_STAGE = 0;
 
 // Bullet common config
 int GameConfig::BULLET_DAMAGE = 100;
