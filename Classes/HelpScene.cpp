@@ -34,13 +34,21 @@ void HelpScene::addHelp() {
 	string player1 = "player1:\n      Move:W A S D \n      Shoot: Left Click \n\n";
 	string player2_1 = "player 2:\n  Yellow:\n      Move: W A S D \n      Shoot: Space \n";
 	string player2_2 = "   Red:\n      Move: direction key \n      Shoot: Enter \n\n";
-	string help = "Back: Home \n";
-	auto label = Label::createWithTTF(player1 + player2_1 + player2_2 + help, 
+	auto label = Label::createWithTTF(player1 + player2_1 + player2_2, 
 										"fonts/arial.ttf", 18);
 
 	label->setPosition(GameUtil::getPosition(GameUtil::PositionType::CENTER));
 
 	addChild(label, 1);
+
+	auto backBtn = Button::create();
+	backBtn->setTitleText("Back: Home \n");
+	backBtn->setTitleFontSize(18);
+	backBtn->setPosition(GameUtil::getPosition(GameUtil::PositionType::CENTER) + Vec2(0, -130));
+	backBtn->addClickEventListener([](Ref* pSender) {
+		GameUtil::toHomeScene();
+	});
+	addChild(backBtn, 2);
 }
 
 void HelpScene::addKeyboardListener() {
