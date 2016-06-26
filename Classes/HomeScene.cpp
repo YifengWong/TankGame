@@ -1,6 +1,7 @@
 #include "HomeScene.h"
 #include "GameScene2Player.h"
 #include "GameScene1Player.h"
+#include "HelpScene.h"
 #include "ui/CocosGUI.h"
 #include "GameUtil.h"
 #include "GameConfig.h"
@@ -25,6 +26,7 @@ bool HomeScene::init() {
 
     addStartBtns();
     addCheckpointBtn();
+	addHelpBtn();
 
     return true;
 }
@@ -63,4 +65,15 @@ void HomeScene::addCheckpointBtn() {
         curCptBtn->setTitleText("Current stage: " + GameUtil::convertToString(GameConfig::CURRENT_STAGE));
     });
     addChild(curCptBtn);
+}
+
+void HomeScene::addHelpBtn() {
+	auto helpBtn = Button::create();
+	helpBtn->setTitleText("Help");
+	helpBtn->setTitleFontSize(30);
+	helpBtn->setPosition(GameUtil::getPosition(GameUtil::PositionType::CENTER) + Vec2(0, -90));
+	helpBtn->addClickEventListener([](Ref* pSender) {
+		Director::getInstance()->replaceScene(HelpScene::createScene());
+	});
+	addChild(helpBtn);
 }

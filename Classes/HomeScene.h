@@ -30,4 +30,10 @@ private:
     Author: ChuyangLiu
     */
     void addCheckpointBtn();
+
+	/*
+	Add button to get help
+	Author: YifengWong
+	*/
+	void addHelpBtn();
 };
